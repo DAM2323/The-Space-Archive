@@ -462,7 +462,7 @@ body {
 .stars.off { color: var(--indigo); }
 .score-label { margin-left: 0.8em; font-size: 0.85em; color: var(--mist); }
 .facts.two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.3em 1.2em; align-content: start; }
-.facts.two .fact { font-size: 0.84em; line-height: 1.25; }
+.facts.two .fact { font-size: 0.81em; line-height: 1.24; }
 .card:has(.facts.two) { width: 96%; }
 
 /* ---------- mini-game shell: pause ---------- */
