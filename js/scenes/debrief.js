@@ -7,7 +7,7 @@ import { machines } from '../data/content.en.js';
 import { SOURCES, visibleFacts } from '../data/sources.js';
 import { t } from '../engine/i18n.js';
 import { ctx, WIDTH, HEIGHT } from '../engine/render.js';
-import { el, button } from '../engine/ui.js';
+import { el, button, setLabel } from '../engine/ui.js';
 import * as scenes from '../engine/scenes.js';
 import { sfx } from '../engine/audio.js';
 import { save } from '../engine/storage.js';
@@ -46,21 +46,35 @@ export default {
       card.append(score);
     }
 
-    const facts = visibleFacts(machine.debrief);
-    if (facts.length) {
+    // The fact list. A machine can also have a bonus story with its own facts;
+    // a button switches the card between the two lists.
+    const body = el('div', 'card-body');
+    const title = card.querySelector('.panel-title');
+    let showingBonus = false;
+    function fill() {
+      const facts = visibleFacts(showingBonus ? machine.bonus.facts : machine.debrief);
+      title.textContent = t(showingBonus ? machine.bonus.title : 'debrief.heading');
+      if (!facts.length) return body.replaceChildren(el('p', 'card-pending', t('debrief.pending')));
       // Long lists are laid out in two columns so the card still fits.
       const list = el('ul', facts.length > 5 ? 'facts two' : 'facts');
       facts.forEach((fact, i) => {
         const item = el('li', 'fact');
         item.style.animationDelay = `${0.25 + i * 0.18}s`;
         item.append(el('span', 'fact-text', t(fact.textKey)));
-        const source = el('span', 'fact-source', `${t('debrief.source')}: ${SOURCES[fact.sourceId].short}`);
-        item.append(source);
+        item.append(el('span', 'fact-source', `${t('debrief.source')}: ${SOURCES[fact.sourceId].short}`));
         list.append(item);
       });
-      card.append(list);
-    } else {
-      card.append(el('p', 'card-pending', t('debrief.pending')));
+      body.replaceChildren(list);
+    }
+    fill();
+    card.append(body);
+    if (machine.bonus && visibleFacts(machine.bonus.facts).length) {
+      const bonus = button(t('debrief.bonus'), () => {
+        showingBonus = !showingBonus;
+        setLabel(bonus, t(showingBonus ? 'debrief.facts' : 'debrief.bonus'));
+        fill();
+      }, 'wide');
+      card.append(bonus);
     }
 
     const done = button(t('debrief.back'), back, 'primary wide', '');

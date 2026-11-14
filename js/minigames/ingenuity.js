@@ -20,7 +20,7 @@ import { Starfield, Particles, shake, ease, lerp, clamp } from '../engine/fx.js'
 import { el, button } from '../engine/ui.js';
 import { sfx, rotor, drone } from '../engine/audio.js';
 import { gameState } from '../state.js';
-import { createShell } from './common.js';
+import { createShell, createHold } from './common.js';
 
 // ---------- GAME VALUES (gameplay numbers, not mission data) ----------
 const GRAVITY = 62;            // GAME VALUE: pixels per second squared, downward
@@ -59,7 +59,6 @@ export function create(ctx, api) {
   let alt = 0, speed = 0;        // altitude (pixels above ground) and vertical speed (up is positive)
   let hovered = 0;               // seconds spent inside the zone on this flight
   let hardLandings = 0;
-  let holding = false;
   let state = 'card';            // 'card' | 'ready' | 'fly' | 'land' | 'pause' | 'done'
   let pauseTime = 0, afterPause = null;
 
@@ -77,25 +76,7 @@ export function create(ctx, api) {
   const hold = button(t('g.ing.hold'), () => {}, 'action hold', '');
   shell.controls.append(hold);
   // The button works while it is pressed, with mouse, touch or keyboard.
-  const press = (on) => { holding = on && (state === 'ready' || state === 'fly' || state === 'land'); hold.classList.toggle('held', holding); };
-  hold.addEventListener('pointerdown', (e) => { hold.setPointerCapture(e.pointerId); press(true); });
-  hold.addEventListener('pointerup', () => press(false));
-  hold.addEventListener('pointercancel', () => press(false));
-  hold.addEventListener('contextmenu', (e) => e.preventDefault());
-  const HOLD_KEYS = [' ', 'Enter', 'ArrowUp', 'w'];
-  let heldKey = null;            // only the key that started the hold can end it
-  const onKeyDown = (e) => {
-    if (!HOLD_KEYS.includes(e.key) || shell.cardOpen() || state === 'done') return;
-    if (e.target instanceof HTMLElement && e.target.closest('button') && e.target !== hold) return;
-    e.preventDefault();
-    heldKey = e.key;
-    press(true);
-  };
-  const onKeyUp = (e) => { if (e.key === heldKey) { heldKey = null; press(false); } };
-  const onBlur = () => press(false);
-  window.addEventListener('keydown', onKeyDown);
-  window.addEventListener('keyup', onKeyUp);
-  window.addEventListener('blur', onBlur);
+  const control = createHold(hold, () => !shell.cardOpen() && (state === 'ready' || state === 'fly' || state === 'land'));
 
   function refresh() {
     flightText.textContent = t('g.ing.flight', { n: Math.min(flight + 1, FLIGHTS.length) });
@@ -119,7 +100,7 @@ export function create(ctx, api) {
   // Wait a moment (so the player can read), then run `then`.
   function pauseThen(seconds, then) {
     state = 'pause';
-    press(false);
+    control.release();
     pauseTime = seconds;
     afterPause = then;
   }
@@ -254,6 +235,7 @@ export function create(ctx, api) {
 
   return {
     update(dt) {
+      const holding = control.held;
       time += dt;
       stars.update(dt, 0.3);
       flash = Math.max(0, flash - dt * 2);
@@ -316,9 +298,7 @@ export function create(ctx, api) {
 
     destroy() {
       rotor(0);
-      window.removeEventListener('keydown', onKeyDown);
-      window.removeEventListener('keyup', onKeyUp);
-      window.removeEventListener('blur', onBlur);
+      control.destroy();
     },
   };
 }

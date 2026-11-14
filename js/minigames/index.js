@@ -8,9 +8,13 @@
 import * as opportunity from './opportunity.js';
 import * as ingenuity from './ingenuity.js';
 import * as sojourner from './sojourner.js';
+import * as lrv from './lrv.js';
+import * as voyager from './voyager.js';
 
 export const MINIGAMES = {
   opportunity,
   ingenuity,
   sojourner,
+  lrv,
+  voyager,
 };

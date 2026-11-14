@@ -69,3 +69,41 @@ export function createShell(api, kickerKey) {
     },
   };
 }
+
+// A "hold" control: true while the given button, or Space / Enter / Up, is
+// held down. Works with mouse, touch and keyboard. `canHold()` says whether
+// holding is allowed right now. Call destroy() when the mini-game ends.
+export function createHold(holdButton, canHold) {
+  let holding = false;
+  let heldKey = null;            // only the key that started the hold can end it
+  const press = (on) => {
+    holding = on && canHold();
+    holdButton.classList.toggle('held', holding);
+  };
+  const KEYS = [' ', 'Enter', 'ArrowUp', 'w'];
+  const onKeyDown = (e) => {
+    if (!KEYS.includes(e.key) || !canHold()) return;
+    if (e.target instanceof HTMLElement && e.target.closest('button') && e.target !== holdButton) return;
+    e.preventDefault();
+    heldKey = e.key;
+    press(true);
+  };
+  const onKeyUp = (e) => { if (e.key === heldKey) { heldKey = null; press(false); } };
+  const onBlur = () => press(false);
+  holdButton.addEventListener('pointerdown', (e) => { holdButton.setPointerCapture(e.pointerId); press(true); });
+  holdButton.addEventListener('pointerup', () => press(false));
+  holdButton.addEventListener('pointercancel', () => press(false));
+  holdButton.addEventListener('contextmenu', (e) => e.preventDefault());
+  window.addEventListener('keydown', onKeyDown);
+  window.addEventListener('keyup', onKeyUp);
+  window.addEventListener('blur', onBlur);
+  return {
+    get held() { return holding && canHold(); },
+    release: () => press(false),
+    destroy() {
+      window.removeEventListener('keydown', onKeyDown);
+      window.removeEventListener('keyup', onKeyUp);
+      window.removeEventListener('blur', onBlur);
+    },
+  };
+}

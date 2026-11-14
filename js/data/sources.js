@@ -3,7 +3,8 @@
 // tag: 'V' = checked against the official Space Apps resources,
 //      'E' = found in earlier research, citation still needed.
 // needsSource: true means the citation does not exist yet. Facts that cite
-// such a source are NOT shown to the player (see visibleFacts below).
+// such a source are NOT shown to the player (see visibleFacts below). To show
+// them, add the url and delete `needsSource: true` from that source.
 // url: null means the link still has to be added before release.
 
 export const SOURCES = {
@@ -73,5 +74,5 @@ export const SOURCES = {
 
 // Only facts with a real citation may be shown to the player.
 export function visibleFacts(debrief) {
-  return debrief.filter((fact) => !fact.needsSource && SOURCES[fact.sourceId] && !SOURCES[fact.sourceId].needsSource);
+  return debrief.filter((fact) => SOURCES[fact.sourceId] && !SOURCES[fact.sourceId].needsSource);
 }

@@ -273,7 +273,7 @@ body {
 .btn.danger:hover, .btn.danger:focus-visible { color: #ff9aa9; border-color: #e0556b; }
 .btn:disabled { color: #5c5f7a; border-color: var(--night); background: rgba(18, 17, 42, 0.88); cursor: default; transform: none; }
 .btn:disabled::before { opacity: 0; }
-.btn[hidden] { display: none; }
+.btn[hidden] { display: none !important; }
 .btn.corner { position: absolute; right: calc(var(--u) * 6); bottom: calc(var(--u) * 6); }
 .btn.corner-top { position: absolute; left: calc(var(--u) * 6); top: calc(var(--u) * 6); }
 
@@ -586,3 +586,19 @@ body {
 .btn.hold.held { color: var(--void); background: var(--amber); border-color: var(--amber); transform: scale(0.97); }
 .btn.arrow { justify-content: center; padding: 0.45em 0.5em; font-size: 1.2em; }
 .btn.arrow::before { display: none; }
+
+/* ---------- LRV and Voyager mini-games ---------- */
+
+.card-body { display: flex; flex-direction: column; min-height: 0; overflow-y: auto; }
+.g-actions.wrap { flex-wrap: wrap; gap: calc(var(--u) * 3); }
+.btn.toggle { flex: 1 1 30%; flex-direction: column; align-items: flex-start; padding: 0.3em 0.7em 0.3em 1.6em; font-size: 0.95em; letter-spacing: 0.06em; }
+.btn.toggle.is-on { border-color: var(--ice); }
+.btn.toggle.is-on .btn-label { color: var(--ice); }
+.btn.toggle:not(.is-on) .btn-label { color: var(--mist); }
+.g-bottom > .btn.primary { padding-top: 0.4em; padding-bottom: 0.4em; }
+.repair { display: flex; align-items: center; gap: calc(var(--u) * 6); width: 100%; }
+.repair-fender { display: grid; grid-template-columns: 1fr 1fr; gap: calc(var(--u) * 1); padding: calc(var(--u) * 2); background: rgba(18, 17, 42, 0.9); border: var(--u) solid var(--violet); }
+.repair-slot { width: 2em; height: 1.6em; display: flex; align-items: center; justify-content: center; color: var(--indigo); border: var(--u) dashed var(--indigo); }
+.repair-slot.want { color: var(--amber); border-color: var(--amber); }
+.repair-slot.done { color: var(--void); background: #7ed492; border-style: solid; border-color: #7ed492; }
+.repair-picks { display: flex; flex: 1; gap: calc(var(--u) * 3); }

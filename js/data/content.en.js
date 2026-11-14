@@ -60,6 +60,8 @@ export const strings = {
   'debrief.back': 'Back to the Archive',
   'debrief.source': 'Source',
   'debrief.score': 'Your result (game score)',
+  'debrief.bonus': 'Bonus story',
+  'debrief.facts': 'Back to the facts',
 
   // --- Mini-game shell ---
   'game.pause': 'Pause',
@@ -212,27 +214,77 @@ export const strings = {
 
   // ---- Lunar Roving Vehicle (section 8.4) ----
   'm.lrv.beat.1': 'You stand on the Moon with Apollo 15. The Lunar Roving Vehicle waits. It is the first of its type to be used.',
-  'm.lrv.beat.2': 'You drive within 5 km of the lunar module. Over three EVAs the rover goes 10.3 km, 12.5 km and 5.1 km.',
-  'm.lrv.beat.3': 'It is December 1972. The Apollo 17 LRV sets a distance record: 35.744 km.',
-  'm.lrv.beat.4': 'The work is done. The LRVs are parked permanently on the Moon. Dust, silence and stars.',
+  'm.lrv.beat.2': 'With it you can go far: up to 5 km from the lunar module. There are three EVAs, three drives.',
+  'm.lrv.beat.3': 'Now you drive. Stop at each flag, and slow down for the craters.',
   'm.lrv.fact.1': 'At Apollo 15 the LRV was used within 5 km of the lunar module. It was the first use of this type of vehicle.',
   'm.lrv.fact.2': 'Apollo 15 EVAs totaled 18 h 35 min. The LRV drove 10.3 km, 12.5 km and 5.1 km (27.9 km total).',
   'm.lrv.fact.3': 'In December 1972, the Apollo 17 LRV set a distance record of 35.744 km.',
   'm.lrv.fact.4': 'The LRVs were left on the Moon, parked permanently.',
   'm.lrv.fact.5': 'On Apollo 17, a fender was repaired with four maps.',                      // [E] hidden until cited
 
+  // Mini-game "Moon Drive". Speeds, the track, flags, craters and stars are game values.
+  // The EVA distances in km are real (Apollo 15).
+  'g.lrv.title': 'Moon Drive',
+  'g.lrv.eva': 'EVA {n} of 3 · {km} km',
+  'g.lrv.eva.title': 'Apollo 15 · EVA {n}',
+  'g.lrv.eva1.text': 'On the first EVA of Apollo 15, the LRV drives 10.3 km.',
+  'g.lrv.eva2.text': 'On the second EVA, the LRV drives 12.5 km.',
+  'g.lrv.eva3.text': 'On the third EVA, the LRV drives 5.1 km. In total: 27.9 km.',
+  'g.lrv.how': 'Hold to drive. Release to slow down. Stop at each flag. Slow down for craters.',
+  'g.lrv.flags': 'Flags: {n} / {total}',
+  'g.lrv.hold': 'Hold: drive',
+  'g.lrv.ready': 'Hold the button (or Space) to drive.',
+  'g.lrv.flagAhead': 'Flag ahead. Release to slow down, and stop next to it.',
+  'g.lrv.stopped': 'Stopped at the flag. Well done.',
+  'g.lrv.missed': 'You drove past the flag. Brake earlier next time.',
+  'g.lrv.jolt': 'Too fast for that crater. Slow down before craters.',
+  'g.lrv.evaDone': 'EVA {n} complete.',
+  'g.lrv.record.title': 'Apollo 17 · December 1972',
+  'g.lrv.record.text': 'In December 1972, the Apollo 17 LRV sets a distance record: 35.744 km.',
+  'g.lrv.repair.text': 'On Apollo 17, a fender is repaired with four maps. Put the four maps in place.',   // [E] shown only once cited
+  'g.lrv.repair.pick': 'Which map fits the marked corner?',
+  'g.lrv.repair.wrong': 'That map does not fit there. Try another one.',
+  'g.lrv.repair.done': 'The fender is repaired.',
+  'g.lrv.map': 'Map {n}',
+  'g.lrv.end': 'The driving is over. The LRVs were left on the Moon, parked permanently.',
+
+  // Bonus story card inside the LRV entry (section 8.6).
+  'bonus.surveyor.title': 'Bonus story: Surveyor 3 and Apollo 12',
+  'bonus.surveyor.1': 'Surveyor 3 launched on 17 April 1967 and landed on 20 April 1967 in Oceanus Procellarum.',
+  'bonus.surveyor.2': 'On 19 November 1969, the Apollo 12 lunar module Intrepid landed about 180 m from it.',
+  'bonus.surveyor.3': 'Astronauts Conrad and Bean took parts of Surveyor 3.',
+
   // ---- Voyager (section 8.5): no verified facts yet, so the beats are atmosphere only ----
   'm.voyager.beat.1': 'You float beside a small machine. Around you there is only dark and silence.',
   'm.voyager.beat.2': 'You feel the cold. Nothing moves here, except you and the machine.',
   'm.voyager.beat.3': 'It keeps going. You hold still and watch it, and you do not want to look away.',
-  'm.voyager.beat.4': 'You feel very small beside it. You wonder who will remember this quiet machine.',
+  'm.voyager.beat.4': 'There is only a little power here. You decide what stays on.',
   'm.voyager.fact.1': 'Voyager 1 will be one light-day from Earth on 18 November 2026 at about 10:16 UTC.',   // [E] hidden until cited
+
+  // Mini-game "Power Budget". Everything here is a game value: budgets, costs, data, rounds, stars.
+  'g.voy.title': 'Power Budget',
+  'g.voy.card.title': 'Power Budget',
+  'g.voy.card.text': 'There is only a little power, and each round there is less. Choose which instruments stay on.',
+  'g.voy.card.how': 'Instruments that are on collect data. Stay inside the power budget, then let time pass.',
+  'g.voy.round': 'Round {n} of {total}',
+  'g.voy.power': 'Power: {used} / {budget}',
+  'g.voy.data': 'Data: {n}',
+  'g.voy.instrument': 'Instrument {n}',
+  'g.voy.on': 'On',
+  'g.voy.off': 'Off',
+  'g.voy.cost': 'power {c}',
+  'g.voy.gain': 'data +{d}',
+  'g.voy.pass': 'Let time pass',
+  'g.voy.ready': 'Switch instruments on or off. Stay inside the budget.',
+  'g.voy.over': 'Too much power in use. Switch something off.',
+  'g.voy.less': 'Time passes. There is less power now.',
+  'g.voy.end': 'Almost no power is left. The machine keeps going.',
 };
 
 // Structure of each machine entry. Text is referenced by key, so a translation
 // only needs its own `strings`. `env` picks the story backdrop.
-const beats = (id) => [1, 2, 3, 4].map((n) => ({ textKey: `m.${id}.beat.${n}`, spriteKey: id }));
-const fact = (id, n, sourceId, needsSource = false) => ({ textKey: `m.${id}.fact.${n}`, sourceId, needsSource });
+const beats = (id, count = 4) => Array.from({ length: count }, (_, i) => ({ textKey: `m.${id}.beat.${i + 1}`, spriteKey: id }));
+const fact = (id, n, sourceId) => ({ textKey: `m.${id}.fact.${n}`, sourceId });
 
 export const machines = {
   opportunity: {
@@ -259,18 +311,27 @@ export const machines = {
   },
   lrv: {
     id: 'lrv', name: 'm.lrv.name', years: 'm.lrv.years', env: 'moon',
-    beats: beats('lrv'),
+    beats: beats('lrv', 3),
     debrief: [
       fact('lrv', 1, 'nssdca-a15'), fact('lrv', 2, 'nssdca-a15'), fact('lrv', 3, 'beyond-earth'),
       fact('lrv', 4, 'spaceapps-resources'),
-      fact('lrv', 5, 'apollo17-fender', true),       // [E]: needs a citation before it is shown
+      fact('lrv', 5, 'apollo17-fender'),             // [E]: hidden until that source has a citation (see sources.js)
     ],
+    // Extra story card, opened from the LRV debrief card.
+    bonus: {
+      title: 'bonus.surveyor.title',
+      facts: [
+        { textKey: 'bonus.surveyor.1', sourceId: 'beyond-earth' },
+        { textKey: 'bonus.surveyor.2', sourceId: 'nssdca-a12' },
+        { textKey: 'bonus.surveyor.3', sourceId: 'nssdca-a12' },
+      ],
+    },
   },
   voyager: {
     id: 'voyager', name: 'm.voyager.name', years: 'm.voyager.years', env: 'space',
     beats: beats('voyager'),
     debrief: [
-      fact('voyager', 1, 'nasa-voyager', true),      // [E]: needs a citation before it is shown
+      fact('voyager', 1, 'nasa-voyager'),            // [E]: hidden until that source has a citation (see sources.js)
     ],
   },
 };
