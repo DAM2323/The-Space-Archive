@@ -2,11 +2,29 @@
 
 *Abandoned, but not forgotten.*
 
+Play online: https://dam2323.github.io/The-Space-Archive/ (available once GitHub Pages is enabled for this repository)
+
 ## Concept
 
 The Space Archive is a short educational pixel-art browser game made for the 2026 NASA Space Apps Challenge (Lima), challenge "Abandoned but Not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars". The player is an astronaut who orbits a black hole, arrives at The Archive and lives the real stories of five machines: the Apollo Lunar Roving Vehicle, Voyager, Sojourner, Opportunity and Ingenuity.
 
 Narrative fiction. The physics is real: near a black hole, time runs slower, so you can only travel toward the future.
+
+## Screenshots
+
+![Title screen](screenshots/01-title.png)
+*The title screen.*
+
+![The Archive](screenshots/03-hub.png)
+*The Archive, where you choose a machine.*
+
+![Opportunity mini-game](screenshots/05-opportunity-storm.png)
+*The Opportunity mini-game.*
+
+![What really happened card](screenshots/08-debrief.png)
+*A "What really happened" card.*
+
+More screenshots are in the screenshots folder.
 
 ## How to play
 
@@ -20,9 +38,23 @@ Narrative fiction. The physics is real: near a black hole, time runs slower, so 
 - Voyager mini-game: switch instruments on or off to stay inside the power budget, then let time pass. Every number and name in this level is a game value.
 - Science Room: open it from The Archive (the button at the top, or "Enter the Science Room" when all five machines are archived). Credits and sources are on the title screen and inside the Science Room. Options are also available from the Pause menu in every mini-game.
 
-## Status
+## The five machines
 
-Playable from start to finish in English and Spanish: title screen with options, black hole intro, The Archive hub, portal transitions, story scenes, a mini-game for each of the five machines, the "What really happened" cards, the Science Room and the credits. Remaining before submission: source links, deployment and screenshots.
+| Machine | Mini-game | What you do |
+| --- | --- | --- |
+| Opportunity | Beyond Sol 90 | Manage energy: drive, do science or rest |
+| Ingenuity | Wright Brothers Field | Take off, hover and land |
+| Sojourner | Slow and Steady | Move around the rocks to reach targets |
+| Lunar Roving Vehicle | Moon Drive | Drive, stop at flags, slow down for craters |
+| Voyager | Power Budget | Switch instruments on and off to stay inside a power budget |
+
+## Facts and sources
+
+Every fact shown to the player comes from the project's content pack and carries a source id (see js/data/sources.js and CREDITS.md). A fact whose source is marked `needsSource: true` is hidden from the player until a citation is added: add the url and delete `needsSource: true` from that source. Numbers that belong to gameplay are marked `// GAME VALUE` in the code and labeled as game values on screen.
+
+The real ending of each machine cannot be changed by the player.
+
+Voyager currently shows no mission facts, because its source is not cited yet.
 
 ## How to run
 
@@ -58,6 +90,7 @@ All paths in the game are relative, so it works from a subfolder. The empty `.no
 - All art is generated in code from small pixel maps.
 - Text is a DOM overlay over the canvas.
 - Text lives in js/data/content.en.js and js/data/content.es.js (same keys) and is read through t('key').
+- Total size of the game is under 1 MB.
 
 File tree:
 
@@ -73,9 +106,14 @@ js/minigames/ index.js, common.js, opportunity.js, ingenuity.js, sojourner.js, l
 js/data/     palette.js, sprites.js, content.en.js, content.es.js, sources.js
 ```
 
-## Facts and sources
+## Accessibility
 
-Every fact shown to the player comes from the project's content pack and carries a source id (see js/data/sources.js and CREDITS.md). A fact whose source is marked `needsSource: true` is hidden from the player until a citation is added: add the url and delete `needsSource: true` from that source. Numbers that belong to gameplay are marked `// GAME VALUE` in the code and labeled as game values on screen.
+- Keyboard only, mouse and touch all work.
+- Text size option.
+- Reduced motion option: no screen shake or flashes, and the intro becomes a still frame.
+- Sound toggle and volume.
+- English and Spanish.
+- Text is real DOM text, not drawn on the canvas.
 
 ## How AI tools were used
 
