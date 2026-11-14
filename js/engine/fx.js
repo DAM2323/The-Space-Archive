@@ -15,6 +15,7 @@ export const ease = {
   inOutSine: (t) => 0.5 - 0.5 * Math.cos(Math.PI * t),
   outCubic: (t) => 1 - (1 - t) ** 3,
   inCubic: (t) => t ** 3,
+  inOutCubic: (t) => (t < 0.5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2),
   outBack: (t) => 1 + 2.70158 * (t - 1) ** 3 + 1.70158 * (t - 1) ** 2,
 };
 

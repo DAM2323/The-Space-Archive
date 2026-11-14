@@ -8,9 +8,15 @@ The Space Archive is a short educational pixel-art browser game made for the 202
 
 Narrative fiction. The physics is real: near a black hole, time runs slower, so you can only travel toward the future.
 
+## How to play
+
+- Mouse or touch: point at a machine in The Archive and click or tap it. Click or tap to advance the story.
+- Keyboard: arrow keys to aim, Enter to select, Space or Enter to advance text, Esc to go back.
+- Options (title screen): sound, volume, text size, reduced motion, language, reset progress.
+
 ## Status
 
-Work in progress. Milestone M0 is done: project scaffold, fixed-step game loop, scene manager with fade transitions, integer-scaled 320x180 pixel canvas, 16-color palette and the title screen.
+Work in progress. Done so far: the engine (fixed-step loop, scene manager, integer-scaled 320x180 pixel canvas, input, WebAudio sound, saved settings and progress), the title screen with options, the black hole intro, The Archive hub with five machines, portal transitions, story scenes and the "What really happened" cards. Next: the mini-games.
 
 ## How to run
 
@@ -22,7 +28,7 @@ python3 -m http.server 8000
 
 Then open http://localhost:8000 . Any static server works.
 
-To open a scene directly, add a URL hash such as `#title`, for example http://localhost:8000/#title .
+To open a scene directly, add a URL hash: `#title`, `#intro`, `#hub`, a machine id (`#opportunity`, `#ingenuity`, `#sojourner`, `#lrv`, `#voyager`) or `#debrief:opportunity`.
 
 ## How to deploy
 
@@ -40,24 +46,12 @@ File tree:
 
 ```
 index.html
-css/
-  style.css
-js/
-  main.js
-  state.js
-  engine/
-    loop.js
-    scenes.js
-    render.js
-    fx.js
-    ui.js
-    i18n.js
-  scenes/
-    title.js
-  data/
-    palette.js
-    sprites.js
-    content.en.js
+css/style.css
+js/main.js
+js/state.js
+js/engine/   loop.js, scenes.js, render.js, input.js, audio.js, storage.js, i18n.js, fx.js, ui.js
+js/scenes/   title.js, options.js, intro.js, hub.js, portal.js, story.js, debrief.js
+js/data/     palette.js, sprites.js, content.en.js, sources.js
 ```
 
 ## How AI tools were used

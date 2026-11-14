@@ -7,9 +7,12 @@ import { SPRITES } from '../data/sprites.js';
 import { t } from '../engine/i18n.js';
 import { clear, drawSprite, ctx, WIDTH, HEIGHT } from '../engine/render.js';
 import { Starfield, Particles, shake, lerp } from '../engine/fx.js';
-import { el, button, setLabel, arrowNav } from '../engine/ui.js';
+import { el, button, arrowNav } from '../engine/ui.js';
 import * as scenes from '../engine/scenes.js';
-import { gameState, applySettings } from '../state.js';
+import * as input from '../engine/input.js';
+import { sfx, drone } from '../engine/audio.js';
+import { gameState } from '../state.js';
+import { createOptions } from './options.js';
 
 const ASTRO = { x: 58, y: 82 };       // astronaut resting position (game pixels)
 const HOLE = { x: 226, y: 34 };       // top-left corner of the black hole picture
@@ -19,7 +22,8 @@ let time = 0;
 let parallax = { x: 0, y: 0, tx: 0, ty: 0 };   // current and target star offset
 let holeImage = null;
 let dom = {};                         // references to DOM nodes we update
-let onKey, onPointer;
+let options = null;                   // the options panel
+let offInput = null;
 
 // Draw the distant black hole once into a small canvas.
 // Stylized: a dark disc, a thin bright ring of bent light around it, and a
@@ -83,9 +87,9 @@ function buildUI(ui) {
 
   const menu = el('nav', 'menu');
   const start = button(t('title.start'), () => openScene('intro', true), 'primary');
-  const options = button(t('title.options'), () => toggleOptions(true));
+  const optionsButton = button(t('title.options'), () => { showOptions(true); options.open(); });
   const credits = button(t('title.credits'), () => openScene('credits', false));
-  menu.append(start, options, credits);
+  menu.append(start, optionsButton, credits);
 
   const notice = el('p', 'notice');
   notice.setAttribute('aria-live', 'polite');
@@ -95,47 +99,28 @@ function buildUI(ui) {
   root.append(logo, tagline, menu, notice, disclaimer);
 
   // Options panel (hidden until opened).
-  const panel = el('section', 'panel options');
-  panel.hidden = true;
-  panel.setAttribute('role', 'dialog');
-  panel.setAttribute('aria-label', t('options.heading'));
-  const textSize = button('', () => {
-    gameState.settings.textSize = gameState.settings.textSize === 'large' ? 'normal' : 'large';
-    refreshOptions();
+  options = createOptions({
+    onClose: () => showOptions(false),
+    onLanguage: () => { ui.replaceChildren(); buildUI(ui); showOptions(true); options.open(); },
   });
-  const motion = button('', () => {
-    gameState.settings.reducedMotion = !gameState.settings.reducedMotion;
-    refreshOptions();
-  });
-  const close = button(t('options.close'), () => toggleOptions(false), 'primary');
-  panel.append(el('h2', 'panel-title', t('options.heading')), textSize, motion, close);
 
-  ui.append(root, panel);
-  dom = { root, menu, start, options, notice, panel, textSize, motion };
-  refreshOptions();
+  ui.append(root, options.panel);
+  dom = { root, menu, optionsButton, notice };
   start.focus({ preventScroll: true });
 }
 
-function refreshOptions() {
-  const s = gameState.settings;
-  setLabel(dom.textSize, `${t('options.textSize')}: ${t('options.textSize.' + s.textSize)}`);
-  setLabel(dom.motion, `${t('options.reducedMotion')}: ${t(s.reducedMotion ? 'options.on' : 'options.off')}`);
-  dom.textSize.setAttribute('aria-pressed', String(s.textSize === 'large'));
-  dom.motion.setAttribute('aria-pressed', String(s.reducedMotion));
-  applySettings();
-}
-
-function toggleOptions(open) {
-  dom.panel.hidden = !open;
+// Dim the menu while the options panel is open, and give the focus back after.
+function showOptions(open) {
   dom.root.classList.toggle('dimmed', open);
   dom.root.inert = open;                         // menu behind the panel cannot be focused
-  (open ? dom.textSize : dom.options).focus({ preventScroll: true });
+  if (!open) dom.optionsButton.focus({ preventScroll: true });
 }
 
 // Go to another scene, or say so if that scene is not built yet.
 function openScene(name, withBurst) {
   if (withBurst) {
     shake.add(1.5);
+    sfx('whoosh');
     for (let i = 0; i < 14; i++) {
       const a = Math.PI * (0.25 + 0.5 * Math.random());      // downward cone
       const v = 14 + Math.random() * 26;
@@ -166,23 +151,21 @@ export default {
     holeImage ??= bakeBlackHole();
     buildUI(ui);
 
-    onKey = (e) => {
-      const optionsOpen = !dom.panel.hidden;
-      if (e.key === 'Escape' && optionsOpen) toggleOptions(false);
-      else if (arrowNav(optionsOpen ? dom.panel : dom.menu, e.key)) e.preventDefault();
-    };
-    // The stars shift slightly with the pointer for a feeling of depth.
-    onPointer = (e) => {
-      parallax.tx = (e.clientX / window.innerWidth - 0.5) * -10;
-      parallax.ty = (e.clientY / window.innerHeight - 0.5) * -6;
-    };
-    window.addEventListener('keydown', onKey);
-    window.addEventListener('pointermove', onPointer);
+    drone(true);
+
+    offInput = input.on((a) => {
+      if (a.type === 'back') options.close();
+      else if (a.type === 'direction') arrowNav(options.isOpen() ? options.panel : dom.menu, a.dy > 0 || a.dx > 0 ? 'ArrowDown' : 'ArrowUp');
+      else if (a.type === 'pointer') {
+        // The stars shift slightly with the pointer for a feeling of depth.
+        parallax.tx = (a.x / WIDTH - 0.5) * -10;
+        parallax.ty = (a.y / HEIGHT - 0.5) * -6;
+      }
+    });
   },
 
   exit() {
-    window.removeEventListener('keydown', onKey);
-    window.removeEventListener('pointermove', onPointer);
+    offInput();
   },
 
   update(dt) {

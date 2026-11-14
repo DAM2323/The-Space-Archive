@@ -17,6 +17,7 @@ export const buffer = document.createElement('canvas');
 buffer.width = WIDTH;
 buffer.height = HEIGHT;
 export const ctx = buffer.getContext('2d');
+ctx.imageSmoothingEnabled = false;
 
 export function initRender(canvasEl, stageEl) {
   screen = canvasEl;
@@ -94,17 +95,19 @@ export function bakeSprite(map) {
 }
 
 // Draw a sprite with its top-left corner at (x, y).
-export function drawSprite(map, x, y, { alpha = 1, flip = false } = {}) {
+// `scale` must be a whole number so the pixels stay square.
+export function drawSprite(map, x, y, { alpha = 1, flip = false, scale = 1 } = {}) {
   const img = bakeSprite(map);
+  const w = img.width * scale, h = img.height * scale;
   ctx.globalAlpha = alpha;
   if (flip) {
     ctx.save();
-    ctx.translate(Math.round(x) + img.width, Math.round(y));
+    ctx.translate(Math.round(x) + w, Math.round(y));
     ctx.scale(-1, 1);
-    ctx.drawImage(img, 0, 0);
+    ctx.drawImage(img, 0, 0, w, h);
     ctx.restore();
   } else {
-    ctx.drawImage(img, Math.round(x), Math.round(y));
+    ctx.drawImage(img, Math.round(x), Math.round(y), w, h);
   }
   ctx.globalAlpha = 1;
 }

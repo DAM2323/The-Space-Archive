@@ -11,6 +11,8 @@ export function setLanguage(code) {
   if (dictionaries[code]) current = code;
 }
 
+export const languages = () => Object.keys(dictionaries);
+
 export function getLanguage() {
   return current;
 }

@@ -7,9 +7,19 @@ import { createLoop } from './engine/loop.js';
 import * as scenes from './engine/scenes.js';
 import { shake } from './engine/fx.js';
 import { gameState, applySettings } from './state.js';
+import { load } from './engine/storage.js';
+import { initInput } from './engine/input.js';
+import { initAudio } from './engine/audio.js';
+import { MACHINE_IDS } from './state.js';
 import title from './scenes/title.js';
+import intro from './scenes/intro.js';
+import hub from './scenes/hub.js';
+import portal from './scenes/portal.js';
+import story from './scenes/story.js';
+import debrief from './scenes/debrief.js';
 
-// Text
+// Saved settings and progress, then text
+load();
 addLanguage('en', content.strings);
 setLanguage(gameState.language);
 applySettings();
@@ -18,21 +28,31 @@ document.getElementById('rotate-text').textContent = t('shell.rotate');
 // Engine
 initRender(document.getElementById('screen'), document.getElementById('stage'));
 scenes.initScenes(document.getElementById('ui'));
+initInput(document.getElementById('stage'));
+initAudio();
 
 // Scenes (more are registered here as milestones land)
 scenes.register('title', title);
+scenes.register('intro', intro);
+scenes.register('hub', hub);
+scenes.register('portal', portal);
+scenes.register('story', story);
+scenes.register('debrief', debrief);
 
 // Each scene can be opened directly through the URL hash, for example
-// index.html#title. Unknown names fall back to the title screen.
-function sceneFromHash() {
-  const name = location.hash.slice(1);
-  return scenes.has(name) ? name : 'title';
+// index.html#hub. A machine id (#opportunity) opens that machine's level:
+// its mini-game once it exists, its story until then. #debrief:sojourner
+// passes the machine to a scene. Unknown names fall back to the title screen.
+function openFromHash() {
+  const [name, arg] = location.hash.slice(1).split(':');
+  if (MACHINE_IDS.includes(name)) {
+    return scenes.go(scenes.has(name) ? name : 'story', { machine: name });
+  }
+  if (name === 'portal' || !scenes.has(name)) return scenes.go('title');
+  return scenes.go(name, { machine: MACHINE_IDS.includes(arg) ? arg : 'opportunity' });
 }
-scenes.go(sceneFromHash());
-window.addEventListener('hashchange', () => {
-  const name = sceneFromHash();
-  if (name !== scenes.current()) scenes.go(name);
-});
+openFromHash();
+window.addEventListener('hashchange', openFromHash);
 
 // Main loop
 createLoop(
