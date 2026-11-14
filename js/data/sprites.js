@@ -116,4 +116,17 @@ export const SPRITES = {
     '...........f....f.....bb..',
     '..........f......f........',
   ],
+
+  // Sojourner seen from above, facing right, 14x9 (used on the mini-game map).
+  sojournerTop: [
+    '.ff..ff..ff...',
+    '.ff..ff..ff...',
+    '..aaaaaaaaaa..',
+    '..a3b3b3b3a6..',
+    '..a3b3b3b3a66.',
+    '..a3b3b3b3a6..',
+    '..aaaaaaaaaa..',
+    '.ff..ff..ff...',
+    '.ff..ff..ff...',
+  ],
 };

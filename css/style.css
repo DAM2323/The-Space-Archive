@@ -574,3 +574,15 @@ body {
 .phase-kicker { margin: 0; font-size: 0.8em; letter-spacing: 0.2em; text-transform: uppercase; color: var(--mist); }
 .phase-card .panel-title { margin: 0 0 0.2em; color: var(--amber); }
 .phase-text p { margin: 0 0 0.5em; line-height: 1.45; }
+
+/* ---------- Ingenuity and Sojourner mini-games ---------- */
+
+.dot.extra { background: var(--night); border: var(--u) solid var(--indigo); }
+.dot.extra.on { background: var(--amber); border-color: var(--amber); }
+.dot.extra.seen { background: var(--violet); }
+.g-box .dots { margin: 0.35em 0 0.25em; gap: 0.45em; }
+.g-row .dots { margin: 0; }
+.btn.hold { justify-content: center; max-width: 50%; margin: 0 auto; padding: 0.7em 1em; touch-action: none; }
+.btn.hold.held { color: var(--void); background: var(--amber); border-color: var(--amber); transform: scale(0.97); }
+.btn.arrow { justify-content: center; padding: 0.45em 0.5em; font-size: 1.2em; }
+.btn.arrow::before { display: none; }

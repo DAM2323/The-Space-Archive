@@ -113,6 +113,15 @@ const SOUNDS = {
   },
   scan: () => [660, 880, 990, 1320].forEach((f, i) => tone({ freq: f, at: i * 0.16, dur: 0.1, type: 'square', vol: 0.06 })),
   charge: () => tone({ freq: 330, f1: 660, dur: 0.6, type: 'sine', vol: 0.12 }),
+  step: () => {
+    noise({ dur: 0.18, from: 120, to: 200, vol: 0.22 });
+    tone({ freq: 196, dur: 0.06, type: 'triangle', vol: 0.08 });
+  },
+  bump: () => tone({ freq: 110, f1: 80, dur: 0.12, type: 'square', vol: 0.1 }),
+  land: () => {
+    noise({ dur: 0.15, from: 300, to: 120, vol: 0.2 });
+    tone({ freq: 392, at: 0.05, dur: 0.12, type: 'triangle', vol: 0.1 });
+  },
   lastSignal: () => {
     tone({ freq: 880, dur: 0.5, type: 'sine', vol: 0.12 });
     tone({ freq: 660, at: 0.7, dur: 0.7, type: 'sine', vol: 0.08 });
@@ -127,6 +136,28 @@ const SOUNDS = {
 export function sfx(name) {
   if (!ac || ac.state !== 'running' || !gameState.settings.sound) return;
   SOUNDS[name]?.();
+}
+
+// ---------- rotor hum (Ingenuity) ----------
+// A continuous buzz whose loudness follows `level` (0 = silent .. 1 = full).
+let rotorNodes = null;
+export function rotor(level) {
+  if (!ac || ac.state !== 'running') return;
+  if (!rotorNodes) {
+    if (level <= 0) return;
+    const osc = ac.createOscillator();
+    osc.type = 'sawtooth';
+    const filter = ac.createBiquadFilter();
+    filter.type = 'lowpass';
+    filter.frequency.value = 500;
+    const gain = ac.createGain();
+    gain.gain.value = 0;
+    osc.connect(filter).connect(gain).connect(master);
+    osc.start();
+    rotorNodes = { osc, gain };
+  }
+  rotorNodes.osc.frequency.setTargetAtTime(70 + level * 60, ac.currentTime, 0.08);
+  rotorNodes.gain.gain.setTargetAtTime(gameState.settings.sound ? level * 0.09 : 0, ac.currentTime, 0.08);
 }
 
 // ---------- ambient drone ----------

@@ -6,7 +6,11 @@
 // api.finish({ stars }) and never touches the global game state.
 
 import * as opportunity from './opportunity.js';
+import * as ingenuity from './ingenuity.js';
+import * as sojourner from './sojourner.js';
 
 export const MINIGAMES = {
   opportunity,
+  ingenuity,
+  sojourner,
 };
