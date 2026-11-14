@@ -18,10 +18,11 @@ Narrative fiction. The physics is real: near a black hole, time runs slower, so 
 - Sojourner mini-game: move one square at a time with the arrow keys, the on-screen arrows, or by tapping next to the rover. Go around the rocks and reach the three targets. You have a few moves each sol.
 - Lunar Roving Vehicle mini-game: hold the button (or Space) to drive, release to slow down. Stop next to each flag and slow down for craters.
 - Voyager mini-game: switch instruments on or off to stay inside the power budget, then let time pass. Every number and name in this level is a game value.
+- Science Room: open it from The Archive (the button at the top, or "Enter the Science Room" when all five machines are archived). Credits and sources are on the title screen and inside the Science Room. Options are also available from the Pause menu in every mini-game.
 
 ## Status
 
-Work in progress. Done so far: the engine, the title screen with options, the black hole intro, The Archive hub, portal transitions, story scenes, the "What really happened" cards, and a mini-game for each of the five machines: Opportunity ("Beyond Sol 90"), Ingenuity ("Wright Brothers Field"), Sojourner ("Slow and Steady"), the Lunar Roving Vehicle ("Moon Drive") and Voyager ("Power Budget"). The LRV card also has a bonus story about Surveyor 3. Next: the Science Room and the credits.
+Playable from start to finish: title screen with options, black hole intro, The Archive hub, portal transitions, story scenes, a mini-game for each of the five machines, the "What really happened" cards, the Science Room and the credits. Remaining before submission: final fact check, source links, deployment and screenshots.
 
 ## How to run
 
@@ -33,7 +34,7 @@ python3 -m http.server 8000
 
 Then open http://localhost:8000 . Any static server works.
 
-To open a scene directly, add a URL hash: `#title`, `#intro`, `#hub`, a machine id (`#opportunity`, `#ingenuity`, `#sojourner`, `#lrv`, `#voyager`) or `#debrief:opportunity`.
+To open a scene directly, add a URL hash: `#title`, `#intro`, `#hub`, `#science`, `#credits`, a machine id (`#opportunity`, `#ingenuity`, `#sojourner`, `#lrv`, `#voyager`) or `#debrief:opportunity`.
 
 ## How to deploy
 
@@ -55,7 +56,7 @@ css/style.css
 js/main.js
 js/state.js
 js/engine/   loop.js, scenes.js, render.js, input.js, audio.js, storage.js, i18n.js, fx.js, ui.js
-js/scenes/   title.js, options.js, intro.js, hub.js, portal.js, story.js, game.js, debrief.js
+js/scenes/   title.js, options.js, intro.js, hub.js, portal.js, story.js, game.js, debrief.js, science.js, credits.js
 js/minigames/ index.js, common.js, opportunity.js, ingenuity.js, sojourner.js, lrv.js, voyager.js
 js/data/     palette.js, sprites.js, content.en.js, sources.js
 ```

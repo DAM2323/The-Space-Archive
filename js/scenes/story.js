@@ -16,8 +16,8 @@ import { gameState } from '../state.js';
 import { MINIGAMES } from '../minigames/index.js';
 
 const CHARS_PER_SECOND = 42;      // typewriter speed
-const HORIZON = 92;               // y of the horizon line for ground scenes
-const GROUND_Y = 112;             // where the machine's wheels touch the ground
+const HORIZON = 84;               // y of the horizon line for ground scenes
+const GROUND_Y = 104;             // where the machine's wheels touch the ground
 
 let machine, beat, typed, full, time, bump, leaving;
 let dom, offInput;
@@ -191,7 +191,7 @@ export default {
     const hop = still ? 0 : -Math.round(ease.outCubic(bump) * 3);                // small nod on each new beat
     let x = (WIDTH - w) / 2 - slide, y = GROUND_Y - h + hop;
     if (machine.env === 'space') {
-      y = 66 - h / 2 + (still ? 0 : Math.sin(time * 0.7) * 4) + hop;
+      y = 58 - h / 2 + (still ? 0 : Math.sin(time * 0.7) * 4) + hop;
     } else {
       // Shadow on the ground.
       ctx.globalAlpha = 0.35;

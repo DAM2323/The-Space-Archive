@@ -18,6 +18,8 @@ import portal from './scenes/portal.js';
 import story from './scenes/story.js';
 import debrief from './scenes/debrief.js';
 import game from './scenes/game.js';
+import science from './scenes/science.js';
+import credits from './scenes/credits.js';
 import { MINIGAMES } from './minigames/index.js';
 
 // Saved settings and progress, then text
@@ -41,6 +43,8 @@ scenes.register('portal', portal);
 scenes.register('story', story);
 scenes.register('debrief', debrief);
 scenes.register('game', game);
+scenes.register('science', science);
+scenes.register('credits', credits);
 
 // Each scene can be opened directly through the URL hash, for example
 // index.html#hub. A machine id (#opportunity) opens that machine's mini-game,

@@ -49,6 +49,7 @@ export default {
     // The fact list. A machine can also have a bonus story with its own facts;
     // a button switches the card between the two lists.
     const body = el('div', 'card-body');
+    body.tabIndex = 0;                         // focusable, so the keyboard can scroll long lists
     const title = card.querySelector('.panel-title');
     let showingBonus = false;
     function fill() {

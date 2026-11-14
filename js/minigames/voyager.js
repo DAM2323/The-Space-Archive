@@ -61,7 +61,7 @@ export function create(_ctx, api) {
   const stars = new Starfield(140, 17);
   const sparks = new Particles(120);
   const img = bakeSprite(SPRITES.voyager);
-  const shipX = Math.round((WIDTH - img.width * SCALE) / 2), shipY = 44;
+  const shipX = Math.round((WIDTH - img.width * SCALE) / 2), shipY = 38;
 
   // ---------- DOM ----------
   const roundText = el('span', 'g-phase');

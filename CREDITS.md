@@ -1,5 +1,9 @@
 # Credits
 
+## Made by
+
+Made by Juan for the 2026 NASA Space Apps Challenge, Lima.
+
 ## Sources
 
 - Siddiqi, A. A. "Beyond Earth: A Chronicle of Deep Space Exploration, 1958-2016", NASA SP-2018-4041 (URL to be added)
@@ -9,10 +13,11 @@
 - NASA NSSDCA spacecraft details pages for the Apollo 11, 12 and 15 Lunar Modules (URL to be added)
 - NASA Science pages for Pioneer 10 and NEAR Shoemaker (URL to be added)
 - NASA Science black hole page (URL to be added)
+- NASA Space Apps Challenge 2026, challenge resource list for "Abandoned but Not Forgotten" (URL to be added)
 
 ## Art and audio
 
-All pixel art and sound are original and generated in code. No NASA logos, insignia or mission patches are used.
+All pixel art and sound are original and generated in code. No NASA logos, insignia or mission patches are used. Energy, moves, timers, scores and stars are game values, not mission data.
 
 ## AI disclosure
 

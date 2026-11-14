@@ -213,9 +213,10 @@ function buildUI(ui) {
   const allDone = n === MACHINE_IDS.length;
   dom.hint = el('p', 'hub-hint', t(allDone ? 'hub.allDone' : 'hub.hint'));
   bottom.append(dom.hint);
-  if (allDone && scenes.has('science')) {
-    bottom.append(button(t('hub.science'), () => scenes.go('science'), 'primary'));
-  }
+  // The Science Room is offered when all five are done, and the player may
+  // also choose to leave for it earlier.
+  if (allDone) bottom.append(button(t('hub.science'), () => scenes.go('science'), 'primary small'));
+  else top.append(button(t('hub.leave'), () => scenes.go('science'), 'small'));
   ui.append(top, field, bottom);
 }
 

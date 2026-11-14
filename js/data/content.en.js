@@ -51,6 +51,7 @@ export const strings = {
   'hub.completed': 'Archived',
   'hub.allDone': 'All five stories are archived.',
   'hub.science': 'Enter the Science Room',
+  'hub.leave': 'Leave: Science Room',
   'hub.title': 'Title',
 
   // --- Story and debrief ---
@@ -68,7 +69,44 @@ export const strings = {
   'game.paused': 'Paused',
   'game.resume': 'Resume',
   'game.leave': 'Leave to the Archive',
+  'game.options': 'Options',
   'debrief.pending': 'The sources for this entry are still being checked. Its facts will appear here once they are cited.',
+
+  // --- Science Room: the engineering-to-science link of each machine (facts from section 8) ---
+  'science.title': 'Science Room',
+  'science.intro': 'How each machine was built, and what that gave us.',
+  'science.machine': 'The machine',
+  'science.result': 'What it gave us',
+  'science.prev': 'Previous',
+  'science.next': 'Next',
+  'science.page': '{n} of {total}',
+  'science.credits': 'Sources and credits',
+  'science.back': 'Back to the Archive',
+  'science.pending': 'The sources for this machine are still being checked. Its card will appear here once they are cited.',
+  'science.opportunity.1': 'A rover with solar panels and a 90-sol objective. Dust decided its power: in the 2007 storms the panels reported only 128 watt hours.',
+  'science.opportunity.2': 'It kept driving: 45.16 km in total. On the way it found Heat Shield Rock, an iron-nickel meteorite, and reached Endeavour crater.',
+  'science.ingenuity.1': 'A 1.8 kg helicopter with a rotor span of about 1.2 m, sent as a technology demo for no more than five test flights.',
+  'science.ingenuity.2': 'It made the first powered, controlled flight on another planet. Then it flew on, scouting for rover planners: 72 flights.',
+  'science.sojourner.1': 'A 10.6 kg rover, the first wheeled vehicle used on any planet. It rolled out of Mars Pathfinder, which landed using airbags.',
+  'science.sojourner.2': 'Planned for a week, it worked 83 days. The mission returned 550 rover images and more than 16,500 lander images.',
+  'science.lrv.1': 'A vehicle for astronauts on the Moon, first used on Apollo 15. It was used within 5 km of the lunar module.',
+  'science.lrv.2': 'On Apollo 15 it drove 27.9 km in three EVAs. In December 1972 the Apollo 17 LRV set a distance record of 35.744 km.',
+  'science.voyager.1': 'Voyager 1 will be one light-day from Earth on 18 November 2026 at about 10:16 UTC.',   // [E] hidden until cited
+
+  // --- Credits ---
+  'credits.title': 'Credits and sources',
+  'credits.made': 'Made by Juan for the 2026 NASA Space Apps Challenge, Lima.',
+  'credits.challenge': 'Challenge: "Abandoned but Not Forgotten: Storytelling about NASA’s Discarded Equipment on the Moon and Mars".',
+  'credits.sources': 'Sources',
+  'credits.sourcesNote': 'Every fact in the game comes from these sources. Each fact card names its source.',
+  'credits.art': 'Art and sound',
+  'credits.artText': 'All pixel art and sound are original and made in code. No NASA logos, insignia or mission patches are used.',
+  'credits.gameValues': 'Energy, moves, timers, scores and stars are game values, not mission data.',
+  'credits.tools': 'How it was made',
+  'credits.toolsText': 'Built by a solo developer with the help of AI coding assistants for code, pixel art in code and text drafts. The facts come from the sources above.',
+  'credits.license': 'License',
+  'credits.licenseText': 'Code and content: Apache-2.0. Not affiliated with or endorsed by NASA.',
+  'credits.back': 'Back',
 
   // --- Shell ---
   'shell.rotate': 'Please rotate your device to landscape.',
@@ -214,7 +252,7 @@ export const strings = {
 
   // ---- Lunar Roving Vehicle (section 8.4) ----
   'm.lrv.beat.1': 'You stand on the Moon with Apollo 15. The Lunar Roving Vehicle waits. It is the first of its type to be used.',
-  'm.lrv.beat.2': 'With it you can go far: up to 5 km from the lunar module. There are three EVAs, three drives.',
+  'm.lrv.beat.2': 'With it you work within 5 km of the lunar module. There are three EVAs, three drives.',
   'm.lrv.beat.3': 'Now you drive. Stop at each flag, and slow down for the craters.',
   'm.lrv.fact.1': 'At Apollo 15 the LRV was used within 5 km of the lunar module. It was the first use of this type of vehicle.',
   'm.lrv.fact.2': 'Apollo 15 EVAs totaled 18 h 35 min. The LRV drove 10.3 km, 12.5 km and 5.1 km (27.9 km total).',
@@ -336,4 +374,15 @@ export const machines = {
   },
 };
 
-export default { strings, machines };
+// Science Room: two lines per machine, each with the sources it comes from.
+// A line is shown only if all its sources have a citation.
+const line = (id, n, ...sourceIds) => ({ textKey: `science.${id}.${n}`, sourceIds });
+export const science = {
+  opportunity: [line('opportunity', 1, 'beyond-earth'), line('opportunity', 2, 'nasa-mer', 'beyond-earth')],
+  ingenuity: [line('ingenuity', 1, 'nasa-ingenuity'), line('ingenuity', 2, 'nasa-ingenuity')],
+  sojourner: [line('sojourner', 1, 'nasa-pathfinder'), line('sojourner', 2, 'beyond-earth', 'nasa-pathfinder')],
+  lrv: [line('lrv', 1, 'nssdca-a15'), line('lrv', 2, 'nssdca-a15', 'beyond-earth')],
+  voyager: [line('voyager', 1, 'nasa-voyager')],
+};
+
+export default { strings, machines, science };

@@ -11,8 +11,9 @@ import { sfx } from '../engine/audio.js';
 import { save } from '../engine/storage.js';
 import { gameState } from '../state.js';
 import { MINIGAMES } from '../minigames/index.js';
+import { createOptions } from './options.js';
 
-let machine, game, paused, leaving, dom, offInput;
+let machine, game, paused, leaving, dom, offInput, options;
 
 function setPaused(on) {
   if (leaving || paused === on) return;
@@ -41,8 +42,12 @@ export default {
       leaving = true;
       scenes.go('portal', { machine: machine.id, reverse: true }, { duration: 0.25 });
     }, '', 'back');
-    panel.append(el('h2', 'panel-title', t('game.paused')), resume, leave);
-    ui.append(layer, pause, panel);
+    // Options can be changed in the middle of a game (text size, motion, sound).
+    options = createOptions({ onClose: () => { panel.hidden = false; resume.focus({ preventScroll: true }); } });
+    options.panel.classList.add('pause-panel');
+    const optionsButton = button(t('game.options'), () => { panel.hidden = true; options.open(); });
+    panel.append(el('h2', 'panel-title', t('game.paused')), resume, optionsButton, leave);
+    ui.append(layer, pause, panel, options.panel);
     dom = { layer, pause, panel, resume };
 
     game = MINIGAMES[machine.id].create(ctx, {
@@ -58,8 +63,8 @@ export default {
     });
 
     offInput = input.on((a) => {
-      if (a.type === 'back') setPaused(!paused);
-      else if (a.type === 'direction' && paused) arrowNav(dom.panel, a.dy > 0 || a.dx > 0 ? 'ArrowDown' : 'ArrowUp');
+      if (a.type === 'back') { if (options.isOpen()) options.close(); else setPaused(!paused); }
+      else if (a.type === 'direction' && paused) arrowNav(options.isOpen() ? options.panel : dom.panel, a.dy > 0 || a.dx > 0 ? 'ArrowDown' : 'ArrowUp');
     });
   },
 
