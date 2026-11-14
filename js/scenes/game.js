@@ -43,7 +43,7 @@ export default {
       scenes.go('portal', { machine: machine.id, reverse: true }, { duration: 0.25 });
     }, '', 'back');
     // Options can be changed in the middle of a game (text size, motion, sound).
-    options = createOptions({ onClose: () => { panel.hidden = false; resume.focus({ preventScroll: true }); } });
+    options = createOptions({ showLanguage: false, onClose: () => { panel.hidden = false; resume.focus({ preventScroll: true }); } });
     options.panel.classList.add('pause-panel');
     const optionsButton = button(t('game.options'), () => { panel.hidden = true; options.open(); });
     panel.append(el('h2', 'panel-title', t('game.paused')), resume, optionsButton, leave);

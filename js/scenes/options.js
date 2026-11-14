@@ -12,7 +12,7 @@ const VOLUME_STEPS = [0.2, 0.4, 0.6, 0.8, 1];
 // Returns { panel, open(), close(), isOpen() }.
 // onClose runs after the panel closes; onLanguage runs when the language changes
 // (the scene should rebuild its text).
-export function createOptions({ onClose, onLanguage } = {}) {
+export function createOptions({ onClose, onLanguage, showLanguage = true } = {}) {
   const s = gameState.settings;
   const panel = el('section', 'panel options');
   panel.hidden = true;
@@ -35,6 +35,9 @@ export function createOptions({ onClose, onLanguage } = {}) {
     gameState.language = list[(list.indexOf(gameState.language) + 1) % list.length];
     setLanguage(gameState.language);
     changed();
+    panel.setAttribute('aria-label', t('options.heading'));
+    heading.textContent = t('options.heading');
+    setLabel(close, t('options.close'));
     onLanguage?.();
   });
   // Reset needs two presses, so it cannot happen by accident.
@@ -52,8 +55,11 @@ export function createOptions({ onClose, onLanguage } = {}) {
   const close = button(t('options.close'), () => api.close(), 'primary wide', 'back');
 
   const grid = el('div', 'option-grid');
-  grid.append(sound, volume, textSize, motion, language, reset);
-  panel.append(el('h2', 'panel-title', t('options.heading')), grid, close);
+  // The language can only be changed where the whole screen can be rebuilt (the title).
+  grid.append(sound, volume, textSize, motion, ...(showLanguage ? [language] : []), reset);
+  if (!showLanguage) reset.classList.add('span');
+  const heading = el('h2', 'panel-title', t('options.heading'));
+  panel.append(heading, grid, close);
 
   function refresh() {
     const onOff = (v) => t(v ? 'options.on' : 'options.off');

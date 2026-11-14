@@ -12,7 +12,7 @@ Narrative fiction. The physics is real: near a black hole, time runs slower, so 
 
 - Mouse or touch: point at a machine in The Archive and click or tap it. Click or tap to advance the story.
 - Keyboard: arrow keys to aim, Enter to select, Space or Enter to advance text, Esc to go back.
-- Options (title screen): sound, volume, text size, reduced motion, language, reset progress.
+- Options (title screen): sound, volume, text size, reduced motion, language (English or Spanish), reset progress.
 - Opportunity mini-game: each turn choose Drive, Science or Rest. Driving and science cost energy, the Sun charges you, dust reduces sunlight. Energy, costs and stars are game values, not mission data. Esc or the Pause button pauses.
 - Ingenuity mini-game: hold the button (or Space) to spin the rotors and climb, release to descend. Keep the whole helicopter inside the marked zone until the bar fills, then land softly.
 - Sojourner mini-game: move one square at a time with the arrow keys, the on-screen arrows, or by tapping next to the rover. Go around the rocks and reach the three targets. You have a few moves each sol.
@@ -22,7 +22,7 @@ Narrative fiction. The physics is real: near a black hole, time runs slower, so 
 
 ## Status
 
-Playable from start to finish: title screen with options, black hole intro, The Archive hub, portal transitions, story scenes, a mini-game for each of the five machines, the "What really happened" cards, the Science Room and the credits. Remaining before submission: final fact check, source links, deployment and screenshots.
+Playable from start to finish in English and Spanish: title screen with options, black hole intro, The Archive hub, portal transitions, story scenes, a mini-game for each of the five machines, the "What really happened" cards, the Science Room and the credits. Remaining before submission: source links, deployment and screenshots.
 
 ## How to run
 
@@ -38,7 +38,17 @@ To open a scene directly, add a URL hash: `#title`, `#intro`, `#hub`, `#science`
 
 ## How to deploy
 
-Deploy to any static host (GitHub Pages, Netlify or Vercel). There is no build step: publish the repo root.
+The game is a static site with no build step. Publish the repository root.
+
+GitHub Pages:
+1. On GitHub open the repository, then Settings, then Pages.
+2. Under "Build and deployment", set Source to "Deploy from a branch".
+3. Choose branch `main` and folder `/ (root)`, then Save.
+4. After a minute the game is at https://dam2323.github.io/The-Space-Archive/ .
+
+Netlify or Vercel: import the repository, leave the build command empty and set the publish directory to the repository root.
+
+All paths in the game are relative, so it works from a subfolder. The empty `.nojekyll` file tells GitHub Pages to serve the files as they are.
 
 ## Tech notes
 
@@ -47,10 +57,12 @@ Deploy to any static host (GitHub Pages, Netlify or Vercel). There is no build s
 - No external assets and no network calls at runtime.
 - All art is generated in code from small pixel maps.
 - Text is a DOM overlay over the canvas.
+- Text lives in js/data/content.en.js and js/data/content.es.js (same keys) and is read through t('key').
 
 File tree:
 
 ```
+.nojekyll
 index.html
 css/style.css
 js/main.js
@@ -58,7 +70,7 @@ js/state.js
 js/engine/   loop.js, scenes.js, render.js, input.js, audio.js, storage.js, i18n.js, fx.js, ui.js
 js/scenes/   title.js, options.js, intro.js, hub.js, portal.js, story.js, game.js, debrief.js, science.js, credits.js
 js/minigames/ index.js, common.js, opportunity.js, ingenuity.js, sojourner.js, lrv.js, voyager.js
-js/data/     palette.js, sprites.js, content.en.js, sources.js
+js/data/     palette.js, sprites.js, content.en.js, content.es.js, sources.js
 ```
 
 ## Facts and sources

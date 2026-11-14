@@ -1,7 +1,8 @@
 // Entry point: wires the engine together and starts the first scene.
 
 import content from './data/content.en.js';
-import { addLanguage, setLanguage, t } from './engine/i18n.js';
+import spanish from './data/content.es.js';
+import { addLanguage, setLanguage } from './engine/i18n.js';
 import { initRender, present } from './engine/render.js';
 import { createLoop } from './engine/loop.js';
 import * as scenes from './engine/scenes.js';
@@ -25,9 +26,9 @@ import { MINIGAMES } from './minigames/index.js';
 // Saved settings and progress, then text
 load();
 addLanguage('en', content.strings);
+addLanguage('es', spanish.strings);
 setLanguage(gameState.language);
 applySettings();
-document.getElementById('rotate-text').textContent = t('shell.rotate');
 
 // Engine
 initRender(document.getElementById('screen'), document.getElementById('stage'));

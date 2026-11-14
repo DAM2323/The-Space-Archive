@@ -83,10 +83,10 @@ export const strings = {
   'science.credits': 'Sources and credits',
   'science.back': 'Back to the Archive',
   'science.pending': 'The sources for this machine are still being checked. Its card will appear here once they are cited.',
-  'science.opportunity.1': 'A rover with solar panels and a 90-sol objective. Dust decided its power: in the 2007 storms the panels reported only 128 watt hours.',
+  'science.opportunity.1': 'A rover with solar panels and a 90-sol objective. In the 2007 dust storms the panels reported only 128 watt hours.',
   'science.opportunity.2': 'It kept driving: 45.16 km in total. On the way it found Heat Shield Rock, an iron-nickel meteorite, and reached Endeavour crater.',
   'science.ingenuity.1': 'A 1.8 kg helicopter with a rotor span of about 1.2 m, sent as a technology demo for no more than five test flights.',
-  'science.ingenuity.2': 'It made the first powered, controlled flight on another planet. Then it flew on, scouting for rover planners: 72 flights.',
+  'science.ingenuity.2': 'It made the first powered, controlled flight on another planet. After the demo it scouted for rover planners. In total: 72 flights.',
   'science.sojourner.1': 'A 10.6 kg rover, the first wheeled vehicle used on any planet. It rolled out of Mars Pathfinder, which landed using airbags.',
   'science.sojourner.2': 'Planned for a week, it worked 83 days. The mission returned 550 rover images and more than 16,500 lander images.',
   'science.lrv.1': 'A vehicle for astronauts on the Moon, first used on Apollo 15. It was used within 5 km of the lunar module.',
@@ -135,7 +135,7 @@ export const strings = {
   'm.opportunity.fact.4': 'In January 2005 it found Heat Shield Rock, an iron-nickel meteorite, near its discarded heat shield.',
   'm.opportunity.fact.5': 'In the 2007 dust storms, panels reported 128 watt hours on 18 July. Science stopped for about six weeks, then resumed.',
   'm.opportunity.fact.6': 'It arrived at Endeavour crater on 9 August 2011.',
-  'm.opportunity.fact.7': 'On 16 May 2013 NASA announced it had passed 35.744 km, the record held by the Apollo 17 LRV since December 1972.',
+  'm.opportunity.fact.7': 'On 16 May 2013 NASA announced it had passed the NASA record on another world: 35.744 km, held by the Apollo 17 LRV since December 1972.',
   'm.opportunity.fact.8': 'It last communicated with Earth on 10 June 2018, in a planet-wide dust storm. Total distance: 45.16 km (28.06 miles).',
 
   // Mini-game "Beyond Sol 90". Energy, costs, turns and stars are game values.
@@ -169,7 +169,7 @@ export const strings = {
   'g.opp.p4.title': 'Beyond the plan · 2011 – 2018',
   'g.opp.p4.text': 'The plan was 90 sols. You are still driving, years later.',
   'g.opp.endeavour': '9 August 2011: you arrive at Endeavour crater.',
-  'g.opp.record': '16 May 2013: NASA announces you passed 35.744 km, the record held by the Apollo 17 LRV since December 1972.',
+  'g.opp.record': '16 May 2013: NASA announces you passed the NASA record on another world: 35.744 km, held by the Apollo 17 LRV since December 1972.',
   'g.opp.heatShield': 'Heat Shield Rock: an iron-nickel meteorite, found near the discarded heat shield.',
   'g.opp.dataCollected': 'Data collected.',
   'g.opp.target': 'A science target is here. Science costs energy, but it is why you came.',
@@ -226,7 +226,7 @@ export const strings = {
   'm.sojourner.fact.1': 'Pathfinder launched on 4 December 1996 and landed in Ares Vallis on 4 July 1997, using airbags.',
   'm.sojourner.fact.2': 'Sojourner rolled out on 5 July 1997. It had a mass of 10.6 kg and was the first wheeled vehicle used on any planet.',
   'm.sojourner.fact.3': 'Planned lifetimes: about a month for Pathfinder, a week for Sojourner. They exceeded these by 3 and 12 times. Sojourner worked 83 days.',
-  'm.sojourner.fact.4': 'Final contact with Pathfinder was on 27 September 1997. It was officially declared over on 10 March 1998.',
+  'm.sojourner.fact.4': 'Final contact with Pathfinder was on 27 September 1997. The mission was officially declared over on 10 March 1998.',
   'm.sojourner.fact.5': 'The mission returned 550 rover images and more than 16,500 lander images.',
   'm.sojourner.fact.6': 'The lander was renamed Carl Sagan Memorial Station.',
 
@@ -244,7 +244,7 @@ export const strings = {
   'g.soj.t1': 'Target analyzed. Sojourner is the first wheeled vehicle used on any planet.',
   'g.soj.t2': 'Target analyzed. The plan for Sojourner was a week. It exceeded that 12 times.',
   'g.soj.t3': 'Target analyzed. Sojourner worked for 83 days.',
-  'g.soj.end': 'All targets analyzed. The lander was later renamed Carl Sagan Memorial Station.',
+  'g.soj.end': 'All targets analyzed. The lander was renamed Carl Sagan Memorial Station.',
   'g.soj.up': 'Up',
   'g.soj.down': 'Down',
   'g.soj.left': 'Left',
@@ -290,7 +290,7 @@ export const strings = {
   'bonus.surveyor.title': 'Bonus story: Surveyor 3 and Apollo 12',
   'bonus.surveyor.1': 'Surveyor 3 launched on 17 April 1967 and landed on 20 April 1967 in Oceanus Procellarum.',
   'bonus.surveyor.2': 'On 19 November 1969, the Apollo 12 lunar module Intrepid landed about 180 m from it.',
-  'bonus.surveyor.3': 'Astronauts Conrad and Bean took parts of Surveyor 3.',
+  'bonus.surveyor.3': 'Conrad and Bean took parts of Surveyor 3.',
 
   // ---- Voyager (section 8.5): no verified facts yet, so the beats are atmosphere only ----
   'm.voyager.beat.1': 'You float beside a small machine. Around you there is only dark and silence.',

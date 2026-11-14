@@ -652,3 +652,5 @@ a.source-title { color: var(--amber); }
 /* ---------- scrolling areas: a thin visible scrollbar shows there is more ---------- */
 .card-body, .sci-body, .credits-scroll, .facts { scrollbar-width: thin; scrollbar-color: var(--violet) transparent; overscroll-behavior: contain; touch-action: pan-y; }
 .card-body:focus-visible, .sci-body:focus-visible { outline: var(--u) solid var(--amber); outline-offset: var(--u); }
+
+.option-grid .span { grid-column: 1 / -1; }
