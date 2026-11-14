@@ -1,6 +1,6 @@
 // Story scene: 3 to 5 narrated beats for one machine, typed out in a dialogue
-// box, with the machine shown in its world. Then the debrief card
-// (or the mini-game, once it exists).
+// box, with the machine shown in its world. Then the machine's mini-game,
+// or the debrief card for machines that have none.
 
 import { C } from '../data/palette.js';
 import { SPRITES } from '../data/sprites.js';
@@ -13,6 +13,7 @@ import * as scenes from '../engine/scenes.js';
 import * as input from '../engine/input.js';
 import { sfx } from '../engine/audio.js';
 import { gameState } from '../state.js';
+import { MINIGAMES } from '../minigames/index.js';
 
 const CHARS_PER_SECOND = 42;      // typewriter speed
 const HORIZON = 92;               // y of the horizon line for ground scenes
@@ -101,8 +102,9 @@ function advance() {
   if (beat < machine.beats.length - 1) {
     showBeat(beat + 1);
   } else {
+    // After the last beat: the mini-game if this machine has one, else the card.
     leaving = true;
-    scenes.go('debrief', { machine: machine.id });
+    scenes.go(MINIGAMES[machine.id] ? 'game' : 'debrief', { machine: machine.id });
   }
 }
 

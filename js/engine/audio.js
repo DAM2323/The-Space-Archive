@@ -107,6 +107,17 @@ const SOUNDS = {
     tone({ freq: 784, at: 0.12, dur: 0.12, type: 'triangle', vol: 0.1 });
     tone({ freq: 1047, at: 0.2, dur: 0.25, type: 'triangle', vol: 0.1 });
   },
+  drive: () => {
+    noise({ dur: 0.9, from: 90, to: 160, vol: 0.3 });
+    tone({ freq: 70, f1: 95, dur: 0.9, type: 'sawtooth', vol: 0.05 });
+  },
+  scan: () => [660, 880, 990, 1320].forEach((f, i) => tone({ freq: f, at: i * 0.16, dur: 0.1, type: 'square', vol: 0.06 })),
+  charge: () => tone({ freq: 330, f1: 660, dur: 0.6, type: 'sine', vol: 0.12 }),
+  lastSignal: () => {
+    tone({ freq: 880, dur: 0.5, type: 'sine', vol: 0.12 });
+    tone({ freq: 660, at: 0.7, dur: 0.7, type: 'sine', vol: 0.08 });
+    tone({ freq: 440, at: 1.6, dur: 1.4, type: 'sine', vol: 0.05 });
+  },
   arrive: () => {
     noise({ dur: 1.2, from: 200, to: 5000, vol: 0.16 });
     [392, 523, 784].forEach((f, i) => tone({ freq: f, at: 0.5 + i * 0.14, dur: 0.6, type: 'sine', vol: 0.12 }));

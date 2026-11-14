@@ -74,7 +74,7 @@ function done() {
     setAim(null);
     scenes.go('hub', { justCompleted: p.justCompleted, focus: p.machine }, { instant: true });
   } else {
-    scenes.go(scenes.has(p.machine) ? p.machine : 'story', { machine: p.machine }, { duration: 0.3 });
+    scenes.go('story', { machine: p.machine }, { duration: 0.3 });
   }
 }
 

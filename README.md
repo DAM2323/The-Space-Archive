@@ -13,10 +13,11 @@ Narrative fiction. The physics is real: near a black hole, time runs slower, so 
 - Mouse or touch: point at a machine in The Archive and click or tap it. Click or tap to advance the story.
 - Keyboard: arrow keys to aim, Enter to select, Space or Enter to advance text, Esc to go back.
 - Options (title screen): sound, volume, text size, reduced motion, language, reset progress.
+- Opportunity mini-game: each turn choose Drive, Science or Rest. Driving and science cost energy, the Sun charges you, dust reduces sunlight. Energy, costs and stars are game values, not mission data. Esc or the Pause button pauses.
 
 ## Status
 
-Work in progress. Done so far: the engine (fixed-step loop, scene manager, integer-scaled 320x180 pixel canvas, input, WebAudio sound, saved settings and progress), the title screen with options, the black hole intro, The Archive hub with five machines, portal transitions, story scenes and the "What really happened" cards. Next: the mini-games.
+Work in progress. Done so far: the engine, the title screen with options, the black hole intro, The Archive hub with five machines, portal transitions, story scenes, the "What really happened" cards, and the first mini-game: Opportunity, "Beyond Sol 90". Next: the Ingenuity and Sojourner mini-games. Machines without a mini-game yet play as story plus fact card.
 
 ## How to run
 
@@ -50,7 +51,8 @@ css/style.css
 js/main.js
 js/state.js
 js/engine/   loop.js, scenes.js, render.js, input.js, audio.js, storage.js, i18n.js, fx.js, ui.js
-js/scenes/   title.js, options.js, intro.js, hub.js, portal.js, story.js, debrief.js
+js/scenes/   title.js, options.js, intro.js, hub.js, portal.js, story.js, game.js, debrief.js
+js/minigames/ index.js, opportunity.js
 js/data/     palette.js, sprites.js, content.en.js, sources.js
 ```
 

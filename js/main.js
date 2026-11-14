@@ -17,6 +17,8 @@ import hub from './scenes/hub.js';
 import portal from './scenes/portal.js';
 import story from './scenes/story.js';
 import debrief from './scenes/debrief.js';
+import game from './scenes/game.js';
+import { MINIGAMES } from './minigames/index.js';
 
 // Saved settings and progress, then text
 load();
@@ -38,17 +40,18 @@ scenes.register('hub', hub);
 scenes.register('portal', portal);
 scenes.register('story', story);
 scenes.register('debrief', debrief);
+scenes.register('game', game);
 
 // Each scene can be opened directly through the URL hash, for example
-// index.html#hub. A machine id (#opportunity) opens that machine's level:
-// its mini-game once it exists, its story until then. #debrief:sojourner
-// passes the machine to a scene. Unknown names fall back to the title screen.
+// index.html#hub. A machine id (#opportunity) opens that machine's mini-game,
+// or its story if it has none. #story:opportunity and #debrief:sojourner pass
+// the machine to a scene. Unknown names fall back to the title screen.
 function openFromHash() {
   const [name, arg] = location.hash.slice(1).split(':');
   if (MACHINE_IDS.includes(name)) {
-    return scenes.go(scenes.has(name) ? name : 'story', { machine: name });
+    return scenes.go(MINIGAMES[name] ? 'game' : 'story', { machine: name });
   }
-  if (name === 'portal' || !scenes.has(name)) return scenes.go('title');
+  if (name === 'portal' || name === 'game' || !scenes.has(name)) return scenes.go('title');
   return scenes.go(name, { machine: MACHINE_IDS.includes(arg) ? arg : 'opportunity' });
 }
 openFromHash();

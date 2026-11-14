@@ -37,9 +37,19 @@ export default {
       el('p', 'card-name', [t(machine.name), t(machine.years)].filter(Boolean).join('  ·  ')),
     );
 
+    // Result of the mini-game, clearly marked as a game score.
+    if (params.stars) {
+      const score = el('p', 'card-score');
+      score.append(el('span', 'stars', '\u2605'.repeat(params.stars)), el('span', 'stars off', '\u2605'.repeat(3 - params.stars)));
+      score.append(el('span', 'score-label', t('debrief.score')));
+      score.setAttribute('aria-label', `${t('debrief.score')}: ${params.stars} / 3`);
+      card.append(score);
+    }
+
     const facts = visibleFacts(machine.debrief);
     if (facts.length) {
-      const list = el('ul', 'facts');
+      // Long lists are laid out in two columns so the card still fits.
+      const list = el('ul', facts.length > 5 ? 'facts two' : 'facts');
       facts.forEach((fact, i) => {
         const item = el('li', 'fact');
         item.style.animationDelay = `${0.25 + i * 0.18}s`;
