@@ -1,0 +1,258 @@
+/* The Space Archive - styles for the page shell and the DOM text overlay.
+   Colors mirror js/data/palette.js. Sizes use --u, which is the size of one
+   game pixel in CSS pixels (set by render.js), so text scales with the canvas. */
+
+:root {
+  --void: #07060f;
+  --deep: #12112a;
+  --night: #1f1d47;
+  --indigo: #3a3478;
+  --violet: #6b5fb5;
+  --mist: #a9a4d6;
+  --star: #f2f0e6;
+  --amber: #ffb347;   /* the one warm accent: interactive things only */
+  --ice: #7fd4e8;
+  --text-scale: 1;
+}
+:root.text-large { --text-scale: 1.25; }
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  height: 100%;
+  background: var(--void);
+  color: var(--star);
+  overflow: hidden;                 /* no scrolling in any direction */
+  overscroll-behavior: none;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: ui-monospace, "Cascadia Mono", "SF Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* ---------- stage: canvas + overlay ---------- */
+
+#stage {
+  --px: 1;
+  --u: calc(var(--px) * 1px);
+  position: relative;
+  flex: none;
+}
+
+#screen {
+  display: block;
+  width: 100%;
+  height: 100%;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+#ui {
+  position: absolute;
+  inset: 0;
+  /* 6 game pixels tall, but never smaller than is readable on a phone. */
+  font-size: max(11px, calc(var(--u) * 6 * var(--text-scale)));
+  line-height: 1.45;
+}
+
+.scene-layer { position: absolute; inset: 0; }
+
+/* ---------- buttons (shared by every scene) ---------- */
+
+.btn {
+  position: relative;
+  display: block;
+  min-width: 11em;
+  padding: 0.55em 1.6em;
+  font: inherit;
+  font-size: 1.1em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--star);
+  background: rgba(18, 17, 42, 0.72);
+  border: var(--u) solid var(--indigo);
+  border-radius: 0;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s, background-color 0.15s, transform 0.18s cubic-bezier(.2, .9, .3, 1.4);
+}
+/* A small pointer slides in on hover / focus. */
+.btn::before {
+  content: "\25B8";
+  position: absolute;
+  left: 0.55em;
+  opacity: 0;
+  transform: translateX(-0.5em);
+  transition: opacity 0.15s, transform 0.18s cubic-bezier(.2, .9, .3, 1.4);
+}
+.btn:hover, .btn:focus-visible {
+  color: var(--amber);
+  border-color: var(--amber);
+  background: rgba(31, 29, 71, 0.9);
+  transform: translateX(calc(var(--u) * 2));
+}
+.btn:hover::before, .btn:focus-visible::before { opacity: 1; transform: none; }
+.btn:focus-visible { outline: calc(var(--u) * 1) solid var(--amber); outline-offset: calc(var(--u) * 1); }
+.btn:active { transform: translateX(calc(var(--u) * 2)) scale(0.96); }
+.btn.pop .btn-label { display: inline-block; animation: pop 0.22s ease-out; }
+.btn.primary { border-color: var(--violet); }
+
+@keyframes pop {
+  0% { transform: scale(0.88); }
+  60% { transform: scale(1.06); }
+  100% { transform: scale(1); }
+}
+
+/* ---------- title screen ---------- */
+
+.title {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--u) * 14) calc(var(--u) * 12) calc(var(--u) * 6);
+  text-align: center;
+  transition: opacity 0.25s, filter 0.25s;
+}
+.title.dimmed { opacity: 0.18; }
+
+.logo {
+  margin: 0;
+  font-size: 2.7em;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--star);
+  text-shadow: calc(var(--u) * 1) calc(var(--u) * 1) 0 var(--indigo), 0 0 calc(var(--u) * 10) rgba(107, 95, 181, 0.55);
+}
+.logo span { display: inline-block; animation: rise 0.7s cubic-bezier(.2, .8, .2, 1) both; }
+.logo .gap { width: 0.5em; }
+
+.tagline {
+  margin: 0.5em 0 0;
+  font-size: 1.05em;
+  letter-spacing: 0.08em;
+  color: var(--mist);
+  animation: fade-in 0.9s 1.2s both;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55em;
+  margin-top: auto;
+  animation: fade-in 0.7s 1.5s both;
+}
+
+.notice {
+  min-height: 1.5em;
+  margin: 0.5em 0 0;
+  color: var(--ice);
+  opacity: 0;
+}
+.notice.show { animation: notice 3.2s both; }
+
+.disclaimer {
+  margin: auto 0 0;
+  max-width: 46em;
+  font-size: 0.82em;
+  color: var(--mist);
+  animation: fade-in 0.9s 1.9s both;
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(0.6em); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes notice {
+  0% { opacity: 0; transform: translateY(0.3em); }
+  10%, 80% { opacity: 1; transform: none; }
+  100% { opacity: 0; }
+}
+
+/* ---------- panels (options, later: pause, cards) ---------- */
+
+.panel {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.55em;
+  min-width: 27em;
+  padding: 1.2em 1.6em 1.4em;
+  background: rgba(18, 17, 42, 0.94);
+  border: var(--u) solid var(--violet);
+  box-shadow: calc(var(--u) * 2) calc(var(--u) * 2) 0 rgba(7, 6, 15, 0.8);
+  animation: panel-in 0.28s cubic-bezier(.2, .9, .3, 1.2) both;
+}
+.panel[hidden] { display: none; }
+.panel .btn { width: 100%; text-align: left; }
+.panel-title {
+  margin: 0 0 0.4em;
+  font-size: 1.3em;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-align: center;
+  color: var(--star);
+}
+@keyframes panel-in {
+  from { opacity: 0; transform: translate(-50%, -46%) scale(0.96); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+/* ---------- rotate message (narrow portrait screens) ---------- */
+
+#rotate {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 24px;
+  background: var(--void);
+  color: var(--star);
+  font-size: 18px;
+  text-align: center;
+}
+.rotate-icon {
+  width: 44px;
+  height: 72px;
+  border: 3px solid var(--amber);
+  border-radius: 6px;
+  animation: rotate-hint 2.4s ease-in-out infinite;
+}
+@keyframes rotate-hint {
+  0%, 20% { transform: rotate(0deg); }
+  60%, 100% { transform: rotate(-90deg); }
+}
+@media (orientation: portrait) and (max-width: 700px) {
+  #rotate { display: flex; }
+  #stage { visibility: hidden; }
+}
+
+/* ---------- reduced motion: no movement, content simply appears ---------- */
+
+.reduced-motion *, .reduced-motion *::before {
+  animation-duration: 0.01ms !important;
+  animation-delay: 0s !important;
+  transition-duration: 0.01ms !important;
+}
+.reduced-motion .rotate-icon { animation: none; transform: rotate(-90deg); }
+.reduced-motion .btn:hover, .reduced-motion .btn:focus-visible, .reduced-motion .btn:active { transform: none; }

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#07060f">
+  <title>The Space Archive</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <!-- The stage is the letterboxed 320x180 game area. The canvas shows the
+       pixel art; #ui is a DOM overlay for crisp, accessible text. -->
+  <main id="stage">
+    <canvas id="screen" width="320" height="180" aria-hidden="true"></canvas>
+    <div id="ui"></div>
+  </main>
+  <!-- Shown by CSS on narrow portrait screens. Text is filled in by main.js. -->
+  <div id="rotate" role="status"><div class="rotate-icon" aria-hidden="true"></div><p id="rotate-text"></p></div>
+  <noscript>The Space Archive needs JavaScript to run.</noscript>
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>
