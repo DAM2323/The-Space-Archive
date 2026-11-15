@@ -128,7 +128,7 @@ export const strings = {
   // --- Credits ---
   'credits.title': 'Credits and sources',
   'credits.made': 'Made by Juan for the 2026 NASA Space Apps Challenge, Lima.',
-  'credits.challenge': 'Challenge: "Abandoned but Not Forgotten: Storytelling about NASA’s Discarded Equipment on the Moon and Mars".',
+  'credits.challenge': 'Challenge: "Abandoned but not Forgotten: Storytelling about NASA’s Discarded Equipment on the Moon and Mars".',
   'credits.sources': 'Sources',
   'credits.sourcesNote': 'Every fact in the game comes from these sources. Each fact card names its source.',
   'credits.art': 'Art and sound',

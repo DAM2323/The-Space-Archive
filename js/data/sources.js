@@ -41,7 +41,7 @@ export const SOURCES = {
   },
   'spaceapps-resources': {
     id: 'spaceapps-resources', tag: 'V', url: 'https://www.spaceappschallenge.org/2026/',
-    title: 'Challenge resource list, "Abandoned but Not Forgotten"', publisher: 'NASA Space Apps Challenge 2026',
+    title: 'Challenge resource list, "Abandoned but not Forgotten: Storytelling about NASA’s Discarded Equipment on the Moon and Mars"', publisher: 'NASA Space Apps Challenge 2026',
     short: 'Space Apps challenge resources',
   },
   'nasa-pioneer10': {

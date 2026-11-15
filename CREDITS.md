@@ -2,7 +2,7 @@
 
 ## Made by
 
-Made by Juan for the 2026 NASA Space Apps Challenge, Lima. Challenge: "Abandoned but Not Forgotten".
+Made by Juan for the 2026 NASA Space Apps Challenge, Lima. Challenge: "Abandoned but not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars".
 
 ## NASA data and resources
 
@@ -21,7 +21,7 @@ Every fact shown in the game comes from one of these sources. The id is the one 
 | `nasa-dawn` | NASA Science, "Dawn" | https://science.nasa.gov/mission/dawn/ | Dawn echo |
 | `nssdca-a15` | NASA NSSDCA, "Apollo 15 Lunar Module / ALSEP" | https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1971-063C | Lunar Roving Vehicle (Apollo 15 EVAs and distances, use within 5 km of the lunar module) |
 | `nssdca-a12` | NASA NSSDCA, "Apollo 12 Lunar Module / ALSEP" | https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-099C | Surveyor echo (Apollo 12 landing near Surveyor 3) |
-| `spaceapps-resources` | NASA Space Apps Challenge 2026, resource list of the challenge "Abandoned but Not Forgotten" | https://www.spaceappschallenge.org/2026/ | The list of machines to cover, the one-line descriptions on the Wall of Names, and one line each for the LRVs, the Surveyor landers, Viking 1 and 2 and Dawn |
+| `spaceapps-resources` | NASA Space Apps Challenge 2026, resource list of the challenge "Abandoned but not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars" | https://www.spaceappschallenge.org/2026/ | The list of machines to cover, the one-line descriptions on the Wall of Names, and one line each for the LRVs, the Surveyor landers, Viking 1 and 2 and Dawn |
 
 Not cited yet, so not shown as a fact in the game: the Apollo 17 fender repair (the fact and its puzzle stay hidden until a source is added).
 

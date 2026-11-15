@@ -4,7 +4,7 @@ Draft prepared with AI assistance. Review every text before pasting it into the 
 
 - Project name: **The Space Archive**
 - Slogan: **Abandoned, but not forgotten.**
-- Challenge: Abandoned but Not Forgotten (2026 theme: The Next Frontier)
+- Challenge: Abandoned but not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars (2026 theme: The Next Frontier)
 - Team: The Space Archive, Local Event Lima. Members: Juan David Porras Aliano.
 
 ## Form fields
@@ -66,7 +66,7 @@ All facts in the game come from these NASA resources (full table with what each 
 - NASA Science, "Dawn": https://science.nasa.gov/mission/dawn/
 - NASA NSSDCA, "Apollo 15 Lunar Module / ALSEP": https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1971-063C (Lunar Roving Vehicle on Apollo 15)
 - NASA NSSDCA, "Apollo 12 Lunar Module / ALSEP": https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-099C (Apollo 12 landing near Surveyor 3)
-- NASA Space Apps Challenge 2026, resource list of the challenge "Abandoned but Not Forgotten": https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=details (the list of machines and their one-line descriptions)
+- NASA Space Apps Challenge 2026, resource list of the challenge "Abandoned but not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars": https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=details (the list of machines and their one-line descriptions)
 
 ### Space Agency Partner Data and Other References
 
@@ -86,7 +86,7 @@ The limit is 30 seconds. Going over makes the project ineligible for Global Judg
 | Time | On screen | Voice-over (about 70 words) |
 | --- | --- | --- |
 | 0:00 - 0:02 | Title screen | "I am Juan, The Space Archive, from Lima." |
-| 0:02 - 0:05 | Text: Abandoned but Not Forgotten | "Our challenge: Abandoned but Not Forgotten. What happens to the machines we leave behind?" |
+| 0:02 - 0:05 | Text: Abandoned but not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars | "Our challenge: Abandoned but not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars. What happens to the machines we leave behind?" |
 | 0:05 - 0:10 | Logo and slogan | "This is The Space Archive. Abandoned, but not forgotten." |
 | 0:10 - 0:20 | Black hole intro, The Archive, the Opportunity game, a fact card with its source | "You orbit a black hole, reach The Archive, and live five real stories as mini-games. Every fact comes from NASA sources and shows its source. The real endings cannot be changed." |
 | 0:20 - 0:30 | Echoes, Wall of Names, "The Archive is complete" | "Every machine on the official list is here. Next: more stories, more languages, and classrooms. So they are never forgotten." |
@@ -96,7 +96,7 @@ The limit is 30 seconds. Going over makes the project ineligible for Global Judg
 The limit is 7 slides, including the title. Keep the font large and the words few.
 
 1. **Title.** The Space Archive. "Abandoned, but not forgotten." Screenshot of the title screen.
-2. **Team and challenge.** The Space Archive, Lima. Member: Juan David Porras Aliano. Challenge: Abandoned but Not Forgotten.
+2. **Team and challenge.** The Space Archive, Lima. Member: Juan David Porras Aliano. Challenge: Abandoned but not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars.
 3. **The idea.** An astronaut orbits a black hole and arrives at The Archive, where forgotten machines float as ghosts. Screenshot of The Archive.
 4. **How it works.** Five stories, five mini-games, each built on one real engineering problem. The real ending cannot be changed. Screenshot of the Opportunity game.
 5. **NASA data used.** Beyond Earth (NASA SP-2018-4041), NASA Science mission pages, NSSDCA, the challenge resource list. Every fact shows its source. Screenshot of a "What really happened" card.
@@ -114,7 +114,7 @@ The limit is 7 slides, including the title. Keep the font large and the words fe
 ## Checklist before submitting (from the participant guide)
 
 - [ ] The team is valid and every member is registered in the same Local Event (not on the waiting list) and shown under Members.
-- [ ] One official challenge is chosen: Abandoned but Not Forgotten.
+- [ ] One official challenge is chosen: Abandoned but not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars.
 - [ ] Every form field is complete and in English.
 - [ ] The demo is within its limit (video of 30 seconds or less, or at most 7 slides) and its link is public. Tested in a private window.
 - [ ] The final project link is public. Tested in a private window.
