@@ -207,6 +207,9 @@ export const strings = {
   'art.insight': 'Pixel-art illustration of the InSight lander on Mars.',
   'art.spirit': 'Pixel-art illustration of the Spirit rover on Mars.',
   'art.dawn': 'Pixel-art illustration of the Dawn spacecraft near a cratered world.',
+  'art.lrv': 'Pixel-art illustration of a Lunar Roving Vehicle parked on the Moon.',
+  'art.lm': 'Pixel-art illustration of an Apollo lunar module standing on the Moon.',
+  'art.alsep': 'Pixel-art illustration of science instruments set up on the Moon.',
   'art.kepler': 'Pixel-art illustration of the Kepler Space Telescope in space.',
 
   // --- Shell ---
@@ -471,7 +474,7 @@ export const machines = {
   lrv: {
     id: 'lrv', name: 'm.lrv.name', years: 'm.lrv.years', env: 'moon',
     cardFact: 3,                                  // the debrief fact shown on its card in the hub
-    art: null,                                    // its picture shows national flags, so the sprite is used instead
+    art: 'Images/lrv.webp',
     beats: beats('lrv', 3),
     debrief: [
       fact('lrv', 1, 'nssdca-a15'), fact('lrv', 2, 'nssdca-a15'), fact('lrv', 3, 'beyond-earth'),
@@ -516,10 +519,8 @@ export const echoes = {
 export const wall = ['lm', 'alsep', 'phoenix', 'kepler', 'pioneer11'].map((id) => ({
   id, name: `wall.${id}.name`, textKey: `wall.${id}.text`,
   sourceId: id === 'pioneer11' ? 'beyond-earth' : 'spaceapps-resources',     // the Pioneer 11 facts come from Beyond Earth
-  // Only Kepler has a picture. The Apollo Lunar Module picture shows a national
-  // flag and the ALSEP picture has text labels, so those two stay text-only,
-  // like Phoenix and Pioneer 11.
-  art: id === 'kepler' ? 'Images/kepler.webp' : null,
+  // Three entries have a picture. Phoenix and Pioneer 11 stay text-only.
+  art: { lm: 'Images/apollo-lm.webp', alsep: 'Images/alsep.webp', kepler: 'Images/kepler.webp' }[id] ?? null,
 }));
 
 // Intro timeline: every official resource, in order, with a year only when the

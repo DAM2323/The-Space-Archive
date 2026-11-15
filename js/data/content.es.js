@@ -429,6 +429,9 @@ export const strings = {
   'art.insight': 'Ilustración en pixel art del módulo de aterrizaje InSight en Marte.',
   'art.spirit': 'Ilustración en pixel art del rover Spirit en Marte.',
   'art.dawn': 'Ilustración en pixel art de la nave Dawn cerca de un mundo con cráteres.',
+  'art.lrv': 'Ilustración en pixel art de un vehículo lunar estacionado en la Luna.',
+  'art.lm': 'Ilustración en pixel art de un módulo lunar Apolo posado en la Luna.',
+  'art.alsep': 'Ilustración en pixel art de instrumentos científicos instalados en la Luna.',
   'art.kepler': 'Ilustración en pixel art del telescopio espacial Kepler en el espacio.',
 };
 
