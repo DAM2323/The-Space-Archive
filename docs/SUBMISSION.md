@@ -1,37 +1,126 @@
-DRAFT for Juan to edit. Written with AI assistance; check every sentence before submitting.
+# Submission draft: The Space Archive
 
-## Project description (short)
+Draft prepared with AI assistance. Review every text before pasting it into the form. Items in [brackets] are for you to fill in.
 
-The Space Archive is a short pixel-art browser game. You are an astronaut who orbits a black hole and arrives at The Archive. There you live the real stories of five machines through five mini-games. Every fact shows its source. Available in English and Spanish.
+- Project name: **The Space Archive**
+- Slogan: **Abandoned, but not forgotten.**
+- Challenge: Abandoned but Not Forgotten (2026 theme: The Next Frontier)
+- Team: [team name], Local Event Lima. Members: Juan [add the others, if any].
 
-## Project description (long)
+## Form fields
 
-The Space Archive is a short pixel-art browser game made for the 2026 NASA Space Apps Challenge, "Abandoned but Not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars".
+### Project Name
 
-You are an astronaut who orbits a black hole. Near it, time runs slower, so you can only travel toward the future. You arrive at The Archive, a quiet place outside of time, and live the real stories of five machines: Opportunity, Ingenuity, Sojourner, the Lunar Roving Vehicle and Pioneer 10. Six echoes and a Wall of Names cover the other machines in the official resource list.
+The Space Archive
 
-Each machine has one mini-game built around one real engineering problem, such as managing energy, flying a helicopter or driving with care. The real ending of each machine cannot be changed by the player. After each game, a "What really happened" card shows the facts. Every fact has a visible source, and numbers that belong to gameplay are labeled as game values.
+### High-Level Project Summary
 
-The game is for kids about 10 to 16 and is available in English and Spanish. It works with keyboard, mouse and touch.
+The Space Archive is a short pixel-art browser game about the machines NASA left behind on the Moon, on Mars and in deep space. You play an astronaut who orbits a black hole and arrives at The Archive, where five forgotten machines float as ghosts: Opportunity, Ingenuity, Sojourner, the Lunar Roving Vehicle and Pioneer 10. You live each real story through a mini-game built on one real engineering problem, and a card then shows what really happened, with its NASA source. Six more machines appear as short fact cards and five more on a Wall of Names, so every item of the official resource list is in the game. It matters because these machines are easy to forget, and their stories teach how engineering becomes science.
 
-It is built with plain HTML, CSS and JavaScript. The pixel art and the sound are made in code, with no outside assets, and the whole game is under 1 MB.
+### Link to Project Demo
 
-## One-minute demo script
+[Add the public link to the 30-second video or to the 7-slide deck. Test it in a private window.]
 
-| Time | On screen | Voice-over |
+### Link to Final Project
+
+Repository: https://github.com/DAM2323/The-Space-Archive
+
+Playable game: https://dam2323.github.io/The-Space-Archive/ [confirm it opens in a private window before submitting]
+
+### Detailed Project Description
+
+**What it does.** The Space Archive tells the real stories of machines that were left behind. The player flies an astronaut around The Archive and chooses a machine. Each of the five main machines has a short story, a mini-game and a "What really happened" card:
+
+- Opportunity, "Beyond Sol 90": manage energy by choosing to drive, do science or rest while dust reduces sunlight. The mission objective was 90 sols; the game ends, as the mission did, with the last contact on 10 June 2018.
+- Ingenuity, "Wright Brothers Field": take off, hover and land. It was a technology demo planned for no more than five test flights; it completed 72.
+- Sojourner, "Slow and Steady": move around rocks with a few moves each sol. It was the first wheeled vehicle used on any planet.
+- Lunar Roving Vehicle, "Moon Drive": drive the three Apollo 15 EVAs (10.3 km, 12.5 km and 5.1 km), stop at flags and slow down for craters.
+- Pioneer 10, "Power Budget": keep the transmitter and the instruments inside a shrinking power budget until the last signal on 23 January 2003.
+
+Six "echoes" (Surveyor landers, Viking 1 and 2, NEAR Shoemaker, InSight, Spirit and Dawn) open as fact cards, and a Wall of Names lists the Apollo Lunar Modules, ALSEP, Phoenix, Kepler and Pioneer 11 with their official one-line descriptions. A Science Room links how each machine was built to what it gave us.
+
+**How it works.** The real ending of each machine cannot be changed by the player. Every fact on screen has a visible source. Numbers that belong to gameplay (energy, moves, scores, stars) are labeled as game values, so they are never confused with mission data. The frame story is fiction, and it says so: the astronaut only orbits the black hole, and the intro shows two clocks to explain why she can only travel toward the future.
+
+**Benefits.** It is free, runs in a browser with no install, and is short (10 to 15 minutes). It is available in English and Spanish, and it works with keyboard, mouse and touch. It has options for text size, sound and reduced motion.
+
+**What we hope to achieve.** We want players aged about 10 to 16 to remember these machines by name, to understand one real engineering problem behind each, and to see where every fact comes from.
+
+**Tools, languages and hardware.** Plain HTML, CSS and JavaScript (ES modules). No frameworks, no build step, no libraries and no external assets: the pixel art is drawn from pixel maps in code and the sound is synthesized with the Web Audio API. The game is under 1 MB and makes no network requests while it runs. It was tested in desktop browser windows and in phone-sized windows with touch input [add the devices you tested on]. AI coding assistants were used; see "Use of Super Intelligence".
+
+### Use of Super Intelligence (SI)
+
+Yes. AI coding assistants (Claude Code) were used to write the code, to produce the pixel art (as pixel maps in code) and the synthesized sound, to draft and translate the game text, to draft the documentation, and to help check the game text against the sources. The idea, the story frame, the choice of machines, the rules and the list of allowed facts were defined by the developer, who reviewed the result. Every screen of the game carries a small "AI-generated art" mark, the README and CREDITS.md describe the AI use, and the page metadata states it. No NASA logos, flags, insignia or mission identifiers were generated or used.
+
+### NASA Data
+
+All facts in the game come from these NASA resources (full table with what each one was used for: CREDITS.md):
+
+- Siddiqi, A. A., "Beyond Earth: A Chronicle of Deep Space Exploration, 1958-2016", NASA SP-2018-4041: https://www.nasa.gov/history/history-publications-and-resources/nasa-history-series/beyond-earth/ (Opportunity, Sojourner, the Apollo 17 LRV record, Surveyor 3, Spirit)
+- NASA Science, "Mars Exploration Rovers: Spirit and Opportunity": https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/
+- NASA Science, "Mars Pathfinder": https://science.nasa.gov/mission/mars-pathfinder/
+- NASA Science, "Ingenuity Mars Helicopter": https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/
+- NASA Science, "Pioneer 10": https://science.nasa.gov/mission/pioneer-10/
+- NASA Science, "Viking 1": https://science.nasa.gov/mission/viking-1/
+- NASA Science, "NEAR Shoemaker": https://science.nasa.gov/mission/near-shoemaker/
+- NASA Science, "InSight": https://science.nasa.gov/mission/insight/
+- NASA Science, "Dawn": https://science.nasa.gov/mission/dawn/
+- NASA NSSDCA, "Apollo 15 Lunar Module / ALSEP": https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1971-063C (Lunar Roving Vehicle on Apollo 15)
+- NASA NSSDCA, "Apollo 12 Lunar Module / ALSEP": https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-099C (Apollo 12 landing near Surveyor 3)
+- NASA Space Apps Challenge 2026, resource list of the challenge "Abandoned but Not Forgotten": [add the exact link of the challenge page] (the list of machines and their one-line descriptions)
+
+### Space Agency Partner Data and Other References
+
+- Space agency partner data: none.
+- Code: original, written for this project with AI coding assistants. No third-party libraries, frameworks or code snippets.
+- Images: none from other sources. All pixel art is generated in code and marked "AI-generated art".
+- Audio: none from other sources. All sound is synthesized in the browser (Web Audio API).
+- Fonts: none included. The game uses the monospace font installed on the player's device.
+- Text: written for this project. Facts come from the NASA resources listed under "NASA Data".
+- Tools: Claude Code (AI coding assistant), Git and GitHub, a web browser, and GitHub Pages for hosting [once it is enabled].
+- License of this project: Apache-2.0.
+
+## Demo option A: 30-second video script
+
+The limit is 30 seconds. Going over makes the project ineligible for Global Judging. Add English subtitles if you speak in Spanish.
+
+| Time | On screen | Voice-over (about 70 words) |
 | --- | --- | --- |
-| 0:00 - 0:10 | Title screen, then the black hole intro | "You are an astronaut orbiting a black hole. Near it, time runs slower, so you can only travel toward the future." |
-| 0:10 - 0:20 | The Archive hub: the astronaut flies to a machine and it lights up | "You arrive at The Archive, a quiet place outside of time. Five machines wait here. Pick one and live its story." |
-| 0:20 - 0:35 | Opportunity mini-game, then the last lines of the ending: "10 June 2018. Opportunity communicates with Earth for the last time." | "In Beyond Sol 90 you manage energy: drive, do science or rest. At the end, the game shows the real last contact line: 10 June 2018. Opportunity communicates with Earth for the last time." |
-| 0:35 - 0:43 | The "What really happened" card with the source line visible | "Then a card says What really happened. Every fact shows its source. This ending is real. Nothing you did could change it." |
-| 0:43 - 0:50 | A few seconds of the Sojourner mini-game | "Each machine has its own game. Here, you guide Sojourner around rocks to reach targets." |
-| 0:50 - 0:55 | The Science Room | "The Science Room links how each machine was built to what it gave us." |
-| 0:55 - 1:00 | Title screen with the logo | "The Space Archive. Abandoned, but not forgotten." |
+| 0:00 - 0:02 | Title screen | "I am Juan, [team name], from Lima." |
+| 0:02 - 0:05 | Text: Abandoned but Not Forgotten | "Our challenge: Abandoned but Not Forgotten. What happens to the machines we leave behind?" |
+| 0:05 - 0:10 | Logo and slogan | "This is The Space Archive. Abandoned, but not forgotten." |
+| 0:10 - 0:20 | Black hole intro, The Archive, the Opportunity game, a fact card with its source | "You orbit a black hole, reach The Archive, and live five real stories as mini-games. Every fact comes from NASA sources and shows its source. The real endings cannot be changed." |
+| 0:20 - 0:30 | Echoes, Wall of Names, "The Archive is complete" | "Every machine on the official list is here. Next: more stories, more languages, and classrooms. So they are never forgotten." |
 
-## Checklist before submitting
+## Demo option B: 7 slides
 
-- [ ] The link to the hosted game works.
-- [ ] Screenshots are attached.
-- [ ] Source URLs are added to js/data/sources.js and CREDITS.md.
-- [ ] AI use is disclosed.
-- [ ] The repository is public.
+The limit is 7 slides, including the title. Keep the font large and the words few.
+
+1. **Title.** The Space Archive. "Abandoned, but not forgotten." Screenshot of the title screen.
+2. **Team and challenge.** [team name], Lima. Members: Juan [and others]. Challenge: Abandoned but Not Forgotten.
+3. **The idea.** An astronaut orbits a black hole and arrives at The Archive, where forgotten machines float as ghosts. Screenshot of The Archive.
+4. **How it works.** Five stories, five mini-games, each built on one real engineering problem. The real ending cannot be changed. Screenshot of the Opportunity game.
+5. **NASA data used.** Beyond Earth (NASA SP-2018-4041), NASA Science mission pages, NSSDCA, the challenge resource list. Every fact shows its source. Screenshot of a "What really happened" card.
+6. **User experience.** Browser game, no install, 10 to 15 minutes. English and Spanish. Keyboard, mouse and touch. Text size, sound and reduced motion options. Screenshot of an echo card or the Wall of Names.
+7. **Future impact.** More machines and languages, use in classrooms and museums, and a printable fact sheet for teachers. "So they are never forgotten."
+
+## Judging criteria and where the project answers them
+
+- **Impact:** a free browser game in English and Spanish for ages about 10 to 16, with no install.
+- **Creativity:** real stories lived as mini-games inside a time-travel frame, with endings that cannot be changed.
+- **Validity:** every fact has a source id, unverified facts stay hidden, and game numbers are labeled as game values.
+- **Relevance:** all 13 entries of the official resource list appear (5 playable, 6 echoes, 5 on the Wall of Names), and NASA resources are the only source of facts.
+- **Presentation:** a finished game from title to credits, with screenshots, a README and this draft. The demo itself still has to be made.
+
+## Checklist before submitting (from the participant guide)
+
+- [ ] The team is valid and every member is registered in the same Local Event (not on the waiting list) and shown under Members.
+- [ ] One official challenge is chosen: Abandoned but Not Forgotten.
+- [ ] Every form field is complete and in English.
+- [ ] The demo is within its limit (video of 30 seconds or less, or at most 7 slides) and its link is public. Tested in a private window.
+- [ ] The final project link is public. Tested in a private window.
+- [ ] At least one NASA resource is documented under "NASA Data".
+- [ ] Every external reference is listed. No copyrighted material is used without permission.
+- [ ] AI use is disclosed. The "AI-generated art" mark is visible in the game, the screenshots and the demo. No NASA brand elements are used.
+- [ ] No image, video, audio or likeness of anyone under 18 appears in the project or the demo.
+- [ ] Both checkboxes are ticked (Terms and Privacy Policy; original work with all resources listed).
+- [ ] "Submit for Judging" is clicked and the confirmation banner is seen before Sunday 15 November, 11:59 p.m. local time. Saving is not enough, and only the last submission counts.
