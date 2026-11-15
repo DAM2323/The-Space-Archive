@@ -276,7 +276,6 @@ export const strings = {
   'g.lrv.map': 'Mapa {n}',
   'g.lrv.end': 'El recorrido terminó. Los LRV se dejaron en la Luna, estacionados para siempre.',
 
-  // Bonus story card inside the LRV entry (section 8.6).
 
   // ---- Pioneer 10 (datos: NASA Science, "Pioneer 10") ----
   'm.pioneer10.name': 'Pioneer 10',
@@ -284,7 +283,7 @@ export const strings = {
   'm.pioneer10.beat.1': 'Es 2 de marzo de 1972. Pioneer 10 despega de Cabo Cañaveral en un Atlas Centaur. Su masa es 258 kg.',
   'm.pioneer10.beat.2': 'Está diseñada para una misión de 21 meses: sobrevolar Júpiter. Ninguna nave ha cruzado antes el cinturón de asteroides.',
   'm.pioneer10.beat.3': 'Lleva una placa de aluminio con diagramas del sistema solar.',
-  'm.pioneer10.beat.4': 'Su energía eléctrica es toda nuclear: dos RTG. Esa energía decae poco a poco. Tú decides qué se queda encendido.',
+  'm.pioneer10.beat.4': 'Su energía eléctrica es toda nuclear: dos RTG. Con el tiempo esa energía decae. Tú decides qué se queda encendido.',
   'm.pioneer10.fact.1': 'Pioneer 10 fue lanzada el 2 de marzo de 1972 desde Cabo Cañaveral en un Atlas Centaur. Su masa era 258 kg.',
   'm.pioneer10.fact.2': 'Fue diseñada para una misión de 21 meses para sobrevolar Júpiter. Duró más de 30 años.',
   'm.pioneer10.fact.3': 'Fue la primera nave en cruzar el cinturón de asteroides, en sobrevolar Júpiter y en usar energía eléctrica toda nuclear (dos RTG).',
@@ -347,7 +346,7 @@ export const strings = {
   'e.viking1.fact.1': 'Viking 1 fue lanzada el 20 de agosto de 1975. Su módulo de aterrizaje tocó Marte el 20 de julio de 1976.',
   'e.viking1.fact.2': 'Fue el primer aterrizaje realmente exitoso en Marte. El módulo soviético Mars 3, en 1971, perdió contacto segundos después de posarse.',
   'e.viking1.fact.3': 'Los dos orbitadores Viking enviaron 52,663 imágenes y mapearon cerca del 97 por ciento de la superficie. Los módulos enviaron 4,500 fotos.',
-  'e.viking1.fact.4': 'El orbitador se apagó el 7 de agosto de 1980, sin propelente de control de actitud. El módulo falló el 11 de noviembre de 1982 por un mal comando.',
+  'e.viking1.fact.4': 'El orbitador se apagó el 7 de agosto de 1980 sin propelente de control de actitud. El módulo se detuvo el 11 de noviembre de 1982 por un mal comando.',
   'e.near.name': 'NEAR Shoemaker',
   'e.near.years': '1996 – 2001',
   'e.near.fact.1': 'NEAR Shoemaker fue lanzada el 17 de febrero de 1996.',

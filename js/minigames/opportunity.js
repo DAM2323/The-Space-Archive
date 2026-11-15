@@ -375,7 +375,6 @@ export function create(ctx, api) {
     drone(false);
     say('end.1');
     endLine = 1;
-    if (still()) endTime = 99;
   }
 
   // ---------- drawing ----------

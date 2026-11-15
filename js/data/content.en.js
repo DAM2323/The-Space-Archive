@@ -347,7 +347,7 @@ export const strings = {
   'm.pioneer10.beat.1': 'It is 2 March 1972. Pioneer 10 launches from Cape Canaveral on an Atlas Centaur. Its mass is 258 kg.',
   'm.pioneer10.beat.2': 'It is designed for a 21-month mission: to fly by Jupiter. No spacecraft has flown through the asteroid belt before.',
   'm.pioneer10.beat.3': 'It carries an aluminum plaque with diagrams of the solar system.',
-  'm.pioneer10.beat.4': 'Its electrical power is all nuclear: two RTGs. That power slowly decays. You decide what stays on.',
+  'm.pioneer10.beat.4': 'Its electrical power is all nuclear: two RTGs. Over time that power decays. You decide what stays on.',
   'm.pioneer10.fact.1': 'Pioneer 10 launched on 2 March 1972 from Cape Canaveral on an Atlas Centaur. Its mass was 258 kg.',
   'm.pioneer10.fact.2': 'It was designed for a 21-month mission to fly by Jupiter. It lasted more than 30 years.',
   'm.pioneer10.fact.3': 'It was the first spacecraft to fly through the asteroid belt, to fly past Jupiter, and to use all-nuclear electrical power (two RTGs).',
