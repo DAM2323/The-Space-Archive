@@ -11,6 +11,7 @@
 
 import { C, PALETTE } from '../data/palette.js';
 import { SPRITES } from '../data/sprites.js';
+import { timeline } from '../data/content.en.js';
 import { t } from '../engine/i18n.js';
 import { ctx, clear, px, drawSprite, WIDTH, HEIGHT } from '../engine/render.js';
 import { Particles, shake, ease, lerp, clamp } from '../engine/fx.js';
@@ -27,14 +28,19 @@ const T_FLASH = 1.3;          // arrival flash
 const ORBITS = 3;
 
 // GAME VALUE: story clock values. Earth's clock follows the eras of the machines.
-// Earth's clock only rolls forward. It runs fast between these stops, slows
-// down on each one and ends on the present. Each stop has a short caption.
-const STOPS = [1972, 1997, 2004, 2021, 2026];
-const ROLL_PART = 0.68;       // part of each step spent rolling; the rest is a pause on the stop
+// Earth's clock only rolls forward, from the earliest year in the timeline to
+// the present. It runs fast, and slows down and holds only on HOLDS, each with
+// a short caption. STOPS is the whole path: the start year, then the holds.
+const HOLDS = [1972, 1997, 2004, 2021, 2026];
+const START_YEAR = Math.min(...timeline.filter((e) => e.year).map((e) => e.year));
+const STOPS = [START_YEAR, ...HOLDS];
+const ROLL_PART = 0.55;       // part of each step spent rolling; the rest is a pause on the stop
+const T_CLOCK = 2;            // the clock starts rolling this many seconds into the intro
+const LIST_GAP = 0.2;         // seconds between two new lines of the list, so each one gets its blip
 const SHIP_MINUTES = 12;      // GAME VALUE: minutes that pass on the ship clock
 
-const HOLE_END = { x: 160, y: 80, rs: 16 };   // final position and shadow radius
-const HOLE_START = { x: 206, y: 66, rs: 2.5 };
+const HOLE_END = { x: 108, y: 82, rs: 16 };    // left of center: the list of machines fills the right side   // final position and shadow radius
+const HOLE_START = { x: 160, y: 66, rs: 2.5 };
 const CAPTION_TIMES = [0.4, 4.6, 9.4, 14];  // when each caption line appears
 
 // ---------- state ----------
@@ -44,6 +50,7 @@ let ship;                     // { x, y, behind, flip }
 let stars, trail;
 let drift;                    // how far the background stars have moved
 let lastYear, lastStop, lastCaption, lastMinutes, lastClockBlip;
+let listShown, listTimer;      // how many lines of the list are visible, and time since the last one
 let dom, offInput;
 
 // Off-screen canvas for the per-pixel black hole picture.
@@ -190,7 +197,7 @@ function orbitProgress() {
 const PHI0 = 2.5;   // where on the orbit the ship joins (front left)
 function orbitPoint(phi) {
   return {
-    x: hole.x + Math.cos(phi) * hole.rs * 6.4,
+    x: hole.x + Math.cos(phi) * hole.rs * 5.6,
     y: hole.y + Math.sin(phi) * hole.rs * 1.55,
   };
 }
@@ -225,21 +232,33 @@ function buildUI(ui) {
   shipBox.append(el('span', 'clock-label', t('intro.shipClock')), shipValue, el('span', 'clock-note', t('intro.slower')));
   const outBox = el('div', 'clock right');
   const outValue = el('span', 'clock-value', String(STOPS[0]));
-  const outEvent = el('span', 'clock-event', t(`intro.stop.${STOPS[0]}`));
+  const outEvent = el('span', 'clock-event');
   outEvent.setAttribute('aria-live', 'polite');
   outBox.append(el('span', 'clock-label', t('intro.outsideClock')), outValue, outEvent, el('span', 'clock-note', t('intro.storyYears')));
-  clocks.append(shipBox, outBox);
+
+  // Under Earth's clock: every machine with its year, filled in as the clock passes it.
+  const list = el('ol', 'timeline');
+  const lines = timeline.map((entry) => {
+    const line = el('li', 'tl-line');
+    line.append(el('span', 'tl-year', entry.year ? String(entry.year) : ''), el('span', 'tl-name', t(entry.name)));
+    list.append(line);
+    return line;
+  });
+  const right = el('div', 'clock-column');
+  right.append(outBox, list);
+  clocks.append(shipBox, right);
 
   const caption = el('p', 'caption');
   caption.setAttribute('aria-live', 'polite');
   ui.append(clocks, caption);
-  dom = { shipValue, outValue, outEvent, outBox, caption };
+  dom = { shipValue, outValue, outEvent, outBox, caption, lines };
 
   if (still) {
     // Reduced motion: one still frame, final clock values, and a button.
     shipValue.textContent = shipClockText(SHIP_MINUTES);
     outValue.textContent = `${STOPS[0]} \u2192 ${STOPS[STOPS.length - 1]}`;
     outEvent.textContent = t(`intro.stop.${STOPS[STOPS.length - 1]}`);
+    lines.forEach((line) => line.classList.add('on'));
     caption.textContent = `${t('intro.line.3')} ${t('intro.line.4')}`;
     caption.classList.add('show');
     const go = button(t('intro.continue'), finish, 'primary corner');
@@ -267,6 +286,8 @@ export default {
     drift = 0;
     lastYear = STOPS[0];
     lastStop = 0;
+    listShown = 0;
+    listTimer = LIST_GAP;
     lastCaption = -1;
     lastMinutes = 0;
     lastClockBlip = 0;
@@ -328,7 +349,7 @@ export default {
     trail.update(dt);
 
     // Clocks.
-    const earth = earthClock(clamp((time - T_APPROACH) / T_ORBITS));
+    const earth = earthClock(clamp((time - T_CLOCK) / (T_APPROACH + T_ORBITS - T_CLOCK)));
     if (earth.year !== lastYear) {
       lastYear = earth.year;
       dom.outValue.textContent = String(earth.year);
@@ -338,12 +359,25 @@ export default {
       lastStop = earth.stop;
       // Rolling: the caption fades out. On a stop: show its caption with a small "bump".
       dom.outEvent.classList.toggle('rolling', earth.stop < 0);
-      if (earth.stop >= 0) {
+      if (earth.stop > 0) {
         dom.outEvent.textContent = t(`intro.stop.${STOPS[earth.stop]}`);
         dom.outBox.classList.remove('bump');
         void dom.outBox.offsetWidth;
         dom.outBox.classList.add('bump');
         sfx('select');
+      }
+    }
+    // The list: a line appears when the clock reaches its year. A machine with
+    // no verified year appears right after the one before it.
+    listTimer += dt;
+    if (listShown < timeline.length && listTimer >= LIST_GAP && time > 0.8) {
+      let due = timeline[listShown].year;
+      for (let i = listShown; due === null && i >= 0; i--) due = timeline[i].year;
+      if (earth.year >= (due ?? START_YEAR)) {
+        dom.lines[listShown].classList.add('on');
+        listShown++;
+        listTimer = 0;
+        sfx('tick');
       }
     }
     const minutes = Math.floor(p * SHIP_MINUTES);

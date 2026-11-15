@@ -38,6 +38,23 @@ export const strings = {
   'intro.outsideClock': 'Earth\u2019s clock',
   'intro.storyYears': 'story years',
   'intro.slower': 'Time runs slower for you.',
+  // Names for the list under Earth's clock (the years are in `timeline` below).
+  'tl.surveyor': 'Surveyor',
+  'tl.lm': 'Apollo Lunar Modules',
+  'tl.lrv': 'Apollo LRV',
+  'tl.alsep': 'ALSEP',
+  'tl.pioneer10': 'Pioneer 10',
+  'tl.pioneer11': 'Pioneer 11',
+  'tl.viking': 'Viking 1 and 2',
+  'tl.sojourner': 'Sojourner',
+  'tl.near': 'NEAR Shoemaker',
+  'tl.opportunity': 'Opportunity',
+  'tl.spirit': 'Spirit',
+  'tl.dawn': 'Dawn',
+  'tl.phoenix': 'Phoenix',
+  'tl.kepler': 'Kepler',
+  'tl.insight': 'InSight',
+  'tl.ingenuity': 'Ingenuity',
   'intro.stop.1972': '1972: Pioneer 10 is launched.',
   'intro.stop.1997': '1997: Sojourner lands on Mars.',
   'intro.stop.2004': '2004: Opportunity lands on Mars.',
@@ -469,4 +486,27 @@ export const wall = ['lm', 'alsep', 'phoenix', 'kepler', 'pioneer11'].map((id) =
   name: `wall.${id}.name`, textKey: `wall.${id}.text`, sourceId: 'spaceapps-resources',
 }));
 
-export default { strings, machines, science, echoes, wall };
+// Intro timeline: every official resource, in order, with a year only when the
+// facts in this project verify one. `year: null` means "show the name only".
+// Each year notes the fact it comes from.
+const when = (id, year, sourceId = null) => ({ name: `tl.${id}`, year, sourceId });
+export const timeline = [
+  when('surveyor', 1967, 'beyond-earth'),          // Surveyor 3 landed on 20 April 1967
+  when('lm', 1969, 'nssdca-a12'),                  // Apollo 12's Intrepid landed on 19 November 1969
+  when('lrv', 1972, 'beyond-earth'),               // Apollo 17 LRV distance record, December 1972
+  when('alsep', null),
+  when('pioneer10', 1972, 'nasa-pioneer10'),       // launched 2 March 1972
+  when('pioneer11', null),
+  when('viking', 1976, 'nasa-viking1'),            // Viking 1 lander touched down on 20 July 1976
+  when('sojourner', 1997, 'nasa-pathfinder'),      // rolled out on 5 July 1997
+  when('near', 2001, 'nasa-near'),                 // touched down on Eros on 12 February 2001
+  when('opportunity', 2004, 'nasa-mer'),           // landed on 24 January 2004
+  when('spirit', null),
+  when('dawn', 2007, 'nasa-dawn'),                 // launched 27 September 2007
+  when('phoenix', null),
+  when('kepler', null),
+  when('insight', 2018, 'nasa-insight'),           // landed 26 November 2018
+  when('ingenuity', 2021, 'nasa-ingenuity'),       // first flight 19 April 2021
+];
+
+export default { strings, machines, science, echoes, wall, timeline };

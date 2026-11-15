@@ -758,3 +758,25 @@ a.source-title { color: var(--amber); }
 .ghost.machine .ghost-label { font-size: 0.72em; line-height: 1.12; padding: 0 0.5em 0.05em; letter-spacing: 0; }
 .ghost.machine .ghost-name { letter-spacing: 0.06em; }
 .ghost.machine .ghost-years, .ghost.machine .ghost-done { font-size: 0.92em; letter-spacing: 0.04em; }
+
+/* ---------- intro: the list of machines under Earth's clock ---------- */
+.clock-column { display: flex; flex-direction: column; align-items: stretch; gap: calc(var(--u) * 2); width: 22em; }
+.clock-column .clock.right { min-width: 0; }
+.timeline {
+  margin: 0;
+  padding: 0.35em 0.6em 0.4em;
+  list-style: none;
+  display: grid;
+  grid-template-rows: repeat(8, auto);
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  column-gap: 0.8em;
+  font-size: 0.66em;
+  line-height: 1.32;
+  background: rgba(18, 17, 42, 0.78);
+  border: var(--u) solid var(--indigo);
+}
+.tl-line { display: flex; gap: 0.6em; white-space: nowrap; opacity: 0; transform: translateY(0.3em); transition: opacity 0.45s, transform 0.45s; }
+.tl-line.on { opacity: 1; transform: none; }
+.tl-year { flex: none; width: 2.6em; color: var(--amber); font-variant-numeric: tabular-nums; }
+.tl-name { color: var(--star); overflow: hidden; text-overflow: ellipsis; }
