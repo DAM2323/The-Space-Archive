@@ -9,43 +9,38 @@
 
 export const SOURCES = {
   'beyond-earth': {
-    id: 'beyond-earth', tag: 'V', url: null,
+    id: 'beyond-earth', tag: 'V', url: 'https://www.nasa.gov/history/history-publications-and-resources/nasa-history-series/beyond-earth/',
     title: 'Beyond Earth: A Chronicle of Deep Space Exploration, 1958-2016 (NASA SP-2018-4041)',
     publisher: 'Siddiqi, A. A., NASA',
     short: 'Beyond Earth, NASA SP-2018-4041',
   },
   'nasa-pathfinder': {
-    id: 'nasa-pathfinder', tag: 'V', url: null,
+    id: 'nasa-pathfinder', tag: 'V', url: 'https://science.nasa.gov/mission/mars-pathfinder/',
     title: 'Mars Pathfinder', publisher: 'NASA Science',
     short: 'NASA Science: Mars Pathfinder',
   },
   'nasa-mer': {
-    id: 'nasa-mer', tag: 'V', url: null,
+    id: 'nasa-mer', tag: 'V', url: 'https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/',
     title: 'Mars Exploration Rovers: Spirit and Opportunity', publisher: 'NASA Science',
     short: 'NASA Science: Mars Exploration Rovers',
   },
   'nasa-ingenuity': {
-    id: 'nasa-ingenuity', tag: 'V', url: null,
+    id: 'nasa-ingenuity', tag: 'V', url: 'https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/',
     title: 'Ingenuity Mars Helicopter', publisher: 'NASA Science',
     short: 'NASA Science: Ingenuity Mars Helicopter',
   },
-  'nssdca-a11': {
-    id: 'nssdca-a11', tag: 'V', url: null,
-    title: 'Apollo 11 Lunar Module, spacecraft details', publisher: 'NASA NSSDCA',
-    short: 'NASA NSSDCA: Apollo 11 Lunar Module',
-  },
   'nssdca-a12': {
-    id: 'nssdca-a12', tag: 'V', url: null,
+    id: 'nssdca-a12', tag: 'V', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-099C',
     title: 'Apollo 12 Lunar Module, spacecraft details', publisher: 'NASA NSSDCA',
     short: 'NASA NSSDCA: Apollo 12 Lunar Module',
   },
   'nssdca-a15': {
-    id: 'nssdca-a15', tag: 'V', url: null,
+    id: 'nssdca-a15', tag: 'V', url: 'https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1971-063C',
     title: 'Apollo 15 Lunar Module, spacecraft details', publisher: 'NASA NSSDCA',
     short: 'NASA NSSDCA: Apollo 15 Lunar Module',
   },
   'spaceapps-resources': {
-    id: 'spaceapps-resources', tag: 'V', url: null,
+    id: 'spaceapps-resources', tag: 'V', url: 'https://www.spaceappschallenge.org/2026/',
     title: 'Challenge resource list, "Abandoned but Not Forgotten"', publisher: 'NASA Space Apps Challenge 2026',
     short: 'Space Apps challenge resources',
   },
