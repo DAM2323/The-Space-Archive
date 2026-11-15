@@ -22,6 +22,7 @@ The black hole frame is narrative fiction based on general relativity (near a bl
 *The Opportunity mini-game.*
 
 ![Story screen with an illustrated frame](screenshots/13-story.png)
+*A story screen with an illustrated frame.*
 
 ![What really happened card](screenshots/08-debrief.png)
 *A "What really happened" card.*
