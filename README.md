@@ -38,7 +38,7 @@ More screenshots are in the screenshots folder.
 - Lunar Roving Vehicle mini-game: hold the button (or Space) to drive, release to slow down. Stop next to each flag and slow down for craters.
 - Pioneer 10 mini-game: switch the transmitter and the instruments on or off to stay inside the power budget, then let time pass. Data only reaches Earth while the transmitter is on. Budgets, costs and instrument names are game values.
 - Science Room: open it from The Archive (the button at the top, or "Enter the Science Room" when all five machines are archived). Credits and sources are on the title screen and inside the Science Room. Options are also available from the Pause menu in every mini-game.
-- Echoes: six smaller, dimmer machines drift around The Archive (Surveyor 3, Viking 1, NEAR Shoemaker, InSight, Spirit and Dawn). Aim at one and select it to read its fact card. Read echoes are saved.
+- Echoes: six smaller, dimmer machines drift around The Archive (Surveyor 3, Viking 1, NEAR Shoemaker, InSight, Spirit and Dawn). Aim at one and hold the click, the tap or Enter for half a second to scan it and read its fact card. Read echoes are saved.
 - Wall of Names: a button in The Archive opens a list of the other official challenge resources, each with its official one-line description.
 - When all five machines are archived and all six echoes are read, an "Archive complete" stamp appears.
 

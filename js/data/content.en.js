@@ -69,10 +69,10 @@ export const strings = {
 
   // --- The Archive (hub) ---
   'hub.arrive': 'The Archive. A quiet place outside of time.',
-  'hub.hint': 'Fly to a machine to live its story, or to an echo to read it.',
+  'hub.hint': 'Fly to a machine to live its story. Hold on an echo to read it.',
   'hub.progress': '{n} of {total} archived',
   'hub.completed': 'Archived',
-  'hub.controls': 'Move: pointer, arrows or WASD \u00B7 Select: click or Enter',
+  'hub.controls': 'Move: pointer, arrows or WASD \u00B7 Select: click or Enter \u00B7 Echo: hold',
   'hub.allDone': 'All five stories are archived.',
   'hub.echoes': '{n} of {total} echoes read',
   'hub.echoRead': 'Read',

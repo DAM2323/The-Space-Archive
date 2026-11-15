@@ -64,7 +64,7 @@ export const strings = {
 
   // --- The Archive (hub) ---
   'hub.arrive': 'El Archivo. Un lugar tranquilo fuera del tiempo.',
-  'hub.hint': 'Vuela hacia una máquina para vivir su historia, o hacia un eco para leerlo.',
+  'hub.hint': 'Vuela hacia una máquina para vivir su historia. Mantén pulsado un eco para leerlo.',
   'hub.progress': '{n} de {total} archivadas',
   'hub.completed': 'Archivada',
   'hub.allDone': 'Las cinco historias están archivadas.',
@@ -350,7 +350,7 @@ export const strings = {
   'science.pioneer10.2': 'Unas 500 fotos de la atmósfera de Júpiter, con la Gran Mancha Roja bien visible, y fotos de Calisto, Ganimedes y Europa.',
 
   // --- Hub: ecos y muro ---
-  'hub.controls': 'Mover: puntero, flechas o WASD \u00B7 Elegir: clic o Enter',
+  'hub.controls': 'Mover: puntero, flechas o WASD \u00B7 Elegir: clic o Enter \u00B7 Eco: mantener',
   'hub.echoes': '{n} de {total} ecos leídos',
   'hub.echoRead': 'Leído',
   'hub.cardYears': 'Años: {y}',

@@ -53,6 +53,8 @@ const NEAR_MACHINE = 38;              // GAME VALUE: how close counts as "near" 
 const NEAR_ECHO = 20;                 // GAME VALUE: ...and near an echo
 const STANDOFF_MACHINE = 30;          // GAME VALUE: how far from a machine she stops
 const STANDOFF_ECHO = 13;             // GAME VALUE: ...and from an echo
+const ECHO_DRIFT = 7;                 // GAME VALUE: how far an echo wanders from its spot, in pixels
+const SCAN_TIME = 0.5;                // seconds to hold on an echo to read it
 const DASH_TIME = 0.42;               // seconds of the dash toward a portal
 const IDLE_TIME = 5;                  // seconds without input before she waves or flips
 
@@ -68,6 +70,7 @@ let time = 0;
 let aimed = null;                     // id of the aimed machine or echo, or null
 let arrive = 1;                       // 0..1 arrival animation
 let pendingStamp = null;              // { id, at } stamp animation waiting to play
+let scan = null;                      // { id, t, source } an echo being scanned by holding
 let gesture = null;                   // { kind: 'wave' | 'flip', t, duration } idle animation
 let nebula = null;
 
@@ -75,8 +78,11 @@ const still = () => gameState.settings.reducedMotion;
 const bob = (phase, amount = 3) => (still() ? 0 : Math.sin(time * 0.8 + phase) * amount);
 
 export function ghostPosition(id) {
-  const s = spotOf(id);
-  return { x: s.x + (still() ? 0 : Math.sin(time * 0.37 + ghosts[id].phase) * 1.5), y: s.y + bob(ghosts[id].phase, isEcho(id) ? 1.5 : 2) };
+  const s = spotOf(id), phase = ghosts[id].phase;
+  if (still()) return { x: s.x, y: s.y };
+  // Echoes drift slowly around their spot; machines only bob in place.
+  if (isEcho(id)) return { x: s.x + Math.sin(time * 0.13 + phase) * ECHO_DRIFT, y: s.y + Math.cos(time * 0.1 + phase * 1.3) * ECHO_DRIFT * 0.7 };
+  return { x: s.x + Math.sin(time * 0.37 + phase) * 1.5, y: s.y + bob(phase, 2) };
 }
 
 // A soft nebula, drawn once: dithered clouds in the cool palette colors.
@@ -281,6 +287,15 @@ export function renderWorld(hide = null) {
     drawSprite(ECHO_SPRITES[id], x, y, { alpha });
     if (g.glow > 0.03) drawBrackets(p.x, p.y + lift, img.width, img.height, g.glow, C.ice);
     if (read) px(Math.round(p.x + img.width / 2) + 1, Math.round(y) - 2, C.green, shown, 3, 3);   // small "read" light
+    // Scanning: a ring fills clockwise around the echo while the player holds.
+    if (scan?.id === id) {
+      const steps = 44, radius = 12;
+      for (let k = 0; k < steps; k++) {
+        const a = -Math.PI / 2 + (k / steps) * Math.PI * 2;
+        const lit = k / steps <= scan.t;
+        px(p.x + Math.cos(a) * radius, p.y + lift + Math.sin(a) * radius, lit ? C.ice : C.indigo, lit ? 1 : 0.6);
+      }
+    }
   });
 
   for (const id of MACHINE_IDS) {
@@ -353,7 +368,34 @@ const FLY_KEYS = {
   a: [-1, 0], d: [1, 0], w: [0, -1], s: [0, 1], A: [-1, 0], D: [1, 0], W: [0, -1], S: [0, 1],
 };
 
+// Hold on an echo to scan it. `source` remembers what started the hold, so
+// only releasing that same thing (the pointer or the key) cancels it.
+function startScan(id, source) {
+  if (leaving || scan) return;
+  scan = { id, t: 0, source };
+  idle = 0;
+  gesture = null;
+  setAim(id, true);
+  sfx('charge');
+}
+function cancelScan(source) {
+  if (scan && (!source || scan.source === source)) scan = null;
+}
+
+const HOLD_KEYS = ['Enter', ' '];
+
 function onKeyDown(e) {
+  if (HOLD_KEYS.includes(e.key) && !leaving && !e.ctrlKey && !e.metaKey && !e.altKey) {
+    // Enter or Space on a machine selects at once (as a normal button press);
+    // on an echo it starts the scan and must be held.
+    const onOtherButton = e.target instanceof HTMLElement && e.target.closest('button') && !e.target.closest('.ghost');
+    const target = onOtherButton ? null : findAim();
+    if (target && isEcho(target)) {
+      e.preventDefault();
+      if (!e.repeat) startScan(target, 'key');
+    }
+    return;
+  }
   if (!FLY_KEYS[e.key] || e.ctrlKey || e.metaKey || e.altKey || leaving) return;
   e.preventDefault();
   held.add(e.key);
@@ -363,8 +405,15 @@ function onKeyDown(e) {
   // Flying takes over from a focused button, so Enter selects what she is near.
   if (document.activeElement instanceof HTMLElement && document.activeElement !== document.body) document.activeElement.blur();
 }
-const onKeyUp = (e) => held.delete(e.key);
-const onBlur = () => held.clear();
+function onKeyUp(e) {
+  held.delete(e.key);
+  if (HOLD_KEYS.includes(e.key)) {
+    if (scan?.source === 'key') e.preventDefault();          // no late "click" from the Space key
+    cancelScan('key');
+  }
+}
+const onBlur = () => { held.clear(); cancelScan(); };
+const onPointerUp = () => cancelScan('pointer');
 
 // What is being aimed at: the focused button, or the nearest machine or echo
 // that she, or the pointer, is close to.
@@ -413,7 +462,16 @@ function ghostButton(id, className, parts) {
   for (const [cls, text] of parts) if (text) label.append(el('span', cls, text));
   b.append(label);
   b.setAttribute('aria-label', parts.map(([, text]) => text).filter(Boolean).join(', '));
-  interactive(b, () => select(id), '');
+  if (isEcho(id)) {
+    // Echoes are read by holding. A plain activation without a pointer or a
+    // held key (for example from a screen reader) opens the echo directly.
+    interactive(b, () => {}, '');
+    b.addEventListener('pointerdown', () => startScan(id, 'pointer'));
+    b.addEventListener('click', (e) => { if (e.detail === 0 && !scan) select(id); });
+    b.addEventListener('contextmenu', (e) => e.preventDefault());
+  } else {
+    interactive(b, () => select(id), '');
+  }
   b.addEventListener('focus', () => { focused = id; setAim(id, true); });
   b.addEventListener('blur', () => { if (focused === id) focused = null; });
   b.addEventListener('pointerleave', (e) => { if (e.pointerType === 'mouse') b.blur(); });
@@ -500,6 +558,7 @@ export default {
   enter(params, ui) {
     leaving = false;
     dash = null;
+    scan = null;
     focused = null;
     mode = 'idle';
     idle = 0;
@@ -529,7 +588,8 @@ export default {
       if (a.type === 'pointer' || (a.type === 'confirm' && a.fromPointer)) { mode = 'pointer'; idle = 0; gesture = null; }
       if (a.type === 'confirm') {
         const target = findAim();
-        if (target) select(target);
+        if (target && isEcho(target)) { if (a.fromPointer) startScan(target, 'pointer'); }   // keys are handled in onKeyDown
+        else if (target) select(target);
       } else if (a.type === 'back') {
         sfx('back');
         scenes.go('title');
@@ -538,6 +598,8 @@ export default {
     window.addEventListener('keydown', onKeyDown);
     window.addEventListener('keyup', onKeyUp);
     window.addEventListener('blur', onBlur);
+    window.addEventListener('pointerup', onPointerUp);
+    window.addEventListener('pointercancel', onPointerUp);
   },
 
   exit() {
@@ -545,7 +607,10 @@ export default {
     window.removeEventListener('keydown', onKeyDown);
     window.removeEventListener('keyup', onKeyUp);
     window.removeEventListener('blur', onBlur);
+    window.removeEventListener('pointerup', onPointerUp);
+    window.removeEventListener('pointercancel', onPointerUp);
     held.clear();
+    scan = null;
   },
 
   update(dt) {
@@ -607,7 +672,28 @@ export default {
     }
     updateWorld(dt, control);
     if (!leaving) {
+      // The echo buttons follow the drifting echoes, so pointer and focus stay on target.
+      for (const id of ECHO_IDS) {
+        const p = ghostPosition(id), b = dom.buttons[id];
+        b.style.left = `${(p.x / WIDTH) * 100}%`;
+        b.style.top = `${(p.y / HEIGHT) * 100}%`;
+      }
       setAim(findAim());
+      // Scanning an echo: the ring fills while the hold lasts; it opens when full
+      // and is cancelled if she is no longer aimed at that echo.
+      if (scan) {
+        if (aimed !== scan.id) {
+          scan = null;
+        } else {
+          scan.t += dt / SCAN_TIME;
+          if (scan.t >= 1) {
+            const id = scan.id;
+            scan = null;
+            select(id);
+            return;
+          }
+        }
+      }
       // Idle for a while: she waves, or does a slow flip (never with reduced motion).
       const pushing = control ? Math.hypot(control.ax, control.ay) : 0;
       idle += Math.hypot(astro.vx, astro.vy) < 6 && pushing < 12 ? dt : 0;
