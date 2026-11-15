@@ -15,7 +15,7 @@ The Space Archive
 
 ### High-Level Project Summary
 
-The Space Archive is a short pixel-art browser game about the machines NASA left behind on the Moon, on Mars and in deep space. You play an astronaut who orbits a black hole and arrives at The Archive, where five forgotten machines float as ghosts: Opportunity, Ingenuity, Sojourner, the Lunar Roving Vehicle and Pioneer 10. You live each real story through a mini-game built on one real engineering problem, and a card then shows what really happened, with its NASA source. Six more machines appear as short fact cards and five more on a Wall of Names, so every item of the official resource list is in the game. It matters because these machines are easy to forget, and their stories teach how engineering becomes science.
+The Space Archive is a short pixel-art browser game about the machines NASA left behind on the Moon, on Mars and in deep space. You play an astronaut who orbits a black hole and arrives at The Archive, where five forgotten machines float as ghosts: Opportunity, Ingenuity, Sojourner, the Lunar Roving Vehicle and Pioneer 10. You live each real story through a mini-game built on one real engineering problem, and a card then shows what really happened, with its NASA source. Six more machines appear as short fact cards and five more on a Wall of Names, so every item of the official resource list is in the game. It matters because these machines are easy to forget, and their stories teach how engineering becomes science. The project introduces school-age space enthusiasts to the hardware left on the Moon, on Mars and in deep space, and to the science it made possible. Instead of listing facts, it shows how each mission operated through a mini-game based on one real engineering problem, and every fact has a visible source.
 
 ### Link to Project Demo
 
@@ -43,13 +43,13 @@ Six "echoes" (Surveyor landers, Viking 1 and 2, NEAR Shoemaker, InSight, Spirit 
 
 **Benefits.** It is free, runs in a browser with no install, and is short (10 to 15 minutes). It is available in English and Spanish, and it works with keyboard, mouse and touch. It has options for text size, sound and reduced motion.
 
-**What we hope to achieve.** We want players aged about 10 to 16 to remember these machines by name, to understand one real engineering problem behind each, and to see where every fact comes from.
+**What we hope to achieve.** We want players aged about 8 to 16 to remember these machines by name, to understand one real engineering problem behind each, and to see where every fact comes from.
 
-**Tools, languages and hardware.** Plain HTML, CSS and JavaScript (ES modules). No frameworks, no build step and no libraries: the pixel art is drawn from pixel maps in code, the sound is synthesized with the Web Audio API, and sixteen illustrations made with an AI image tool are stored as WebP files. The game is about 2.0 MB and makes no network requests while it runs. It was tested in desktop browser windows and in phone-sized windows with touch input [add the devices you tested on]. AI coding assistants were used; see "Use of Super Intelligence".
+**Tools, languages and hardware.** Plain HTML, CSS and JavaScript (ES modules). No frameworks, no build step and no libraries: the pixel art is drawn from pixel maps in code, the sound is synthesized with the Web Audio API, and sixteen illustrations made with an AI image tool are stored as WebP files. The game is about 2.0 MB and makes no network requests while it runs. It was tested in desktop browser windows and in phone-sized browser windows with touch input. AI coding assistants were used; see "Use of Super Intelligence".
 
 ### Use of Super Intelligence (SI)
 
-Yes. AI coding assistants (Claude Code) were used to write the code, to produce the pixel art (as pixel maps in code) and the synthesized sound, to draft and translate the game text, to draft the documentation, and to help check the game text against the sources. Sixteen illustrations of the machines were made with an AI image tool, reviewed by the developer, cleaned of logos, flags and text, and optimized for the web; each is shown with a visible "AI art" badge. The idea, the story frame, the choice of machines, the rules and the list of allowed facts were defined by the developer, who reviewed the result. The README and CREDITS.md describe the AI use, and the page metadata states it. No NASA logos, flags, insignia or mission identifiers appear in the game.
+Yes. AI coding assistants (Claude Code) were used to write the code, to produce the pixel art (as pixel maps in code) and the synthesized sound, to draft and translate the game text, to draft the documentation, and to help check the game text against the sources. Sixteen illustrations of the machines were made with an AI image tool, reviewed by the developer, cleaned of logos, flags and text, and optimized for the web; each is shown with a visible "AI art" badge. The project logo, and the favicon and link preview image derived from it, were also made with an AI image tool (the logo is marked "AI art" where it is shown). The idea, the story frame, the choice of machines, the rules and the list of allowed facts were defined by the developer, who reviewed the result. The README and CREDITS.md describe the AI use, and the page metadata states it. No NASA logos, flags, insignia or mission identifiers appear in the game.
 
 ### NASA Data
 
@@ -72,7 +72,7 @@ All facts in the game come from these NASA resources (full table with what each 
 
 - Space agency partner data: none.
 - Code: original, written for this project with AI coding assistants. No third-party libraries, frameworks or code snippets.
-- Images: none from other sources. The pixel art is generated in code, and sixteen illustrations were made with an AI image tool. Each illustration carries an "AI art" badge.
+- Images: none from other sources. The pixel art is generated in code, and sixteen illustrations were made with an AI image tool. Each illustration carries an "AI art" badge. The project logo and the favicon derived from it were also made with an AI image tool.
 - Audio: none from other sources. All sound is synthesized in the browser (Web Audio API).
 - Fonts: none included. The game uses the monospace font installed on the player's device.
 - Text: written for this project. Facts come from the NASA resources listed under "NASA Data".
@@ -105,11 +105,11 @@ The limit is 7 slides, including the title. Keep the font large and the words fe
 
 ## Judging criteria and where the project answers them
 
-- **Impact:** a free browser game in English and Spanish for ages about 10 to 16, with no install.
+- **Impact:** a free browser game in English and Spanish for ages about 8 to 16, with no install.
 - **Creativity:** real stories lived as mini-games inside a time-travel frame, with endings that cannot be changed.
 - **Validity:** every fact has a source id, unverified facts stay hidden, and game numbers are labeled as game values.
 - **Relevance:** all 13 entries of the official resource list appear (5 playable, 6 echoes, 5 on the Wall of Names), and NASA resources are the only source of facts.
-- **Presentation:** a finished game from title to credits, with screenshots, a README and this draft. The demo itself still has to be made.
+- **Presentation:** a finished game from title to credits, with screenshots, a README and this draft. A 7-slide demo deck is published as a PDF.
 
 ## Checklist before submitting (from the participant guide)
 

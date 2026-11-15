@@ -31,7 +31,7 @@ The black hole frame of the story is narrative fiction based on general relativi
 
 - No space agency partner data is used.
 - No third-party code, libraries, frameworks, fonts, audio files or video are used. The game is plain HTML, CSS and JavaScript written for this project.
-- The only image files are sixteen AI-generated illustrations (see "Use of AI tools"). No photos and no images from NASA or from other people are used.
+- The only image files are sixteen AI-generated illustrations, the AI-generated project logo and the icons and link preview image derived from it (see "Use of AI tools"). No photos and no images from NASA or from other people are used.
 - Text is drawn with the monospace font already installed on the player's device. No font file is included or downloaded.
 - All pixel art (sprites and backgrounds) is drawn from small pixel maps in the code. All sound is synthesized in the browser with the Web Audio API.
 - The game makes no network requests while it runs.
@@ -49,7 +49,7 @@ Sixteen illustrations in `Images/` were made with an AI image tool and reviewed 
 
 The project logo, `Images/logo.webp`, was also made with an AI image tool and reviewed by Juan. It is used only as the banner at the top of README.md (marked "AI art" there), not in the game. It was optimized for the web (WebP, 960x640, about 51 KB).
 
-The favicon and the home screen icon (`favicon.ico` and the files in `icons/`) are cropped from the AI-generated logo (the Earth arc and the star, no text). The link preview image, `Images/social.png` (1200x630), is the same AI-generated logo placed on a dark background. Both are AI art, not photos and not NASA images.
+The favicon and the home screen icon (`favicon.ico` and the files in `icons/`) are derived from the AI-generated logo. The link preview image, `Images/social.png` (1200x630), is the same AI-generated logo placed on a dark background. Both are AI art, not photos and not NASA images.
 
 Screens that show only pixel sprites carry no badge.
 
