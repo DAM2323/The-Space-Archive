@@ -883,12 +883,12 @@ a.source-title { color: var(--amber); }
 
 /* Science Room: the panel fills the screen and its picture sits on top. */
 .sci-art { display: none; }
-.sci-card.with-art { top: calc(var(--u) * 3); bottom: calc(var(--u) * 3); max-height: none; padding-top: 0.4em; padding-bottom: 0.5em; }
-.sci-card.with-art .sci-art { display: flex; justify-content: center; flex: 1 1 0; min-height: 0; }
-.sci-card.with-art .sci-art .art-frame { height: 100%; box-shadow: none; }
-.sci-card.with-art .sci-body { flex: none; }
-.sci-card.with-art .sci-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-.sci-card.with-art .btn { padding-top: 0.25em; padding-bottom: 0.25em; }
+.sci-card.with-art:not(.echo-card) { top: calc(var(--u) * 3); bottom: calc(var(--u) * 3); max-height: none; padding-top: 0.4em; padding-bottom: 0.5em; }
+.sci-card.with-art:not(.echo-card) .sci-art { display: flex; justify-content: center; flex: 1 1 0; min-height: 0; }
+.sci-card.with-art:not(.echo-card) .sci-art .art-frame { height: 100%; box-shadow: none; }
+.sci-card.with-art:not(.echo-card) .sci-body { flex: none; }
+.sci-card.with-art:not(.echo-card) .sci-name { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+.sci-card.with-art:not(.echo-card) .btn { padding-top: 0.25em; padding-bottom: 0.25em; }
 
 /* Hub: a thumbnail on the left of a machine's info card. */
 .ghost-card.has-art { width: 25em; flex-direction: row; align-items: flex-start; gap: 0.7em; }
