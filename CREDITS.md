@@ -30,9 +30,10 @@ The black hole frame of the story is narrative fiction based on general relativi
 ## Other references and external resources
 
 - No space agency partner data is used.
-- No third-party code, libraries, frameworks, fonts, images, audio files or video are used. The game is plain HTML, CSS and JavaScript written for this project.
+- No third-party code, libraries, frameworks, fonts, audio files or video are used. The game is plain HTML, CSS and JavaScript written for this project.
+- The only image files are eleven AI-generated illustrations (see "Use of AI tools"). No photos and no images from NASA or from other people are used.
 - Text is drawn with the monospace font already installed on the player's device. No font file is included or downloaded.
-- All pixel art is drawn from small pixel maps in the code. All sound is synthesized in the browser with the Web Audio API.
+- All pixel art (sprites and backgrounds) is drawn from small pixel maps in the code. All sound is synthesized in the browser with the Web Audio API.
 - The game makes no network requests while it runs.
 - No NASA logos, insignia, flags, mission patches or other NASA brand elements are used. NASA is named only in text, to cite sources.
 - No photos and no likeness of any real person are used.
@@ -43,6 +44,8 @@ The black hole frame of the story is narrative fiction based on general relativi
 AI coding assistants (Claude Code) were used to write the code, to produce the pixel art (as pixel maps in code) and the synthesized sound, to draft and translate the game text, to draft the documentation, and to help check the game text against the sources.
 
 The idea, the story frame, the choice of machines, the rules and the list of allowed facts were defined by the developer, who reviewed the result.
+
+Eleven illustrations in `Images/` (Opportunity, Ingenuity, Sojourner, Pioneer 10, Surveyor 3, Viking 1, NEAR Shoemaker, InSight, Spirit, Dawn and Kepler) were made with an AI image tool and reviewed by Juan. They were cropped and optimized for the web (WebP, 960x540, each under 150 KB, 1.03 MB in total). Each one is shown in a frame with a visible "AI-generated art" tag. They are illustrations, not photos and not NASA images, and some details differ from the real machines and places. Three more illustrations (the Lunar Roving Vehicle, the Apollo lunar module and ALSEP) were not used, because they showed flags or text labels that could not be cropped out; those entries use the pixel sprite or text only.
 
 Every screen of the game carries a small "AI-generated art" mark, so the screenshots carry it too.
 
