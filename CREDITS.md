@@ -49,6 +49,8 @@ Sixteen illustrations in `Images/` were made with an AI image tool and reviewed 
 
 The project logo, `Images/logo.webp`, was also made with an AI image tool and reviewed by Juan. It is used only as the banner at the top of README.md (marked "AI art" there), not in the game. It was optimized for the web (WebP, 960x640, about 51 KB).
 
+The favicon and the home screen icon (`favicon.ico` and the files in `icons/`) are cropped from the AI-generated logo (the Earth arc and the star, no text). The link preview image, `Images/social.png` (1200x630), is the same AI-generated logo placed on a dark background. Both are AI art, not photos and not NASA images.
+
 Screens that show only pixel sprites carry no badge.
 
 ## License
