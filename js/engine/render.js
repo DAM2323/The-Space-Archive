@@ -94,6 +94,33 @@ export function bakeSprite(map) {
   return baked;
 }
 
+// A sprite enlarged by a factor that is not a whole number (for example 1.5).
+// It is resampled once, pixel by pixel, so every pixel still sits on the game
+// grid: some source pixels become 2 wide, the others stay 1 wide.
+const scaledCache = new Map();
+export function bakeScaled(map, factor) {
+  const key = `${factor}`;
+  let perMap = scaledCache.get(map);
+  if (!perMap) scaledCache.set(map, (perMap = new Map()));
+  if (perMap.has(key)) return perMap.get(key);
+  const src = bakeSprite(map);
+  const data = src.getContext('2d').getImageData(0, 0, src.width, src.height).data;
+  const out = document.createElement('canvas');
+  out.width = Math.round(src.width * factor);
+  out.height = Math.round(src.height * factor);
+  const g = out.getContext('2d');
+  for (let y = 0; y < out.height; y++) {
+    for (let x = 0; x < out.width; x++) {
+      const i = (Math.min(src.height - 1, Math.floor(y / factor)) * src.width + Math.min(src.width - 1, Math.floor(x / factor))) * 4;
+      if (!data[i + 3]) continue;
+      g.fillStyle = `rgb(${data[i]}, ${data[i + 1]}, ${data[i + 2]})`;
+      g.fillRect(x, y, 1, 1);
+    }
+  }
+  perMap.set(key, out);
+  return out;
+}
+
 // Draw a sprite with its top-left corner at (x, y).
 // `scale` must be a whole number so the pixels stay square.
 export function drawSprite(map, x, y, { alpha = 1, flip = false, scale = 1 } = {}) {

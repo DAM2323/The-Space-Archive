@@ -752,3 +752,9 @@ a.source-title { color: var(--amber); }
 .hub-controls { margin: 0; font-size: 0.78em; color: var(--violet); }
 .hub-field { z-index: 1; }
 .archive-stamp { top: 58%; z-index: 2; }
+
+/* ---------- hub: smaller machines, tighter labels ---------- */
+.ghost.machine { width: calc(var(--u) * 46); height: calc(var(--u) * 30); }
+.ghost.machine .ghost-label { font-size: 0.72em; line-height: 1.12; padding: 0 0.5em 0.05em; letter-spacing: 0; }
+.ghost.machine .ghost-name { letter-spacing: 0.06em; }
+.ghost.machine .ghost-years, .ghost.machine .ghost-done { font-size: 0.92em; letter-spacing: 0.04em; }

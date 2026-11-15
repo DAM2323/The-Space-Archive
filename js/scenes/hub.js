@@ -11,7 +11,7 @@ import { C } from '../data/palette.js';
 import { SPRITES, ECHO_SPRITES } from '../data/sprites.js';
 import { machines, echoes } from '../data/content.en.js';
 import { t } from '../engine/i18n.js';
-import { ctx, clear, px, drawSprite, bakeSprite, WIDTH, HEIGHT } from '../engine/render.js';
+import { ctx, clear, px, drawSprite, bakeSprite, bakeScaled, WIDTH, HEIGHT } from '../engine/render.js';
 import { Starfield, Particles, shake, ease, lerp, clamp } from '../engine/fx.js';
 import { el, button, interactive } from '../engine/ui.js';
 import * as scenes from '../engine/scenes.js';
@@ -20,21 +20,21 @@ import { sfx, drone } from '../engine/audio.js';
 import { gameState, MACHINE_IDS, ECHO_IDS, completedCount, echoesRead, archiveComplete } from '../state.js';
 
 // ---------- layout (game pixels) ----------
-export const MACHINE_SCALE = 2;       // machines are drawn twice as large as their pixel maps
+export const MACHINE_SCALE = 1.5;     // all five machines are drawn 1.5 times their pixel maps
 export const SPOTS = {
-  lrv: { x: 52, y: 54 },
-  pioneer10: { x: 160, y: 42 },
-  sojourner: { x: 268, y: 54 },
-  opportunity: { x: 84, y: 118 },
-  ingenuity: { x: 236, y: 118 },
+  lrv: { x: 52, y: 46 },
+  pioneer10: { x: 160, y: 36 },
+  sojourner: { x: 268, y: 46 },
+  opportunity: { x: 66, y: 126 },
+  ingenuity: { x: 254, y: 126 },
 };
 const ECHO_SPOTS = {
-  surveyor3: { x: 16, y: 106 },
-  viking1: { x: 304, y: 106 },
-  near: { x: 24, y: 160 },
-  insight: { x: 296, y: 160 },
-  spirit: { x: 136, y: 152 },
-  dawn: { x: 184, y: 152 },
+  surveyor3: { x: 16, y: 90 },
+  viking1: { x: 304, y: 90 },
+  near: { x: 118, y: 150 },
+  insight: { x: 202, y: 150 },
+  spirit: { x: 104, y: 44 },
+  dawn: { x: 216, y: 44 },
 };
 // Faint lines join the five machines, like a constellation.
 const LINKS = [['lrv', 'pioneer10'], ['pioneer10', 'sojourner'], ['sojourner', 'ingenuity'], ['ingenuity', 'opportunity'], ['opportunity', 'lrv']];
@@ -48,9 +48,9 @@ const FOLLOW = 13;                    // GAME VALUE: pull toward the pointer
 const FOLLOW_DRAG = 5.5;              // GAME VALUE: damping while following (gives the inertia)
 const THRUST = 240;                   // GAME VALUE: keyboard acceleration, pixels per second squared
 const DRIFT_DRAG = 2.4;               // GAME VALUE: damping while flying with keys
-const NEAR_MACHINE = 46;              // GAME VALUE: how close counts as "near" a machine
+const NEAR_MACHINE = 38;              // GAME VALUE: how close counts as "near" a machine
 const NEAR_ECHO = 20;                 // GAME VALUE: ...and near an echo
-const STANDOFF_MACHINE = 36;          // GAME VALUE: how far from a machine she stops
+const STANDOFF_MACHINE = 30;          // GAME VALUE: how far from a machine she stops
 const STANDOFF_ECHO = 13;             // GAME VALUE: ...and from an echo
 const DASH_TIME = 0.42;               // seconds of the dash toward a portal
 const IDLE_TIME = 5;                  // seconds without input before she waves or flips
@@ -152,7 +152,7 @@ export function updateWorld(dt, control = null) {
       const a = Math.random() * Math.PI * 2, p = ghostPosition(id);
       const small = isEcho(id);
       sparks.spawn({
-        x: p.x + Math.cos(a) * (small ? 10 : 32), y: p.y + Math.sin(a) * (small ? 8 : 22), vx: -Math.sin(a) * 9, vy: Math.cos(a) * 9 - 3,
+        x: p.x + Math.cos(a) * (small ? 10 : 25), y: p.y + Math.sin(a) * (small ? 8 : 17), vx: -Math.sin(a) * 9, vy: Math.cos(a) * 9 - 3,
         life: 0.5 + Math.random() * 0.4, color: small ? (Math.random() < 0.7 ? C.ice : C.star) : Math.random() < 0.7 ? C.amber : C.star,
       });
     }
@@ -168,24 +168,35 @@ export function updateWorld(dt, control = null) {
     for (let i = 0; i < 26; i++) {
       const a = Math.random() * Math.PI * 2, v = 20 + Math.random() * 40;
       sparks.spawn({
-        x: p.x + 22, y: p.y - 14, vx: Math.cos(a) * v, vy: Math.sin(a) * v, drag: 3,
+        x: p.x + machineSize(id).w / 2 + 4, y: p.y - machineSize(id).h / 2 - 3, vx: Math.cos(a) * v, vy: Math.sin(a) * v, drag: 3,
         life: 0.5 + Math.random() * 0.5, color: Math.random() < 0.6 ? C.green : C.star,
       });
     }
   }
 }
 
-// A small green check badge for completed machines.
+// A small green check badge for completed machines (7 x 7 pixels, a bit larger while it lands).
 function drawStamp(x, y, pop) {
-  const r = 5 + Math.round(pop * 3);
+  const r = 3 + Math.round(pop * 3);
   ctx.fillStyle = C.void;
   ctx.fillRect(x - r - 1, y - r - 1, r * 2 + 3, r * 2 + 3);
   ctx.fillStyle = pop > 0.5 ? C.star : C.green;
   ctx.fillRect(x - r, y - r, r * 2 + 1, r * 2 + 1);
   ctx.fillStyle = C.void;
   // check mark
-  [[-3, 0], [-2, 1], [-1, 2], [0, 1], [1, 0], [2, -1], [3, -2]].forEach(([dx, dy]) => ctx.fillRect(x + dx, y + dy, 1, 2));
+  [[-2, 0], [-1, 1], [0, 0], [1, -1], [2, -2]].forEach(([dx, dy]) => ctx.fillRect(x + dx, y + dy, 1, 2));
 }
+
+// One machine ghost, with its top-left corner at (x, y). Also used by the portal.
+export function drawMachine(id, x, y, alpha = 1) {
+  ctx.globalAlpha = alpha;
+  ctx.drawImage(bakeScaled(SPRITES[id], MACHINE_SCALE), Math.round(x), Math.round(y));
+  ctx.globalAlpha = 1;
+}
+export const machineSize = (id) => {
+  const img = bakeScaled(SPRITES[id], MACHINE_SCALE);
+  return { w: img.width, h: img.height };
+};
 
 // Four corner brackets around the aimed machine or echo.
 function drawBrackets(x, y, w, h, glow, color) {
@@ -253,7 +264,7 @@ export function renderWorld(hide = null) {
     const pa = ghostPosition(a), pb = ghostPosition(b);
     const len = Math.hypot(pb.x - pa.x, pb.y - pa.y);
     const lit = aimed === a || aimed === b;
-    for (let d = 26; d < len - 26; d += 5) px(lerp(pa.x, pb.x, d / len), lerp(pa.y, pb.y, d / len), lit ? C.mist : C.violet, shownAll * (lit ? 0.4 : 0.22));
+    for (let d = 24; d < len - 24; d += 5) px(lerp(pa.x, pb.x, d / len), lerp(pa.y, pb.y, d / len), lit ? C.mist : C.violet, shownAll * (lit ? 0.4 : 0.22));
   }
 
   // Echoes: smaller and dimmer than the machines, further from the center.
@@ -274,8 +285,7 @@ export function renderWorld(hide = null) {
   for (const id of MACHINE_IDS) {
     if (id === hide) continue;
     const g = ghosts[id], p = ghostPosition(id);
-    const img = bakeSprite(SPRITES[id]);
-    const w = img.width * MACHINE_SCALE, h = img.height * MACHINE_SCALE;
+    const { w, h } = machineSize(id);
     const done = gameState.completed[id];
     // Machines fade in one after another when she arrives.
     const shown = clamp(arrive * 3 - 0.4 - MACHINE_IDS.indexOf(id) * 0.3);
@@ -288,14 +298,14 @@ export function renderWorld(hide = null) {
     if (g.glow > 0.03) {
       ctx.fillStyle = C.amber;
       ctx.globalAlpha = 0.07 * g.glow * shown;
-      ctx.fillRect(Math.round(x) - 6, Math.round(y) - 5, w + 12, h + 10);
+      ctx.fillRect(Math.round(x) - 5, Math.round(y) - 4, w + 10, h + 8);
       ctx.globalAlpha = 0.07 * g.glow * shown;
       ctx.fillRect(Math.round(x) - 3, Math.round(y) - 2, w + 6, h + 4);
       ctx.globalAlpha = 1;
     }
-    drawSprite(SPRITES[id], x, y, { alpha, scale: MACHINE_SCALE });
+    drawMachine(id, x, y, alpha);
     if (g.glow > 0.03) drawBrackets(p.x, p.y + lift, w, h, g.glow, C.amber);
-    if (done && !(pendingStamp && pendingStamp.id === id)) drawStamp(Math.round(p.x + w / 2) - 2, Math.round(y) + 1, g.stamp);
+    if (done && !(pendingStamp && pendingStamp.id === id)) drawStamp(Math.round(p.x + w / 2) + 5, Math.round(y) - 3, g.stamp);   // top right, just outside the machine
   }
 
   // Dotted aiming line from the astronaut to the aimed machine or echo.
@@ -303,7 +313,7 @@ export function renderWorld(hide = null) {
     const p = ghostPosition(aimed), g = ghosts[aimed];
     const dx = p.x - astro.x, dy = p.y - astro.y, len = Math.hypot(dx, dy);
     const color = isEcho(aimed) ? C.ice : C.amber;
-    for (let d = 10; d < len - (isEcho(aimed) ? 10 : 28); d += 4) {
+    for (let d = 10; d < len - (isEcho(aimed) ? 10 : 22); d += 4) {
       const march = still() ? 0 : (time * 14) % 4;
       const k = (d + march) / len;
       px(astro.x + dx * k, astro.y + dy * k, color, 0.6 * g.glow);
@@ -397,8 +407,8 @@ function ghostButton(id, className, parts) {
   b.style.top = `${(spot.y / HEIGHT) * 100}%`;
   const label = el('span', 'ghost-label');
   // Labels near the left or right edge are shifted so they stay on screen.
-  if (spot.x < 50) label.classList.add('edge-left');
-  if (spot.x > WIDTH - 50) label.classList.add('edge-right');
+  if (isEcho(id) && spot.x < 50) label.classList.add('edge-left');
+  if (isEcho(id) && spot.x > WIDTH - 50) label.classList.add('edge-right');
   for (const [cls, text] of parts) if (text) label.append(el('span', cls, text));
   b.append(label);
   b.setAttribute('aria-label', parts.map(([, text]) => text).filter(Boolean).join(', '));

@@ -3,17 +3,16 @@
 // It is drawn on top of the hub world, so there is no cut between the scenes.
 
 import { C, PALETTE } from '../data/palette.js';
-import { SPRITES } from '../data/sprites.js';
-import { ctx, drawSprite, bakeSprite, WIDTH, HEIGHT } from '../engine/render.js';
+import { ctx, WIDTH, HEIGHT } from '../engine/render.js';
 import { Particles, shake, ease, lerp, clamp } from '../engine/fx.js';
 import * as scenes from '../engine/scenes.js';
 import { sfx } from '../engine/audio.js';
 import { gameState } from '../state.js';
-import { updateWorld, renderWorld, ghostPosition, setAim, MACHINE_SCALE } from './hub.js';
+import { updateWorld, renderWorld, ghostPosition, setAim, drawMachine, machineSize } from './hub.js';
 
 const T_OPEN = 0.65;      // the ring opens on the machine
 const T_GROW = 0.85;      // the ring grows until it covers the screen
-const R_SMALL = 36;       // ring radius around the machine (game pixels)
+const R_SMALL = 30;       // ring radius around the machine (game pixels)
 const R_FULL = 380;       // large enough to cover the screen from any machine
 
 let p;                    // params: { machine, reverse, justCompleted }
@@ -131,8 +130,8 @@ export default {
     sparks.render();
 
     // The machine itself stays visible in the middle of the ring until it is swallowed.
-    const img = bakeSprite(SPRITES[p.machine]);
+    const size = machineSize(p.machine);
     const fade = 1 - clamp((u - T_OPEN) / (T_GROW * 0.6));
-    drawSprite(SPRITES[p.machine], center.x - (img.width * MACHINE_SCALE) / 2, center.y - (img.height * MACHINE_SCALE) / 2, { alpha: fade, scale: MACHINE_SCALE });
+    drawMachine(p.machine, center.x - size.w / 2, center.y - size.h / 2, fade);
   },
 };
