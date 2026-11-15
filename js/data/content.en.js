@@ -154,8 +154,8 @@ export const strings = {
   'e.viking1.name': 'Viking 1 and 2',
   'e.viking1.years': '1975 – 1982',
   'e.viking1.fact.1': 'Viking 1 launched on 20 August 1975. Its lander touched down on Mars on 20 July 1976.',
-  'e.viking1.fact.2': 'Viking 1 and 2 were the first U.S. landers to successfully operate on Mars (1976). They remain exactly where they touched down.',
-  'e.viking1.fact.3': 'Both Viking orbiters returned 52,663 images and mapped about 97 percent of the surface. The landers returned 4,500 photos.',
+  'e.viking1.fact.2': 'The primary missions of Viking 1 and 2 ended in November 1976 and were extended.',
+  'e.viking1.fact.3': 'Viking Lander 2 kept transmitting until 12 April 1980. In July 2001 it was renamed the Gerald Soffen Memorial Station, after the Viking project scientist.',
   'e.viking1.fact.4': 'The Viking 1 orbiter shut down on 7 August 1980, out of attitude-control propellant. Its lander stopped on 11 November 1982 after a faulty command.',
   'e.near.name': 'NEAR Shoemaker',
   'e.near.years': '1996 – 2001',
@@ -486,7 +486,7 @@ const echoFact = (id, n, ...sourceIds) => ({ textKey: `e.${id}.fact.${n}`, sourc
 const echo = (id, facts) => ({ id, name: `e.${id}.name`, years: `e.${id}.years`, facts });
 export const echoes = {
   surveyor3: echo('surveyor3', [echoFact('surveyor3', 1, 'spaceapps-resources'), echoFact('surveyor3', 2, 'beyond-earth'), echoFact('surveyor3', 3, 'nssdca-a12'), echoFact('surveyor3', 4, 'nssdca-a12')]),
-  viking1: echo('viking1', [1, 2, 3, 4].map((n) => echoFact('viking1', n, n === 2 ? 'spaceapps-resources' : 'nasa-viking1'))),
+  viking1: echo('viking1', [1, 2, 3, 4].map((n) => echoFact('viking1', n, n === 2 || n === 3 ? 'beyond-earth' : 'nasa-viking1'))),   // facts 2 and 3 are about Viking 2
   near: echo('near', [1, 2, 3, 4].map((n) => echoFact('near', n, 'nasa-near'))),
   insight: echo('insight', [1, 2, 3, 4].map((n) => echoFact('insight', n, 'nasa-insight'))),
   spirit: echo('spirit', [echoFact('spirit', 1, 'nasa-mer'), echoFact('spirit', 2, 'beyond-earth'), echoFact('spirit', 3, 'nasa-mer'), echoFact('spirit', 4, 'beyond-earth')]),
