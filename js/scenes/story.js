@@ -9,7 +9,7 @@ import { t } from '../engine/i18n.js';
 import { ctx, clear, px, drawSprite, bakeSprite, WIDTH, HEIGHT } from '../engine/render.js';
 import { Starfield, Particles, ease, clamp } from '../engine/fx.js';
 import { el, button } from '../engine/ui.js';
-import { artFrame } from '../engine/art.js';
+import { artBackdrop } from '../engine/art.js';
 import * as scenes from '../engine/scenes.js';
 import * as input from '../engine/input.js';
 import { sfx } from '../engine/audio.js';
@@ -21,7 +21,7 @@ const HORIZON = 84;               // y of the horizon line for ground scenes
 const GROUND_Y = 104;             // where the machine's wheels touch the ground
 
 let machine, beat, typed, full, time, bump, leaving;
-let artSlot = null;                // the framed picture above the text, if this machine has one
+let artOn = false;                 // the machine's picture is the backdrop (then no sprite is drawn)
 let dom, offInput;
 const stars = new Starfield(90, 5);
 const motes = new Particles(70);
@@ -135,23 +135,15 @@ export default {
     const next = button(t('story.next'), advance, 'small primary next', '');
     foot.append(dots, next);
     box.append(name, text, reader, foot);
-    // Machines with a picture show it in a frame above the text: the frame takes
-    // the space the dialogue box leaves free, so it never covers the story.
-    // Without a picture (or if it fails to load) the pixel sprite is drawn instead.
-    artSlot = null;
+    // The machine's picture fills the scene behind the dialogue box, with a dark
+    // gradient under the text. Without a picture (or if it fails to load) the
+    // drawn backdrop and the pixel sprite are used instead.
+    artOn = false;
     if (machine.art) {
-      artSlot = el('div', 'art-slot');
-      artSlot.append(artFrame({
-        src: machine.art,
-        alt: t(`art.${machine.id}`),
-        caption: [t(machine.name), t(machine.years)].filter(Boolean).join('  \u00B7  '),
-        onFail: () => { artSlot?.remove(); artSlot = null; column.classList.remove('has-art'); },
-      }));
+      artOn = true;
+      ui.append(artBackdrop({ src: machine.art, alt: t(`art.${machine.id}`), onFail: () => { artOn = false; } }));
     }
-    const column = el('div', artSlot ? 'story-column has-art' : 'story-column');
-    if (artSlot) column.append(artSlot);
-    column.append(box);
-    ui.append(button(t('story.leave'), leave, 'small corner-top', ''), column);
+    ui.append(button(t('story.leave'), leave, 'small corner-top', ''), box);
     dom = { box, text, reader, dots, next };
 
     showBeat(0);
@@ -201,8 +193,8 @@ export default {
     drawBackdrop(machine.env, time, still);
     motes.render();
 
-    // With a picture on screen the frame shows the machine, so no sprite is drawn.
-    if (artSlot) return;
+    // The picture already shows the machine, so no sprite is drawn over it.
+    if (artOn) return;
 
     // The machine, three times larger than in the hub.
     const img = bakeSprite(SPRITES[machine.id]);

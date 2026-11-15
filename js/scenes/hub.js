@@ -15,6 +15,7 @@ import { t } from '../engine/i18n.js';
 import { ctx, clear, px, drawSprite, bakeSprite, bakeScaled, WIDTH, HEIGHT } from '../engine/render.js';
 import { Starfield, Particles, shake, ease, lerp, clamp } from '../engine/fx.js';
 import { el, button, interactive } from '../engine/ui.js';
+import { artFrame } from '../engine/art.js';
 import * as scenes from '../engine/scenes.js';
 import * as input from '../engine/input.js';
 import { sfx, drone } from '../engine/audio.js';
@@ -68,6 +69,7 @@ const ghosts = {};                    // id -> { glow, phase, stamp }
 ALL_IDS.forEach((id, i) => (ghosts[id] = { glow: 0, phase: i * 1.7, stamp: 0 }));
 const astro = { x: HOME.x, y: HOME.y, vx: 0, vy: 0, facing: false };
 let time = 0;
+const thumbs = {};                    // id -> function that loads the picture of that machine's info card
 let aimed = null;                     // id of the aimed machine or echo, or null
 let arrive = 1;                       // 0..1 arrival animation
 let pendingStamp = null;              // { id, at } stamp animation waiting to play
@@ -367,6 +369,7 @@ export function setAim(id, quiet = false) {
     if (!quiet) sfx('hover');
   }
   for (const key in dom.buttons ?? {}) dom.buttons[key].classList.toggle('aimed', key === id);
+  thumbs[id]?.();
 }
 
 // ---------- the hub scene ----------
@@ -510,12 +513,27 @@ function infoCard(id, b) {
   if (!fact) return;
   const card = el('span', 'ghost-card');
   card.id = `card-${id}`;
-  card.append(
+  const words = el('span', 'card-words');
+  words.append(
     el('span', 'card-title', t(m.name)),
     el('span', 'card-years', t('hub.cardYears', { y: t(m.years) })),
     el('span', 'card-fact', t(fact.textKey)),
     el('span', 'fact-source', `${t('debrief.source')}: ${SOURCES[fact.sourceId].short}`),
   );
+  card.append(words);
+  // A small picture of the machine, loaded the first time its card is shown.
+  if (m.art) {
+    let asked = false;
+    const thumb = () => {
+      if (asked) return;
+      asked = true;
+      card.classList.add('has-art');
+      card.prepend(artFrame({ src: m.art, alt: t(`art.${id}`), onFail: () => card.classList.remove('has-art') }));
+    };
+    b.addEventListener('pointerenter', thumb);
+    b.addEventListener('focus', thumb);
+    thumbs[id] = thumb;
+  }
   if (spot.y < HEIGHT / 2) b.classList.add('card-below');
   if (spot.x < 80) card.classList.add('edge-left');
   if (spot.x > WIDTH - 80) card.classList.add('edge-right');

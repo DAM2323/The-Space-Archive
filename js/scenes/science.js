@@ -10,6 +10,7 @@ import { t } from '../engine/i18n.js';
 import { clear, drawSprite, bakeSprite, px, WIDTH } from '../engine/render.js';
 import { Starfield, Particles, clamp } from '../engine/fx.js';
 import { el, button } from '../engine/ui.js';
+import { artFrame } from '../engine/art.js';
 import * as scenes from '../engine/scenes.js';
 import * as input from '../engine/input.js';
 import { sfx, drone } from '../engine/audio.js';
@@ -19,6 +20,7 @@ const ORDER = ['lrv', 'pioneer10', 'sojourner', 'opportunity', 'ingenuity'];   /
 const LABELS = ['science.machine', 'science.result'];
 
 let page, time, slide, dom, offInput;
+let artOn = false;                 // this page shows its picture (then no sprite is drawn)
 const stars = new Starfield(100, 41);
 const motes = new Particles(60);
 
@@ -29,7 +31,20 @@ function show(index, direction = 1) {
   slide = direction;                         // the machine picture slides in from that side
   const id = ORDER[page];
   const m = machines[id];
-  dom.name.textContent = [t(m.name), t(m.years)].filter(Boolean).join('  ·  ');
+  const title = [t(m.name), t(m.years)].filter(Boolean).join('  ·  ');
+  dom.name.textContent = title;
+  // The picture of this machine, framed at the top of the panel with its name
+  // and years as caption. It is requested when its page is opened. Without a
+  // picture (or if it fails to load) the small card and the sprite are used.
+  artOn = Boolean(m.art);
+  dom.card.classList.toggle('with-art', artOn);
+  dom.art.replaceChildren();
+  if (m.art) {
+    dom.art.append(artFrame({
+      src: m.art, alt: t(`art.${id}`), caption: title,
+      onFail: () => { if (ORDER[page] === id) { artOn = false; dom.card.classList.remove('with-art'); } },
+    }));
+  }
   dom.page.textContent = t('science.page', { n: page + 1, total: ORDER.length });
 
   const lines = science[id].filter(cited);
@@ -61,6 +76,7 @@ export default {
     const name = el('h2', 'sci-name');
     name.setAttribute('aria-live', 'polite');
     head.append(el('span', 'phase-kicker', t('science.title')), name);
+    const art = el('div', 'sci-art');
     const body = el('div', 'sci-body');
     body.tabIndex = 0;                         // focusable, so the keyboard can scroll it
     const nav = el('div', 'sci-nav');
@@ -73,9 +89,9 @@ export default {
       button(t('science.credits'), () => scenes.go('credits', { from: 'science' }), 'small'),
       button(t('science.back'), () => scenes.go('hub'), 'small', 'back'),
     );
-    card.append(head, body, nav, foot);
+    card.append(head, art, body, nav, foot);
     ui.append(card);
-    dom = { card, name, body, page: pageText };
+    dom = { card, name, art, body, page: pageText };
 
     show(0);
     next.focus({ preventScroll: true });
@@ -106,6 +122,7 @@ export default {
     clear();
     stars.render();
     motes.render();
+    if (artOn) return;
     // The machine of this page, large, floating above the card.
     const id = ORDER[page];
     const img = bakeSprite(SPRITES[id]);
