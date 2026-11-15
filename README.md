@@ -119,7 +119,15 @@ js/data/     palette.js, sprites.js, content.en.js, content.es.js, sources.js
 
 ## How AI tools were used
 
-This project is built by a solo developer with the help of AI coding assistants (Claude Code) for code, pixel-art generation in code and text drafting. All mission facts come from the cited NASA sources and are checked by the developer.
+AI coding assistants (Claude Code) were used to write the code, to produce the pixel art (as pixel maps in code) and the synthesized sound, to draft and translate the game text, to draft the documentation, and to help check the game text against the sources.
+
+The idea, the story frame, the choice of machines, the rules and the list of allowed facts were defined by the developer, who reviewed the result.
+
+Every screen of the game carries a small "AI-generated art" mark, so the screenshots carry it too. No NASA logos, insignia, flags or mission patches are used.
+
+## External resources
+
+None. No third-party code, libraries, fonts, images or audio files are used, and the game makes no network requests while it runs. NASA sources are listed in CREDITS.md with their links and what each one was used for.
 
 ## License
 
