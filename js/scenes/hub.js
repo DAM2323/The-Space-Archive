@@ -18,6 +18,7 @@ import { el, button, interactive } from '../engine/ui.js';
 import * as scenes from '../engine/scenes.js';
 import * as input from '../engine/input.js';
 import { sfx, drone } from '../engine/audio.js';
+import { save } from '../engine/storage.js';
 import { gameState, MACHINE_IDS, ECHO_IDS, completedCount, echoesRead, archiveComplete } from '../state.js';
 
 // ---------- layout (game pixels) ----------
@@ -265,13 +266,28 @@ export function renderWorld(hide = null) {
   stars.render(ox * 1.6, oy * 1.6);
   dust.render();
 
-  // Faint dotted lines between the machines.
+  // Faint dotted lines between the machines. They light up when all five stories are done.
   const shownAll = clamp(arrive * 2 - 0.8);
+  const complete = archiveComplete();
   for (const [a, b] of LINKS) {
     const pa = ghostPosition(a), pb = ghostPosition(b);
     const len = Math.hypot(pb.x - pa.x, pb.y - pa.y);
     const lit = aimed === a || aimed === b;
-    for (let d = 24; d < len - 24; d += 5) px(lerp(pa.x, pb.x, d / len), lerp(pa.y, pb.y, d / len), lit ? C.mist : C.violet, shownAll * (lit ? 0.4 : 0.22));
+    const march = complete && !still() ? (time * 10) % 5 : 0;        // light runs along the lines once complete
+    for (let d = 24 + march; d < len - 24; d += 5) {
+      px(lerp(pa.x, pb.x, d / len), lerp(pa.y, pb.y, d / len), complete ? C.amber : lit ? C.mist : C.violet, shownAll * (complete ? 0.75 : lit ? 0.4 : 0.22));
+    }
+  }
+  // Complete: the center of the Archive pulses with slow rings of light.
+  if (complete) {
+    for (let ring = 0; ring < 2; ring++) {
+      const k = still() ? 0.45 + ring * 0.3 : (time * 0.22 + ring * 0.5) % 1;
+      const radius = 8 + k * 46, steps = Math.round(18 + radius * 1.2);
+      for (let i = 0; i < steps; i++) {
+        const a = (i / steps) * Math.PI * 2;
+        px(HOME.x + Math.cos(a) * radius, HOME.y + Math.sin(a) * radius * 0.6, ring ? C.amber : C.green, shownAll * (1 - k) * 0.5);
+      }
+    }
   }
 
   // Echoes: smaller and dimmer than the machines, further from the center.
@@ -359,6 +375,9 @@ let leaving = false;
 let focused = null;                   // id of the ghost button that has keyboard focus
 let mode = 'idle';                    // 'pointer' | 'keys' | 'idle': who is steering
 let dash = null;                      // { id, t, from } she is dashing toward a selection
+let modal = false;                    // the "Archive is complete" card is open: the hub waits
+let completeAt = null;                // when to show that card (world time), or null
+let uiRoot = null;
 let idle = 0;
 let nextGesture = 'wave';
 const held = new Set();               // fly keys that are down
@@ -385,6 +404,7 @@ function cancelScan(source) {
 const HOLD_KEYS = ['Enter', ' '];
 
 function onKeyDown(e) {
+  if (modal) return;
   if (HOLD_KEYS.includes(e.key) && !leaving && !e.ctrlKey && !e.metaKey && !e.altKey) {
     // Enter or Space on a machine selects at once (as a normal button press);
     // on an echo it starts the scan and must be held.
@@ -502,7 +522,7 @@ function infoCard(id, b) {
   b.setAttribute('aria-describedby', card.id);
 }
 
-function buildUI(ui, celebrate) {
+function buildUI(ui) {
   const top = el('div', 'hub-top');
   const n = completedCount();
   const progress = el('p', 'hub-progress');
@@ -516,7 +536,7 @@ function buildUI(ui, celebrate) {
     button(t('hub.title'), () => scenes.go('title'), 'small', 'back'),
     button(t('hub.wall'), () => scenes.go('wall'), 'small'),
     // The Science Room is highlighted once all five machines are archived.
-    button(t(allDone ? 'hub.science' : 'hub.leave'), () => scenes.go('science'), allDone ? 'small primary' : 'small'),
+    button(t('hub.leave'), () => scenes.go('science'), allDone ? 'small primary' : 'small'),
   );
 
   const field = el('div', 'hub-field');
@@ -537,24 +557,66 @@ function buildUI(ui, celebrate) {
   }
 
   const bottom = el('div', 'hub-bottom');
-  const complete = archiveComplete();
-  dom.hint = el('p', 'hub-hint', t(complete ? 'hub.completeHint' : allDone ? 'hub.allDone' : 'hub.hint'));
+  const everything = allDone && echoesRead() === ECHO_IDS.length;
+  dom.hint = el('p', 'hub-hint', t(everything ? 'hub.completeHint' : allDone ? 'hub.allDone' : 'hub.hint'));
   bottom.append(dom.hint, el('p', 'hub-controls', t('hub.controls')));
   ui.append(top, field, bottom);
+  dom.field = field;
+  dom.top = top;
 
-  // Everything archived and every echo read: the "Archive complete" stamp.
-  if (complete) {
-    const stamp = el('p', `archive-stamp${celebrate ? ' land' : ''}`, t('hub.complete'));
-    ui.append(stamp);
-    if (celebrate) {
-      setTimeout(() => { if (stamp.isConnected) { sfx('stamp'); sfx('success'); shake.add(2); } }, still() ? 0 : 900);
-    }
+  // All five stories done: the progress block says so from then on.
+  if (allDone) {
+    dom.stamp = el('span', 'hub-complete', t('hub.complete'));
+    progress.append(dom.stamp);
   }
+}
+
+// The "Archive is complete" moment, shown once: a card with a short recap of
+// what the player learned (one verified fact per machine, the same ones as on
+// the hub cards). It is remembered in the saved game.
+function showComplete(ui) {
+  modal = true;
+  held.clear();
+  scan = null;
+  gameState.archiveSeen = true;
+  save();
+  sfx('stamp');
+  sfx('success');
+  shake.add(2);
+  dom.stamp?.classList.add('land');
+
+  const card = el('section', 'panel complete');
+  card.setAttribute('role', 'dialog');
+  card.setAttribute('aria-label', t('hub.complete'));
+  const list = el('ul', 'facts');
+  MACHINE_IDS.forEach((id, i) => {
+    const m = machines[id];
+    const facts = visibleFacts(m.debrief);
+    const fact = facts.includes(m.debrief[m.cardFact]) ? m.debrief[m.cardFact] : facts[0];
+    if (!fact) return;
+    const item = el('li', 'fact');
+    item.style.animationDelay = `${0.3 + i * 0.16}s`;
+    item.append(el('span', 'recap-name', t(m.name)), el('span', 'fact-text', t(fact.textKey)));
+    list.append(item);
+  });
+  const close = () => {
+    card.remove();
+    dom.field.inert = dom.top.inert = false;
+    modal = false;
+  };
+  const stay = button(t('complete.stay'), close, 'small');
+  const room = button(t('hub.science'), () => scenes.go('science'), 'small primary');
+  const row = el('div', 'sci-nav');
+  row.append(stay, room);
+  card.append(el('h2', 'panel-title', t('hub.complete')), el('p', 'complete-intro', t('complete.intro')), list, row);
+  ui.append(card);
+  dom.field.inert = dom.top.inert = true;
+  room.focus({ preventScroll: true });
 }
 
 export default {
   // params.arriving: coming from the intro. params.justCompleted: a machine id
-  // to stamp. params.justRead: an echo that was just read. params.focus: what to aim at.
+  // to stamp. params.focus: what to aim at.
   enter(params, ui) {
     leaving = false;
     dash = null;
@@ -569,7 +631,12 @@ export default {
     if (params.arriving) Object.assign(astro, { x: HOME.x, y: HOME.y, vx: 0, vy: 0 });
     if (params.justCompleted) pendingStamp = { id: params.justCompleted, at: time + 0.45 };
     // The big stamp lands when the last machine or the last echo completes the Archive.
-    buildUI(ui, !!(params.justCompleted || params.justRead));
+    buildUI(ui);
+    // The first time all five stories are done: the "Archive is complete" moment,
+    // a little after the last stamp has landed.
+    modal = false;
+    completeAt = archiveComplete() && !gameState.archiveSeen ? time + (params.justCompleted ? 1.7 : 0.9) : null;
+    uiRoot = ui;
     if (params.arriving) {
       dom.hint.textContent = t('hub.arrive');
       setTimeout(() => { if (dom.hint.isConnected) dom.hint.textContent = t('hub.hint'); }, 4500);
@@ -584,7 +651,7 @@ export default {
     }
     drone(true);
     offInput = input.on((a) => {
-      if (leaving) return;
+      if (leaving || modal) return;
       if (a.type === 'pointer' || (a.type === 'confirm' && a.fromPointer)) { mode = 'pointer'; idle = 0; gesture = null; }
       if (a.type === 'confirm') {
         const target = findAim();
@@ -637,6 +704,12 @@ export default {
       }
       return;
     }
+
+    if (completeAt !== null && time >= completeAt && !leaving) {
+      completeAt = null;
+      showComplete(uiRoot);
+    }
+    if (modal) { updateWorld(dt); return; }
 
     // Steering: keys give thrust, the pointer pulls her like a soft spring.
     let control = null;

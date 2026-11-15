@@ -815,3 +815,18 @@ a.source-title { color: var(--amber); }
 .card-years { font-size: 0.92em; color: var(--mist); }
 .card-fact { margin-top: 0.2em; }
 .ghost-card .fact-source { font-size: 0.86em; }
+
+/* ---------- hub: the "Archive is complete" moment ---------- */
+.complete { width: 84%; max-height: 92%; padding: 0.7em 1.2em 0.8em; gap: 0.3em; z-index: 6; border-color: #7ed492; }
+.complete .panel-title { margin: 0; color: #7ed492; }
+.complete-intro { margin: 0 0 0.2em; text-align: center; color: var(--mist); }
+.complete .facts { overflow-y: auto; gap: 0.25em; }
+.complete .fact { font-size: 0.86em; line-height: 1.25; }
+.complete .fact::before { color: #7ed492; }
+.recap-name { margin-right: 0.6em; letter-spacing: 0.08em; text-transform: uppercase; color: var(--amber); }
+.archive-stamp { top: 52%; font-size: 0.9em; opacity: 0.9; }
+.archive-stamp.land { animation-delay: 0s; }
+
+.hub-complete { font-size: 0.85em; color: #7ed492; letter-spacing: 0.08em; transform-origin: left center; }
+.hub-complete.land { animation: complete-pop 0.6s cubic-bezier(.2, .9, .3, 1.4) both; }
+@keyframes complete-pop { from { opacity: 0; transform: scale(1.8); } to { opacity: 1; transform: scale(1); } }

@@ -14,9 +14,9 @@ import * as scenes from '../engine/scenes.js';
 import * as input from '../engine/input.js';
 import { sfx, drone } from '../engine/audio.js';
 import { save } from '../engine/storage.js';
-import { gameState, ECHO_IDS, archiveComplete } from '../state.js';
+import { gameState, ECHO_IDS } from '../state.js';
 
-let echo, time, leaving, wasComplete, offInput;
+let echo, time, leaving, offInput;
 const stars = new Starfield(100, 61);
 const motes = new Particles(60);
 
@@ -26,8 +26,7 @@ const cited = (fact) => fact.sourceIds.every((id) => SOURCES[id] && !SOURCES[id]
 function back() {
   if (leaving) return;
   leaving = true;
-  // justRead lets the hub play the "Archive complete" stamp if this echo was the last piece.
-  scenes.go('hub', { focus: echo.id, justRead: !wasComplete && archiveComplete() ? echo.id : null });
+  scenes.go('hub', { focus: echo.id });
 }
 
 export default {
@@ -35,7 +34,6 @@ export default {
     echo = echoes[ECHO_IDS.includes(params.id) ? params.id : ECHO_IDS[0]];
     time = 0;
     leaving = false;
-    wasComplete = archiveComplete();
     gameState.echoes[echo.id] = true;
     save();
 

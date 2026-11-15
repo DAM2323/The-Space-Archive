@@ -356,7 +356,9 @@ export const strings = {
   'hub.cardYears': 'Años: {y}',
   'hub.echo': 'Eco',
   'hub.wall': 'Muro de Nombres',
-  'hub.complete': 'Archivo completo',
+  'hub.complete': 'El Archivo está completo',
+  'complete.intro': 'Viviste cinco historias reales. Esto es lo que aprendiste:',
+  'complete.stay': 'Quedarme en el Archivo',
   'hub.completeHint': 'Todas las historias están archivadas y todos los ecos leídos.',
 
   // --- Ecos ---

@@ -22,6 +22,7 @@ export function load() {
       gameState.stars[id] = Number(saved.stars?.[id]) || 0;
     }
     for (const id of ECHO_IDS) gameState.echoes[id] = saved.echoes?.[id] === true;
+    gameState.archiveSeen = saved.archiveSeen === true;
   } catch {
     // Storage not available: keep the defaults.
   }
@@ -42,5 +43,6 @@ export function resetProgress() {
     gameState.stars[id] = 0;
   }
   for (const id of ECHO_IDS) gameState.echoes[id] = false;
+  gameState.archiveSeen = false;
   save();
 }

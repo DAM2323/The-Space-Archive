@@ -40,7 +40,7 @@ More screenshots are in the screenshots folder.
 - Science Room: open it from The Archive (the button at the top, or "Enter the Science Room" when all five machines are archived). Credits and sources are on the title screen and inside the Science Room. Options are also available from the Pause menu in every mini-game.
 - Echoes: six smaller, dimmer machines drift around The Archive (Surveyor 3, Viking 1, NEAR Shoemaker, InSight, Spirit and Dawn). Aim at one and hold the click, the tap or Enter for half a second to scan it and read its fact card. Read echoes are saved.
 - Wall of Names: a button in The Archive opens a list of the other official challenge resources, each with its official one-line description.
-- When all five machines are archived and all six echoes are read, an "Archive complete" stamp appears.
+- When all five stories are done, the lines between the machines light up, the center pulses, and a card shows "The Archive is complete" with a short recap of what you learned.
 
 ## The five machines
 

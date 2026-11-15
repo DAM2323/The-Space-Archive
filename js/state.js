@@ -22,12 +22,13 @@ export const gameState = {
   completed: { lrv: false, pioneer10: false, sojourner: false, opportunity: false, ingenuity: false },
   stars: { lrv: 0, pioneer10: 0, sojourner: 0, opportunity: 0, ingenuity: 0 },
   echoes: { surveyor3: false, viking1: false, near: false, insight: false, spirit: false, dawn: false },   // read or not
+  archiveSeen: false,               // the "Archive is complete" moment has been shown
 };
 
 export const completedCount = () => MACHINE_IDS.filter((id) => gameState.completed[id]).length;
 export const echoesRead = () => ECHO_IDS.filter((id) => gameState.echoes[id]).length;
-// The Archive is complete when every machine is done and every echo is read.
-export const archiveComplete = () => completedCount() === MACHINE_IDS.length && echoesRead() === ECHO_IDS.length;
+// The Archive is complete when all five stories are done. (Echoes are extra reading.)
+export const archiveComplete = () => completedCount() === MACHINE_IDS.length;
 
 // Push the settings into the page: CSS reads these classes, and canvas effects
 // read gameState.settings.reducedMotion directly. Also refreshes the page-level
