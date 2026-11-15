@@ -8,14 +8,11 @@ export const MACHINE_IDS = ['lrv', 'pioneer10', 'sojourner', 'opportunity', 'ing
 // The six "echoes": smaller entries in the hub that open a fact card.
 export const ECHO_IDS = ['surveyor3', 'viking1', 'near', 'insight', 'spirit', 'dawn'];
 
-const prefersReducedMotion =
-  typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
-
 export const gameState = {
   language: 'en',
   settings: {
     textSize: 'normal',               // 'normal' | 'large'
-    reducedMotion: prefersReducedMotion,
+    reducedMotion: false,             // off by default; only the player's own choice in Options turns it on
     sound: true,
     volume: 0.4,                      // 0..1, low by default
   },
