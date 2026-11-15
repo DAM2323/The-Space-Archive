@@ -31,7 +31,7 @@ The black hole frame of the story is narrative fiction based on general relativi
 
 - No space agency partner data is used.
 - No third-party code, libraries, frameworks, fonts, audio files or video are used. The game is plain HTML, CSS and JavaScript written for this project.
-- The only image files are fourteen AI-generated illustrations (see "Use of AI tools"). No photos and no images from NASA or from other people are used.
+- The only image files are sixteen AI-generated illustrations (see "Use of AI tools"). No photos and no images from NASA or from other people are used.
 - Text is drawn with the monospace font already installed on the player's device. No font file is included or downloaded.
 - All pixel art (sprites and backgrounds) is drawn from small pixel maps in the code. All sound is synthesized in the browser with the Web Audio API.
 - The game makes no network requests while it runs.
@@ -45,7 +45,9 @@ AI coding assistants (Claude Code) were used to write the code, to produce the p
 
 The idea, the story frame, the choice of machines, the rules and the list of allowed facts were defined by the developer, who reviewed the result.
 
-Fourteen illustrations in `Images/` were made with an AI image tool and reviewed by Juan: the Lunar Roving Vehicle, Pioneer 10, Sojourner, Opportunity, Ingenuity, Surveyor 3, Viking 1, NEAR Shoemaker, InSight, Spirit, Dawn, the Apollo lunar module, ALSEP and Kepler. They were cleaned before use: the nameplate with a logo and a name was cropped out of every picture, the flags on the Lunar Roving Vehicle and the flag and country name on the lunar module were painted over, and the text labels on the ALSEP picture were painted out. They were then optimized for the web (WebP, 960x540, each under 150 KB, about 1.36 MB in total). Each picture carries a small "AI art" badge in its top right corner. They are illustrations, not photos and not NASA images, and some details differ from the real machines and places.
+Sixteen illustrations in `Images/` were made with an AI image tool and reviewed by Juan: the Lunar Roving Vehicle, Pioneer 10, Sojourner, Opportunity, Ingenuity, Surveyor 3, Viking 1, NEAR Shoemaker, InSight, Spirit, Dawn, the Apollo lunar module, ALSEP, Phoenix, Kepler and Pioneer 11. They were cleaned before use: the nameplate with a logo and a name was cropped out of every picture, the flags on the Lunar Roving Vehicle and the flag and country name on the lunar module were painted over, and the text labels on the ALSEP picture were painted out. They were then optimized for the web (WebP, 960x540, each under 150 KB, about 1.63 MB in total). Each picture carries a small "AI art" badge in its top right corner. They are illustrations, not photos and not NASA images, and some details differ from the real machines and places.
+
+The project logo, `Images/logo.webp`, was also made with an AI image tool and reviewed by Juan. It is used only as the banner at the top of README.md (marked "AI art" there), not in the game. It was optimized for the web (WebP, 960x640, about 51 KB).
 
 Screens that show only pixel sprites carry no badge.
 

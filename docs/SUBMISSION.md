@@ -45,11 +45,11 @@ Six "echoes" (Surveyor landers, Viking 1 and 2, NEAR Shoemaker, InSight, Spirit 
 
 **What we hope to achieve.** We want players aged about 10 to 16 to remember these machines by name, to understand one real engineering problem behind each, and to see where every fact comes from.
 
-**Tools, languages and hardware.** Plain HTML, CSS and JavaScript (ES modules). No frameworks, no build step and no libraries: the pixel art is drawn from pixel maps in code, the sound is synthesized with the Web Audio API, and fourteen illustrations made with an AI image tool are stored as WebP files. The game is about 1.7 MB and makes no network requests while it runs. It was tested in desktop browser windows and in phone-sized windows with touch input [add the devices you tested on]. AI coding assistants were used; see "Use of Super Intelligence".
+**Tools, languages and hardware.** Plain HTML, CSS and JavaScript (ES modules). No frameworks, no build step and no libraries: the pixel art is drawn from pixel maps in code, the sound is synthesized with the Web Audio API, and sixteen illustrations made with an AI image tool are stored as WebP files. The game is about 2.0 MB and makes no network requests while it runs. It was tested in desktop browser windows and in phone-sized windows with touch input [add the devices you tested on]. AI coding assistants were used; see "Use of Super Intelligence".
 
 ### Use of Super Intelligence (SI)
 
-Yes. AI coding assistants (Claude Code) were used to write the code, to produce the pixel art (as pixel maps in code) and the synthesized sound, to draft and translate the game text, to draft the documentation, and to help check the game text against the sources. Fourteen illustrations of the machines were made with an AI image tool, reviewed by the developer, cleaned of logos, flags and text, and optimized for the web; each is shown with a visible "AI art" badge. The idea, the story frame, the choice of machines, the rules and the list of allowed facts were defined by the developer, who reviewed the result. The README and CREDITS.md describe the AI use, and the page metadata states it. No NASA logos, flags, insignia or mission identifiers appear in the game.
+Yes. AI coding assistants (Claude Code) were used to write the code, to produce the pixel art (as pixel maps in code) and the synthesized sound, to draft and translate the game text, to draft the documentation, and to help check the game text against the sources. Sixteen illustrations of the machines were made with an AI image tool, reviewed by the developer, cleaned of logos, flags and text, and optimized for the web; each is shown with a visible "AI art" badge. The idea, the story frame, the choice of machines, the rules and the list of allowed facts were defined by the developer, who reviewed the result. The README and CREDITS.md describe the AI use, and the page metadata states it. No NASA logos, flags, insignia or mission identifiers appear in the game.
 
 ### NASA Data
 
@@ -72,7 +72,7 @@ All facts in the game come from these NASA resources (full table with what each 
 
 - Space agency partner data: none.
 - Code: original, written for this project with AI coding assistants. No third-party libraries, frameworks or code snippets.
-- Images: none from other sources. The pixel art is generated in code, and fourteen illustrations were made with an AI image tool. Each illustration carries an "AI art" badge.
+- Images: none from other sources. The pixel art is generated in code, and sixteen illustrations were made with an AI image tool. Each illustration carries an "AI art" badge.
 - Audio: none from other sources. All sound is synthesized in the browser (Web Audio API).
 - Fonts: none included. The game uses the monospace font installed on the player's device.
 - Text: written for this project. Facts come from the NASA resources listed under "NASA Data".
