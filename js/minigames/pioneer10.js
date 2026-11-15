@@ -40,7 +40,7 @@ const INSTRUMENTS = [                                      // GAME VALUE: power 
   { cost: 20, data: 3 },
   { cost: 15, data: 2 },
 ];
-const ENDING_LINES = ['g.pio.end.1', 'g.pio.end.2', 'g.pio.end.3', 'g.pio.end.4'];
+const ENDING_LINES = ['g.pio.end.1', 'g.pio.end.2', 'g.pio.end.3', 'g.pio.end.4', 'g.pio.end.5'];
 const LINE_SECONDS = 4.5;                                  // reading time for each ending line
 
 // Best possible data for a budget (transmitter on, every instrument combination), for the stars.
@@ -167,7 +167,7 @@ export function create(_ctx, api) {
     refresh();
   }
 
-  // The fixed ending: the last signal, told in four lines.
+  // The fixed ending: the last signal, told in five lines.
   function startEnding() {
     state = 'ending';
     endTime = 0;

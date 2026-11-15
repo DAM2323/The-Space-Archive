@@ -123,17 +123,18 @@ export const strings = {
   // --- Echoes: six more machines, each a short fact card opened from the hub ---
   'echo.kicker': 'Echo',
   'echo.back': 'Back to the Archive',
-  'e.surveyor3.name': 'Surveyor 3',
-  'e.surveyor3.years': '1967',
-  'e.surveyor3.fact.1': 'Surveyor 3 launched on 17 April 1967 and landed on 20 April 1967 in Oceanus Procellarum.',
-  'e.surveyor3.fact.2': 'On 19 November 1969, the Apollo 12 lunar module Intrepid landed about 180 m away.',
-  'e.surveyor3.fact.3': 'Conrad and Bean took parts of it.',
-  'e.viking1.name': 'Viking 1',
+  'e.surveyor3.name': 'Surveyor landers',
+  'e.surveyor3.years': '1960s',
+  'e.surveyor3.fact.1': 'The Surveyor landers were robotic probes sent in the 1960s to prove soft landings were possible.',
+  'e.surveyor3.fact.2': 'One of them, Surveyor 3, launched on 17 April 1967 and landed on 20 April 1967 in Oceanus Procellarum.',
+  'e.surveyor3.fact.3': 'On 19 November 1969, the Apollo 12 lunar module Intrepid landed about 180 m away.',
+  'e.surveyor3.fact.4': 'Conrad and Bean took parts of it.',
+  'e.viking1.name': 'Viking 1 and 2',
   'e.viking1.years': '1975 – 1982',
   'e.viking1.fact.1': 'Viking 1 launched on 20 August 1975. Its lander touched down on Mars on 20 July 1976.',
-  'e.viking1.fact.2': 'It was the first truly successful landing on Mars. The Soviet Mars 3 lander, in 1971, lost contact seconds after touchdown.',
+  'e.viking1.fact.2': 'Viking 1 and 2 were the first U.S. landers to successfully operate on Mars (1976). They remain exactly where they touched down.',
   'e.viking1.fact.3': 'Both Viking orbiters returned 52,663 images and mapped about 97 percent of the surface. The landers returned 4,500 photos.',
-  'e.viking1.fact.4': 'The orbiter shut down on 7 August 1980, out of attitude-control propellant. The lander stopped on 11 November 1982 after a faulty command.',
+  'e.viking1.fact.4': 'The Viking 1 orbiter shut down on 7 August 1980, out of attitude-control propellant. Its lander stopped on 11 November 1982 after a faulty command.',
   'e.near.name': 'NEAR Shoemaker',
   'e.near.years': '1996 – 2001',
   'e.near.fact.1': 'NEAR Shoemaker launched on 17 February 1996.',
@@ -392,7 +393,8 @@ export const strings = {
   'g.pio.end.1': '23 January 2003. The last signal, from 12.23 billion km. It takes 11 hours 20 minutes to reach Earth.',
   'g.pio.end.2': 'A final attempt to contact Pioneer 10 on 4 March 2006 fails.',
   'g.pio.end.3': 'It heads toward the star Aldebaran, expected in about two million years.',
-  'g.pio.end.4': 'This ending is real. Nothing you did could change it.',
+  'g.pio.end.4': 'Pioneer 11, another early deep-space probe, is also drifting silently out of the solar system.',
+  'g.pio.end.5': 'This ending is real. Nothing you did could change it.',
 };
 
 // Structure of each machine entry. Text is referenced by key, so a translation
@@ -454,8 +456,8 @@ export const science = {
 const echoFact = (id, n, ...sourceIds) => ({ textKey: `e.${id}.fact.${n}`, sourceIds });
 const echo = (id, facts) => ({ id, name: `e.${id}.name`, years: `e.${id}.years`, facts });
 export const echoes = {
-  surveyor3: echo('surveyor3', [echoFact('surveyor3', 1, 'beyond-earth'), echoFact('surveyor3', 2, 'nssdca-a12'), echoFact('surveyor3', 3, 'nssdca-a12')]),
-  viking1: echo('viking1', [1, 2, 3, 4].map((n) => echoFact('viking1', n, 'nasa-viking1'))),
+  surveyor3: echo('surveyor3', [echoFact('surveyor3', 1, 'spaceapps-resources'), echoFact('surveyor3', 2, 'beyond-earth'), echoFact('surveyor3', 3, 'nssdca-a12'), echoFact('surveyor3', 4, 'nssdca-a12')]),
+  viking1: echo('viking1', [1, 2, 3, 4].map((n) => echoFact('viking1', n, n === 2 ? 'spaceapps-resources' : 'nasa-viking1'))),
   near: echo('near', [1, 2, 3, 4].map((n) => echoFact('near', n, 'nasa-near'))),
   insight: echo('insight', [1, 2, 3, 4].map((n) => echoFact('insight', n, 'nasa-insight'))),
   spirit: echo('spirit', [echoFact('spirit', 1, 'beyond-earth'), echoFact('spirit', 2, 'nasa-mer'), echoFact('spirit', 3, 'beyond-earth')]),
