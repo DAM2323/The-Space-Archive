@@ -1,11 +1,11 @@
 # Submission draft: The Space Archive
 
-Draft prepared with AI assistance. Review every text before pasting it into the form. Items in [brackets] are for you to fill in.
+Draft prepared with AI assistance. Review every text before pasting it into the form.
 
 - Project name: **The Space Archive**
 - Slogan: **Abandoned, but not forgotten.**
 - Challenge: Abandoned but Not Forgotten (2026 theme: The Next Frontier)
-- Team: [team name], Local Event Lima. Members: Juan [add the others, if any].
+- Team: The Space Archive, Local Event Lima. Members: Juan David Porras Aliano.
 
 ## Form fields
 
@@ -19,13 +19,13 @@ The Space Archive is a short pixel-art browser game about the machines NASA left
 
 ### Link to Project Demo
 
-[Add the public link to the 30-second video or to the 7-slide deck. Test it in a private window.]
+https://dam2323.github.io/The-Space-Archive/docs/demo/The-Space-Archive-demo.pdf (7-slide deck)
 
 ### Link to Final Project
 
-Repository: https://github.com/DAM2323/The-Space-Archive
+Playable game: https://dam2323.github.io/The-Space-Archive/
 
-Playable game: https://dam2323.github.io/The-Space-Archive/ [confirm it opens in a private window before submitting]
+Code (repository): https://github.com/DAM2323/The-Space-Archive
 
 ### Detailed Project Description
 
@@ -66,7 +66,7 @@ All facts in the game come from these NASA resources (full table with what each 
 - NASA Science, "Dawn": https://science.nasa.gov/mission/dawn/
 - NASA NSSDCA, "Apollo 15 Lunar Module / ALSEP": https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1971-063C (Lunar Roving Vehicle on Apollo 15)
 - NASA NSSDCA, "Apollo 12 Lunar Module / ALSEP": https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-099C (Apollo 12 landing near Surveyor 3)
-- NASA Space Apps Challenge 2026, resource list of the challenge "Abandoned but Not Forgotten": [add the exact link of the challenge page] (the list of machines and their one-line descriptions)
+- NASA Space Apps Challenge 2026, resource list of the challenge "Abandoned but Not Forgotten": https://www.spaceappschallenge.org/2026/challenges/nasas-discarded-equipment-storytelling/?tab=details (the list of machines and their one-line descriptions)
 
 ### Space Agency Partner Data and Other References
 
@@ -76,7 +76,7 @@ All facts in the game come from these NASA resources (full table with what each 
 - Audio: none from other sources. All sound is synthesized in the browser (Web Audio API).
 - Fonts: none included. The game uses the monospace font installed on the player's device.
 - Text: written for this project. Facts come from the NASA resources listed under "NASA Data".
-- Tools: Claude Code (AI coding assistant), Git and GitHub, a web browser, and GitHub Pages for hosting [once it is enabled].
+- Tools: Claude Code (AI coding assistant), Git and GitHub, a web browser, and GitHub Pages for hosting.
 - License of this project: Apache-2.0.
 
 ## Demo option A: 30-second video script
@@ -85,7 +85,7 @@ The limit is 30 seconds. Going over makes the project ineligible for Global Judg
 
 | Time | On screen | Voice-over (about 70 words) |
 | --- | --- | --- |
-| 0:00 - 0:02 | Title screen | "I am Juan, [team name], from Lima." |
+| 0:00 - 0:02 | Title screen | "I am Juan, The Space Archive, from Lima." |
 | 0:02 - 0:05 | Text: Abandoned but Not Forgotten | "Our challenge: Abandoned but Not Forgotten. What happens to the machines we leave behind?" |
 | 0:05 - 0:10 | Logo and slogan | "This is The Space Archive. Abandoned, but not forgotten." |
 | 0:10 - 0:20 | Black hole intro, The Archive, the Opportunity game, a fact card with its source | "You orbit a black hole, reach The Archive, and live five real stories as mini-games. Every fact comes from NASA sources and shows its source. The real endings cannot be changed." |
@@ -96,7 +96,7 @@ The limit is 30 seconds. Going over makes the project ineligible for Global Judg
 The limit is 7 slides, including the title. Keep the font large and the words few.
 
 1. **Title.** The Space Archive. "Abandoned, but not forgotten." Screenshot of the title screen.
-2. **Team and challenge.** [team name], Lima. Members: Juan [and others]. Challenge: Abandoned but Not Forgotten.
+2. **Team and challenge.** The Space Archive, Lima. Member: Juan David Porras Aliano. Challenge: Abandoned but Not Forgotten.
 3. **The idea.** An astronaut orbits a black hole and arrives at The Archive, where forgotten machines float as ghosts. Screenshot of The Archive.
 4. **How it works.** Five stories, five mini-games, each built on one real engineering problem. The real ending cannot be changed. Screenshot of the Opportunity game.
 5. **NASA data used.** Beyond Earth (NASA SP-2018-4041), NASA Science mission pages, NSSDCA, the challenge resource list. Every fact shows its source. Screenshot of a "What really happened" card.

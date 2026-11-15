@@ -4,7 +4,9 @@
 
 *Abandoned, but not forgotten.*
 
-Play online: https://dam2323.github.io/The-Space-Archive/ (available once GitHub Pages is enabled for this repository)
+Play online: https://dam2323.github.io/The-Space-Archive/
+
+Demo slides (PDF): https://dam2323.github.io/The-Space-Archive/docs/demo/The-Space-Archive-demo.pdf
 
 ## Concept
 
