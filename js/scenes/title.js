@@ -1,4 +1,4 @@
-// Title screen: logo, tagline, menu, options panel and the disclaimer.
+// Title screen: logo, tagline, menu and options panel.
 // The canvas shows a quiet scene: parallax stars, a distant black hole and
 // the astronaut drifting with a small thruster glow.
 
@@ -94,9 +94,7 @@ function buildUI(ui) {
   const notice = el('p', 'notice');
   notice.setAttribute('aria-live', 'polite');
 
-  const disclaimer = el('p', 'disclaimer', t('title.disclaimer'));
-
-  root.append(logo, tagline, menu, notice, disclaimer);
+  root.append(logo, tagline, menu, notice);
 
   // Options panel (hidden until opened).
   options = createOptions({

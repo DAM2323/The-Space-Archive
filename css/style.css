@@ -162,14 +162,6 @@ body {
 }
 .notice.show { animation: notice 3.2s both; }
 
-.disclaimer {
-  margin: auto 0 0;
-  max-width: 46em;
-  font-size: 0.82em;
-  color: var(--mist);
-  animation: fade-in 0.9s 1.9s both;
-}
-
 @keyframes rise {
   from { opacity: 0; transform: translateY(0.6em); }
   to { opacity: 1; transform: none; }
@@ -641,7 +633,6 @@ body {
 .source-title { display: block; color: var(--star); }
 a.source-title { color: var(--amber); }
 .source-publisher { display: block; font-size: 0.85em; color: var(--mist); }
-.credits-disclaimer { margin: 0.9em 0 0.2em; padding-top: 0.6em; border-top: var(--u) solid var(--indigo); color: var(--mist); text-align: center; }
 .credits .btn { flex: none; padding-top: 0.4em; padding-bottom: 0.4em; }
 
 /* ---------- small-text floor: notes stay readable on phones ---------- */
@@ -830,3 +821,7 @@ a.source-title { color: var(--amber); }
 .hub-complete { font-size: 0.85em; color: #7ed492; letter-spacing: 0.08em; transform-origin: left center; }
 .hub-complete.land { animation: complete-pop 0.6s cubic-bezier(.2, .9, .3, 1.4) both; }
 @keyframes complete-pop { from { opacity: 0; transform: scale(1.8); } to { opacity: 1; transform: scale(1); } }
+
+/* ---------- title: the menu sits in the middle now that the story note lives in the credits ---------- */
+.title { padding-bottom: calc(var(--u) * 22); }
+.menu { margin-top: auto; margin-bottom: auto; }

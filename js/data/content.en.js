@@ -14,7 +14,7 @@ export const strings = {
   'title.options': 'Options',
   'title.credits': 'Credits',
   'title.notReady': 'This part of the Archive is still being built.',
-  'title.disclaimer':
+  'credits.aboutText':
     'Narrative fiction. The physics is real: near a black hole, time runs slower, so you can only travel toward the future.',
 
   // --- Options panel ---
@@ -138,6 +138,7 @@ export const strings = {
   'credits.toolsText': 'Built by a solo developer with the help of AI coding assistants for code, pixel art in code and text drafts. The facts come from the sources above.',
   'credits.license': 'License',
   'credits.licenseText': 'Code and content: Apache-2.0. Not affiliated with or endorsed by NASA.',
+  'credits.about': 'About the story',
   'credits.back': 'Back',
 
   // --- Echoes: six more machines, each a short fact card opened from the hub ---

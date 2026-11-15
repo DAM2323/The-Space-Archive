@@ -1,5 +1,5 @@
 // Credits and sources: who made it, every source, licenses and attributions,
-// and the disclaimer about the frame story.
+// and a note about the story (what is fiction and what is real physics).
 
 import { SPRITES } from '../data/sprites.js';
 import { SOURCES } from '../data/sources.js';
@@ -57,7 +57,7 @@ export default {
       section('credits.art', el('p', 'credits-text', t('credits.artText')), el('p', 'credits-text', t('credits.gameValues'))),
       section('credits.tools', el('p', 'credits-text', t('credits.toolsText'))),
       section('credits.license', el('p', 'credits-text', t('credits.licenseText'))),
-      el('p', 'credits-disclaimer', t('title.disclaimer')),
+      section('credits.about', el('p', 'credits-text', t('credits.aboutText'))),
     );
     const back = button(t('credits.back'), () => scenes.go(from), 'primary wide', 'back');
     card.append(el('h2', 'panel-title', t('credits.title')), scroller, back);

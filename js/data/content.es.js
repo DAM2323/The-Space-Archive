@@ -9,7 +9,7 @@ export const strings = {
   'title.options': 'Opciones',
   'title.credits': 'Créditos',
   'title.notReady': 'Esta parte del Archivo todavía se está construyendo.',
-  'title.disclaimer':
+  'credits.aboutText':
     'Ficción narrativa. La física es real: cerca de un agujero negro el tiempo pasa más lento, así que solo puedes viajar hacia el futuro.',
 
   // --- Options panel ---
@@ -121,6 +121,7 @@ export const strings = {
   'credits.toolsText': 'Creado por un solo desarrollador con ayuda de asistentes de código con IA para el código, el arte pixelado en código y borradores de texto. Los datos vienen de las fuentes de arriba.',
   'credits.license': 'Licencia',
   'credits.licenseText': 'Código y contenido: Apache-2.0. Sin afiliación ni respaldo de la NASA.',
+  'credits.about': 'Sobre la historia',
   'credits.back': 'Atrás',
 
   // --- Shell ---
