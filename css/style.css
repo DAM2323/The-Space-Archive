@@ -826,26 +826,11 @@ a.source-title { color: var(--amber); }
 .title { padding-bottom: calc(var(--u) * 22); }
 .menu { margin-top: auto; margin-bottom: auto; }
 
-/* ---------- the "AI-generated art" mark, visible on every screen ---------- */
-#ai-mark {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  margin: 0;
-  padding: 0 calc(var(--u) * 1.5);
-  font-size: max(8px, calc(var(--u) * 3.6));
-  line-height: 1.3;
-  letter-spacing: 0.06em;
-  color: var(--mist);
-  background: rgba(7, 6, 15, 0.7);
-  pointer-events: none;
-  z-index: 20;
-}
-
 /* ---------- illustrated pictures ---------- */
 /* A fixed 16:9 box with a pixel border in the UI palette. The picture covers
-   it (object-fit) and fades in when loaded. A bar on the frame carries the
-   caption and the visible "AI-generated art" mark. */
+   it (object-fit) and fades in when loaded. A small "AI art" badge sits in
+   the top right corner of every picture, the same size everywhere, and a bar
+   at the bottom carries the caption when there is one. */
 .art-frame {
   position: relative;
   margin: 0;
@@ -871,7 +856,20 @@ a.source-title { color: var(--amber); }
   background: rgba(7, 6, 15, 0.78);
 }
 .art-caption { font-size: 0.9em; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.art-tag { margin-left: auto; font-size: max(7px, 0.6em); letter-spacing: 0.06em; color: var(--mist); white-space: nowrap; }
+.art-badge {
+  position: absolute;
+  top: calc(var(--u) * 1);
+  right: calc(var(--u) * 1);
+  padding: 0 calc(var(--u) * 1);
+  font-size: max(7px, calc(var(--u) * 2.6));
+  line-height: 1.35;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  color: var(--star);
+  background: rgba(7, 6, 15, 0.55);
+  opacity: 0.85;
+  pointer-events: none;
+}
 
 /* Story: the picture is the backdrop of the scene. It covers the area above
    the bottom of the dialogue box (a little sky is cropped so the machine stays
@@ -880,7 +878,7 @@ a.source-title { color: var(--amber); }
 .art-backdrop .art-img { position: absolute; left: 0; top: 0; height: calc(100% - var(--u) * 30); object-position: 50% 60%; }
 .art-backdrop.loaded .art-img { opacity: 1; }
 .art-shade { position: absolute; left: 0; right: 0; bottom: 0; height: 50%; background: linear-gradient(to bottom, rgba(7, 6, 15, 0) 0%, rgba(7, 6, 15, 0.55) 30%, #07060f 68%); }
-.art-backdrop .art-tag { position: absolute; right: calc(var(--u) * 2); top: calc(var(--u) * 2); }
+.art-backdrop .art-badge { top: calc(var(--u) * 2); right: calc(var(--u) * 2); }
 .art-backdrop ~ .dialogue { min-height: calc(var(--u) * 40); padding-top: 0.5em; padding-bottom: 0.45em; }
 
 /* Science Room: the panel fills the screen and its picture sits on top. */
@@ -903,7 +901,6 @@ a.source-title { color: var(--amber); }
 .card-head.has-art .art-frame { width: calc(var(--u) * 68); box-shadow: none; }
 .card-head.has-art .card-titles { flex: 1; min-width: 0; }
 .card-head.has-art .panel-title, .card-head.has-art .card-name, .card-head.has-art .card-score { text-align: left; }
-.card-head .art-tag { font-size: max(7px, 0.52em); }
 
 /* Echo card with a picture: full height, picture beside the facts. */
 .echo-card.with-art { top: calc(var(--u) * 4); max-height: none; }
@@ -927,7 +924,6 @@ a.source-title { color: var(--amber); }
 .wall-item.has-art .wall-words > span { display: block; }
 .wall-words { display: flex; flex-direction: column; min-width: 0; flex: 1; }
 .wall .wall-item { font-size: 0.93em; line-height: 1.28; }
-.wall-item .art-tag { font-size: max(6px, 0.5em); }
 .echo-card.with-art .fact { font-size: 0.85em; line-height: 1.27; }
 .echo-card.with-art .facts { gap: 0.4em; }
 /* The last entry of the Wall (the longest text) uses the full width. */

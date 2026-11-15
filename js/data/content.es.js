@@ -119,14 +119,14 @@ export const strings = {
   'credits.gameValues': 'La energía, los movimientos, los tiempos, los puntajes y las estrellas son valores del juego, no datos de la misión.',
   'credits.tools': 'Cómo se hizo',
   'credits.toolsText': 'El código, el arte pixelado y el sonido se generaron con asistentes de código con IA, y las ilustraciones con una herramienta de imágenes con IA. Los revisó el desarrollador. El texto se redactó y tradujo con ayuda de IA.',
-  'credits.toolsMark': 'Cada pantalla lleva la marca "Arte generado con IA". No se usan fotos, fuentes, archivos de audio ni bibliotecas de otras personas.',
+  'credits.toolsMark': 'Cada ilustración lleva la insignia "Arte IA". No se usan fotos, fuentes, archivos de audio ni bibliotecas de otras personas.',
   'credits.license': 'Licencia',
   'credits.licenseText': 'Código y contenido: Apache-2.0. Sin afiliación ni respaldo de la NASA.',
   'credits.about': 'Sobre la historia',
   'credits.back': 'Atrás',
 
   // --- Shell ---
-  'shell.aiMark': 'Arte generado con IA',
+  'shell.aiMark': 'Arte IA',
   'shell.rotate': 'Por favor, gira tu dispositivo en horizontal.',
 
   // --- Machines: names and years (years come from the facts below) ---

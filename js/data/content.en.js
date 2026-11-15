@@ -136,7 +136,7 @@ export const strings = {
   'credits.gameValues': 'Energy, moves, timers, scores and stars are game values, not mission data.',
   'credits.tools': 'How it was made',
   'credits.toolsText': 'The code, the pixel art and the sound were generated with AI coding assistants, and the illustrations with an AI image tool. The developer reviewed them. Text was drafted and translated with AI help.',
-  'credits.toolsMark': 'Every screen carries the mark "AI-generated art". No photos, fonts, audio files or libraries from other people are used.',
+  'credits.toolsMark': 'Every illustration carries the badge "AI art". No photos, fonts, audio files or libraries from other people are used.',
   'credits.license': 'License',
   'credits.licenseText': 'Code and content: Apache-2.0. Not affiliated with or endorsed by NASA.',
   'credits.about': 'About the story',
@@ -213,7 +213,7 @@ export const strings = {
   'art.kepler': 'Pixel-art illustration of the Kepler Space Telescope in space.',
 
   // --- Shell ---
-  'shell.aiMark': 'AI-generated art',
+  'shell.aiMark': 'AI art',
   'shell.rotate': 'Please rotate your device to landscape.',
 
   // --- Machines: names and years (years come from the facts below) ---

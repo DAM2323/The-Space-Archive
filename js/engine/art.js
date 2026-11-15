@@ -25,7 +25,8 @@ function load(holder, src, alt, onFail) {
   return img;
 }
 
-const mark = () => el('span', 'art-tag', t('shell.aiMark'));
+// The small badge every picture carries in its top right corner.
+const badge = () => el('span', 'art-badge', t('shell.aiMark'));
 
 // artFrame({ src, alt, caption, onFail }) -> <figure class="art-frame">
 //   src      path of the picture, for example 'Images/opportunity.webp'
@@ -35,10 +36,12 @@ const mark = () => el('span', 'art-tag', t('shell.aiMark'));
 export function artFrame({ src, alt, caption = '', onFail }) {
   const frame = el('figure', 'art-frame');
   load(frame, src, alt, onFail);
-  const bar = el('figcaption', 'art-bar');
-  if (caption) bar.append(el('span', 'art-caption', caption));
-  bar.append(mark());
-  frame.append(bar);
+  frame.append(badge());
+  if (caption) {
+    const bar = el('figcaption', 'art-bar');
+    bar.append(el('span', 'art-caption', caption));
+    frame.append(bar);
+  }
   return frame;
 }
 
@@ -48,6 +51,6 @@ export function artFrame({ src, alt, caption = '', onFail }) {
 export function artBackdrop({ src, alt, onFail }) {
   const back = el('div', 'art-backdrop');
   load(back, src, alt, onFail);
-  back.append(el('div', 'art-shade'), mark());
+  back.append(el('div', 'art-shade'), badge());
   return back;
 }
