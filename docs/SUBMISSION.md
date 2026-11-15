@@ -45,11 +45,11 @@ Six "echoes" (Surveyor landers, Viking 1 and 2, NEAR Shoemaker, InSight, Spirit 
 
 **What we hope to achieve.** We want players aged about 10 to 16 to remember these machines by name, to understand one real engineering problem behind each, and to see where every fact comes from.
 
-**Tools, languages and hardware.** Plain HTML, CSS and JavaScript (ES modules). No frameworks, no build step and no libraries: the pixel art is drawn from pixel maps in code, the sound is synthesized with the Web Audio API, and eleven illustrations made with an AI image tool are stored as WebP files. The game is about 1.4 MB and makes no network requests while it runs. It was tested in desktop browser windows and in phone-sized windows with touch input [add the devices you tested on]. AI coding assistants were used; see "Use of Super Intelligence".
+**Tools, languages and hardware.** Plain HTML, CSS and JavaScript (ES modules). No frameworks, no build step and no libraries: the pixel art is drawn from pixel maps in code, the sound is synthesized with the Web Audio API, and fourteen illustrations made with an AI image tool are stored as WebP files. The game is about 1.7 MB and makes no network requests while it runs. It was tested in desktop browser windows and in phone-sized windows with touch input [add the devices you tested on]. AI coding assistants were used; see "Use of Super Intelligence".
 
 ### Use of Super Intelligence (SI)
 
-Yes. AI coding assistants (Claude Code) were used to write the code, to produce the pixel art (as pixel maps in code) and the synthesized sound, to draft and translate the game text, to draft the documentation, and to help check the game text against the sources. Eleven illustrations of the machines were made with an AI image tool, reviewed by the developer, cropped and optimized for the web; each is shown with a visible "AI-generated art" tag. The idea, the story frame, the choice of machines, the rules and the list of allowed facts were defined by the developer, who reviewed the result. Every screen of the game carries a small "AI-generated art" mark, the README and CREDITS.md describe the AI use, and the page metadata states it. No NASA logos, flags, insignia or mission identifiers appear in the game.
+Yes. AI coding assistants (Claude Code) were used to write the code, to produce the pixel art (as pixel maps in code) and the synthesized sound, to draft and translate the game text, to draft the documentation, and to help check the game text against the sources. Fourteen illustrations of the machines were made with an AI image tool, reviewed by the developer, cleaned of logos, flags and text, and optimized for the web; each is shown with a visible "AI art" badge. The idea, the story frame, the choice of machines, the rules and the list of allowed facts were defined by the developer, who reviewed the result. The README and CREDITS.md describe the AI use, and the page metadata states it. No NASA logos, flags, insignia or mission identifiers appear in the game.
 
 ### NASA Data
 
@@ -72,7 +72,7 @@ All facts in the game come from these NASA resources (full table with what each 
 
 - Space agency partner data: none.
 - Code: original, written for this project with AI coding assistants. No third-party libraries, frameworks or code snippets.
-- Images: none from other sources. The pixel art is generated in code, and eleven illustrations were made with an AI image tool. All of it is marked "AI-generated art".
+- Images: none from other sources. The pixel art is generated in code, and fourteen illustrations were made with an AI image tool. Each illustration carries an "AI art" badge.
 - Audio: none from other sources. All sound is synthesized in the browser (Web Audio API).
 - Fonts: none included. The game uses the monospace font installed on the player's device.
 - Text: written for this project. Facts come from the NASA resources listed under "NASA Data".
@@ -120,7 +120,7 @@ The limit is 7 slides, including the title. Keep the font large and the words fe
 - [ ] The final project link is public. Tested in a private window.
 - [ ] At least one NASA resource is documented under "NASA Data".
 - [ ] Every external reference is listed. No copyrighted material is used without permission.
-- [ ] AI use is disclosed. The "AI-generated art" mark is visible in the game, the screenshots and the demo. No NASA brand elements are used.
+- [ ] AI use is disclosed. The "AI art" badge is visible on every illustration in the game, the screenshots and the demo. No NASA brand elements are used.
 - [ ] No image, video, audio or likeness of anyone under 18 appears in the project or the demo.
 - [ ] Both checkboxes are ticked (Terms and Privacy Policy; original work with all resources listed).
 - [ ] "Submit for Judging" is clicked and the confirmation banner is seen before Sunday 15 November, 11:59 p.m. local time. Saving is not enough, and only the last submission counts.

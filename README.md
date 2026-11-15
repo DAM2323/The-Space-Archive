@@ -92,10 +92,10 @@ All paths in the game are relative, so it works from a subfolder. The empty `.no
 - Plain HTML, CSS and JavaScript ES modules.
 - No frameworks, no build step, no dependencies.
 - No network calls at runtime. Every file is served from this repository.
-- Sprites and backgrounds are generated in code from small pixel maps. Eleven illustrations are WebP files in `Images/`, loaded only when a screen needs them; if one fails to load, the pixel sprite is shown instead.
+- Sprites and backgrounds are generated in code from small pixel maps. Fourteen illustrations are WebP files in `Images/`, loaded only when a screen needs them; if one fails to load, the pixel sprite is shown instead and the reason is written to the browser console.
 - Text is a DOM overlay over the canvas.
 - Text lives in js/data/content.en.js and js/data/content.es.js (same keys) and is read through t('key').
-- Total size of the game is about 1.4 MB: about 0.33 MB of HTML, CSS and JavaScript, and 1.03 MB of images.
+- Total size of the game is about 1.7 MB: about 0.32 MB of HTML, CSS and JavaScript, and about 1.36 MB of images.
 
 File tree:
 
@@ -126,13 +126,13 @@ AI coding assistants (Claude Code) were used to write the code, to produce the p
 
 The idea, the story frame, the choice of machines, the rules and the list of allowed facts were defined by the developer, who reviewed the result.
 
-Eleven illustrations in `Images/` (Opportunity, Ingenuity, Sojourner, Pioneer 10, Surveyor 3, Viking 1, NEAR Shoemaker, InSight, Spirit, Dawn and Kepler) were made with an AI image tool and reviewed by Juan. They were cropped and optimized for the web (WebP, 960x540, each under 150 KB, 1.03 MB in total). Each one is shown in a frame with a visible "AI-generated art" tag. They are illustrations, not photos and not NASA images, and some details differ from the real machines and places. Three more illustrations (the Lunar Roving Vehicle, the Apollo lunar module and ALSEP) were not used, because they showed flags or text labels that could not be cropped out; those entries use the pixel sprite or text only.
+Fourteen illustrations in `Images/` were made with an AI image tool and reviewed by Juan: the Lunar Roving Vehicle, Pioneer 10, Sojourner, Opportunity, Ingenuity, Surveyor 3, Viking 1, NEAR Shoemaker, InSight, Spirit, Dawn, the Apollo lunar module, ALSEP and Kepler. They were cleaned before use: the nameplate with a logo and a name was cropped out of every picture, the flags on the Lunar Roving Vehicle and the flag and country name on the lunar module were painted over, and the text labels on the ALSEP picture were painted out. They were then optimized for the web (WebP, 960x540, each under 150 KB, about 1.36 MB in total). Each picture carries a small "AI art" badge in its top right corner. They are illustrations, not photos and not NASA images, and some details differ from the real machines and places.
 
-Every screen of the game carries a small "AI-generated art" mark, so the screenshots carry it too. No NASA logos, insignia, flags or mission patches are used.
+Screens that show only pixel sprites carry no badge. No NASA logos, insignia, flags or mission patches are used.
 
 ## External resources
 
-No third-party code, libraries, fonts or audio files are used, and the game makes no network requests while it runs. The only images are the eleven AI-generated illustrations described above; no photos and no images from NASA or from other people are used. NASA sources are listed in CREDITS.md with their links and what each one was used for.
+No third-party code, libraries, fonts or audio files are used, and the game makes no network requests while it runs. The only images are the fourteen AI-generated illustrations described above; no photos and no images from NASA or from other people are used. NASA sources are listed in CREDITS.md with their links and what each one was used for.
 
 ## License
 
