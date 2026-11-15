@@ -185,8 +185,8 @@ export default {
     parallax.y = reduced ? 0 : lerp(parallax.y, parallax.ty, 1 - Math.exp(-5 * dt));
 
     // The astronaut drifts to her target with a soft spring (inertia), and puffs
-    // her thrusters while she speeds up. With reduced motion she stays home.
-    const target = reduced ? { x: HOME.x, y: HOME.y, start: targetSpot().start } : targetSpot();
+    // her thrusters while she speeds up. Reduced motion keeps this, at low intensity.
+    const target = targetSpot();
     const ax = (target.x - astro.x) * FOLLOW, ay = (target.y - astro.y) * FOLLOW;
     astro.vx += (ax - astro.vx * FOLLOW_DRAG) * dt;
     astro.vy += (ay - astro.vy * FOLLOW_DRAG) * dt;
@@ -195,7 +195,7 @@ export default {
     if (Math.abs(astro.vx) > 4) astro.facing = astro.vx < 0;
     else if (Math.hypot(astro.vx, astro.vy) < 3) astro.facing = false;      // at rest she looks toward the menu
     const push = Math.hypot(ax, ay);
-    if (!reduced && push > 70 && Math.random() < 0.6) {
+    if (push > 70 && Math.random() < (reduced ? 0.25 : 0.6)) {
       glow.spawn({
         x: astro.x - (ax / push) * 5, y: astro.y + bob() - (ay / push) * 6, vx: -(ax / push) * (16 + Math.random() * 20), vy: -(ay / push) * (16 + Math.random() * 20),
         drag: 2.5, life: 0.3 + Math.random() * 0.35, color: Math.random() < 0.55 ? C.amber : C.ember, alpha: 0.9,
@@ -204,19 +204,19 @@ export default {
 
     // START hovered or focused: the hole glows and its disk spins faster.
     boost = lerp(boost, target.start ? 1 : 0, 1 - Math.exp(-4 * dt));
-    diskClock += dt * (reduced ? 0.4 : 1 + boost * 2.6);
+    diskClock += dt * (reduced ? 0.4 + boost * 0.6 : 1 + boost * 2.6);
     ripples = ripples.filter((r) => (r.t += dt) < RIPPLE_TIME);
 
-    if (!reduced) {
-      // Slow dust motes drifting across the screen.
-      if (Math.random() < 0.05) {
+    {
+      // Slow dust motes drifting across the screen (fewer with reduced motion).
+      if (Math.random() < (reduced ? 0.015 : 0.05)) {
         dust.spawn({
           x: WIDTH + 2, y: Math.random() * HEIGHT, vx: -(6 + Math.random() * 10), vy: (Math.random() - 0.5) * 3,
           life: 12, color: Math.random() < 0.5 ? C.violet : C.mist, alpha: 0.35,
         });
       }
       // A small idle thruster glow under her backpack.
-      if (Math.random() < 0.25) {
+      if (Math.random() < (reduced ? 0.1 : 0.25)) {
         glow.spawn({
           x: astro.x - 1 + Math.random() * 2, y: astro.y + bob() + 8, vx: (Math.random() - 0.5) * 5, vy: 9 + Math.random() * 8,
           life: 0.5 + Math.random() * 0.4, color: Math.random() < 0.6 ? C.amber : C.ember, alpha: 0.9,
@@ -233,7 +233,7 @@ export default {
     // The black hole is far away, so it moves less than the nearest stars.
     const hx = HOLE.x + parallax.x * 0.2, hy = HOLE.y + parallax.y * 0.2;
     // Its glow: a soft halo that grows with `boost` and during a ripple.
-    const flare = clamp(boost + (ripples.length ? 0.6 : 0));
+    const flare = clamp(boost * (still() ? 0.6 : 1) + (ripples.length ? 0.6 : 0));
     if (flare > 0.02) {
       for (let ring = 0; ring < 3; ring++) {
         const radius = HOLE.rs * (2.2 + ring * 0.9), steps = Math.round(radius * 3);

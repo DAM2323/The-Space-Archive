@@ -49,7 +49,11 @@ export class Starfield {
 
   // drift = game pixels per second for the nearest layer.
   update(dt, drift = 2) {
-    if (reduced()) return;
+    // Reduced motion: the stars stop drifting but keep a slow twinkle.
+    if (reduced()) {
+      this.time += dt * 0.5;
+      return;
+    }
     this.time += dt;
     this.scroll += drift * dt;
   }

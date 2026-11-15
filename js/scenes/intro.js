@@ -44,7 +44,7 @@ const HOLE_START = { x: 160, y: 66, rs: 2.5 };
 const CAPTION_TIMES = [0.4, 4.6, 9.4, 14];  // when each caption line appears
 
 // ---------- state ----------
-let time, done, still;
+let time, done, gentle;       // gentle = reduced motion: same intro, without flash, shake or fast star motion
 let hole;                     // { x, y, rs } right now
 let ship;                     // { x, y, behind, flip }
 let stars, trail;
@@ -182,7 +182,7 @@ function drawStars() {
     const root = Math.sqrt(b * b + 4 * E * E);
     const th = (b + root) / 2;
     const angle = Math.atan2(by, bx);
-    const twinkle = still ? 1 : 0.8 + 0.2 * Math.sin(time * 2 + s.phase);
+    const twinkle = 0.8 + 0.2 * Math.sin(time * (gentle ? 1 : 2) + s.phase);
     const alpha = s.bright * twinkle;
     const stretch = Math.min(9, (th / b - 1) * 2.2);          // how much the image is smeared along the ring
     arc(hole.x, hole.y, th, angle, stretch, s.color, Math.min(1, alpha * (1 + stretch * 0.12)));
@@ -260,20 +260,8 @@ function buildUI(ui) {
   ui.append(clocks, caption);
   dom = { shipValue, outValue, outEvent, outBox, caption, lines };
 
-  if (still) {
-    // Reduced motion: one still frame, final clock values, and a button.
-    shipValue.textContent = shipClockText(SHIP_MINUTES);
-    outValue.textContent = `${STOPS[0]} \u2192 ${STOPS[STOPS.length - 1]}`;
-    outEvent.textContent = t(`intro.stop.${STOPS[STOPS.length - 1]}`);
-    lines.forEach((line) => line.classList.add('on'));
-    caption.textContent = `${t('intro.line.3')} ${t('intro.line.4')}`;
-    caption.classList.add('show');
-    const go = button(t('intro.continue'), finish, 'primary corner');
-    ui.append(go);
-    go.focus({ preventScroll: true });
-  } else {
-    ui.append(button(t('intro.skip'), finish, 'small corner', 'back'));
-  }
+  dom.skip = button(t('intro.skip'), finish, 'small corner', 'back');
+  ui.append(dom.skip);
 }
 
 function showCaption(index) {
@@ -287,7 +275,7 @@ function showCaption(index) {
 
 export default {
   enter(_params, ui) {
-    still = gameState.settings.reducedMotion;
+    gentle = gameState.settings.reducedMotion;
     time = 0;
     done = false;
     drift = 0;
@@ -302,10 +290,6 @@ export default {
     ship = { x: -20, y: 150, behind: false, flip: false };
     stars = makeStars();
     trail = new Particles(120);
-    if (still) {
-      hole = { ...HOLE_END };
-      Object.assign(ship, orbitPoint(1.2));
-    }
     buildUI(ui);
     drone(true);
     // Space, Enter or a tap anywhere skips the intro.
@@ -319,7 +303,6 @@ export default {
   },
 
   update(dt) {
-    if (still) return;
     time += dt;
 
     // Approach: the hole grows and slides to the center of the screen.
@@ -344,8 +327,8 @@ export default {
     }
     ship.flip = ship.x < prevX;
 
-    // The stars sweep past while she orbits.
-    drift -= dt * (4 + 60 * Math.sin(Math.PI * clamp((time - T_APPROACH) / T_ORBITS)) ** 0.5 * (time > T_APPROACH ? 1 : 0));
+    // The stars sweep past while she orbits (much slower with reduced motion).
+    drift -= dt * (gentle ? 0.12 : 1) * (4 + 60 * Math.sin(Math.PI * clamp((time - T_APPROACH) / T_ORBITS)) ** 0.5 * (time > T_APPROACH ? 1 : 0));
 
     // Thruster trail.
     trail.spawn({
@@ -406,9 +389,18 @@ export default {
     const flashStart = T_APPROACH + T_ORBITS;
     if (time >= flashStart && time - dt < flashStart) {
       sfx('arrive');
-      shake.add(1.2);
+      if (gentle) {
+        // Reduced motion: no flash and no shake. The scene holds on the final
+        // year with a Continue button, so the player leaves when ready.
+        dom.skip.remove();
+        const go = button(t('intro.continue'), finish, 'primary corner');
+        dom.caption.parentElement.append(go);
+        go.focus({ preventScroll: true });
+      } else {
+        shake.add(1.2);
+      }
     }
-    if (time >= flashStart + T_FLASH) finish();
+    if (!gentle && time >= flashStart + T_FLASH) finish();
   },
 
   render() {
@@ -426,7 +418,7 @@ export default {
     if (!ship.behind) drawShip();
 
     // Arrival: one slow fade to light (no rapid flashing).
-    const f = clamp((time - T_APPROACH - T_ORBITS) / T_FLASH);
+    const f = gentle ? 0 : clamp((time - T_APPROACH - T_ORBITS) / T_FLASH);
     if (f > 0) {
       ctx.globalAlpha = ease.inCubic(f) * 0.92;
       ctx.fillStyle = C.star;

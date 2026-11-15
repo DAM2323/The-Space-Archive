@@ -24,11 +24,11 @@ import { gameState, MACHINE_IDS, ECHO_IDS, completedCount, echoesRead, archiveCo
 // ---------- layout (game pixels) ----------
 export const MACHINE_SCALE = 1.5;     // all five machines are drawn 1.5 times their pixel maps
 export const SPOTS = {
-  lrv: { x: 52, y: 46 },
+  lrv: { x: 52, y: 44 },
   pioneer10: { x: 160, y: 36 },
-  sojourner: { x: 268, y: 46 },
-  opportunity: { x: 66, y: 126 },
-  ingenuity: { x: 254, y: 126 },
+  sojourner: { x: 268, y: 44 },
+  opportunity: { x: 66, y: 131 },
+  ingenuity: { x: 254, y: 131 },
 };
 const ECHO_SPOTS = {
   surveyor3: { x: 16, y: 90 },
@@ -76,11 +76,12 @@ let gesture = null;                   // { kind: 'wave' | 'flip', t, duration } 
 let nebula = null;
 
 const still = () => gameState.settings.reducedMotion;
-const bob = (phase, amount = 3) => (still() ? 0 : Math.sin(time * 0.8 + phase) * amount);
+// A gentle bob. Reduced motion keeps it, at half the height.
+const bob = (phase, amount = 3) => Math.sin(time * 0.8 + phase) * amount * (still() ? 0.5 : 1);
 
 export function ghostPosition(id) {
   const s = spotOf(id), phase = ghosts[id].phase;
-  if (still()) return { x: s.x, y: s.y };
+  if (still()) return { x: s.x, y: s.y + bob(phase, isEcho(id) ? 1.5 : 2) };   // no drift, only the gentle bob
   // Echoes drift slowly around their spot; machines only bob in place.
   if (isEcho(id)) return { x: s.x + Math.sin(time * 0.13 + phase) * ECHO_DRIFT, y: s.y + Math.cos(time * 0.1 + phase * 1.3) * ECHO_DRIFT * 0.7 };
   return { x: s.x + Math.sin(time * 0.37 + phase) * 1.5, y: s.y + bob(phase, 2) };
@@ -111,7 +112,7 @@ function makeNebula() {
 
 // Small puffs from her backpack, pushed opposite to the way she accelerates.
 function puff(ax, ay, amount = 1) {
-  if (still()) return;
+  if (still() && Math.random() < 0.6) return;          // reduced motion: fewer puffs
   const len = Math.hypot(ax, ay) || 1;
   for (let i = 0; i < amount; i++) {
     puffs.spawn({
@@ -127,7 +128,7 @@ function puff(ax, ay, amount = 1) {
 export function updateWorld(dt, control = null) {
   time += dt;
   stars.update(dt, 1);
-  if (!still() && Math.random() < 0.04) {
+  if (Math.random() < (still() ? 0.015 : 0.04)) {
     dust.spawn({
       x: Math.random() * WIDTH, y: HEIGHT + 2, vx: (Math.random() - 0.5) * 4, vy: -(3 + Math.random() * 5),
       life: 14, color: Math.random() < 0.5 ? C.violet : C.indigo, alpha: 0.5,
@@ -156,7 +157,7 @@ export function updateWorld(dt, control = null) {
     g.glow = lerp(g.glow, aimed === id ? 1 : 0, 1 - Math.exp(-10 * dt));
     g.stamp = Math.max(0, g.stamp - dt * 2);
     // Sparkles circle the aimed machine or echo.
-    if (aimed === id && !still() && Math.random() < 0.5) {
+    if (aimed === id && Math.random() < (still() ? 0.15 : 0.5)) {
       const a = Math.random() * Math.PI * 2, p = ghostPosition(id);
       const small = isEcho(id);
       sparks.spawn({
@@ -281,7 +282,7 @@ export function renderWorld(hide = null) {
   // Complete: the center of the Archive pulses with slow rings of light.
   if (complete) {
     for (let ring = 0; ring < 2; ring++) {
-      const k = still() ? 0.45 + ring * 0.3 : (time * 0.22 + ring * 0.5) % 1;
+      const k = (time * (still() ? 0.08 : 0.22) + ring * 0.5) % 1;
       const radius = 8 + k * 46, steps = Math.round(18 + radius * 1.2);
       for (let i = 0; i < steps; i++) {
         const a = (i / steps) * Math.PI * 2;
@@ -770,8 +771,9 @@ export default {
       // Idle for a while: she waves, or does a slow flip (never with reduced motion).
       const pushing = control ? Math.hypot(control.ax, control.ay) : 0;
       idle += Math.hypot(astro.vx, astro.vy) < 6 && pushing < 12 ? dt : 0;
-      if (idle >= IDLE_TIME && !gesture && !still() && !aimed) {
-        gesture = nextGesture === 'wave' ? { kind: 'wave', t: 0, duration: 1.8 } : { kind: 'flip', t: 0, duration: 2.6 };
+      if (idle >= IDLE_TIME && !gesture && !aimed) {
+        // Reduced motion: she only waves, never flips.
+        gesture = nextGesture === 'wave' || still() ? { kind: 'wave', t: 0, duration: 1.8 } : { kind: 'flip', t: 0, duration: 2.6 };
         nextGesture = nextGesture === 'wave' ? 'flip' : 'wave';
         idle = 0;
       } else if (idle >= IDLE_TIME) {

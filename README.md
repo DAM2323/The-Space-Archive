@@ -112,7 +112,7 @@ js/data/     palette.js, sprites.js, content.en.js, content.es.js, sources.js
 
 - Keyboard only, mouse and touch all work.
 - Text size option.
-- Reduced motion option: no screen shake or flashes, the intro becomes a still frame, and the astronaut does not dash or flip.
+- Reduced motion option (off by default, chosen only in Options): no screen shake, flashes, parallax, ripples, dashes or flips. The game stays gently alive: stars twinkle, the astronaut bobs, and the intro clock still counts the years.
 - Sound toggle and volume.
 - English and Spanish.
 - Text is real DOM text, not drawn on the canvas.
