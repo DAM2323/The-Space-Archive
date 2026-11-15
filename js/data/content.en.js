@@ -196,6 +196,19 @@ export const strings = {
   'wall.pioneer11.name': 'Pioneer 11',
   'wall.pioneer11.text': 'Closest approach to Jupiter: 3 December 1974, 42,500 km from the cloud tops. Saturn flyby: 1 September 1979, at 20,900 km. NASA Ames made last contact on 30 September 1995, at 44.1 AU from Earth. It carries a plaque like Pioneer 10.',
 
+  // --- Alt text of the pictures (what is in the picture, no new facts) ---
+  'art.opportunity': 'Pixel-art illustration of the Opportunity rover on Mars.',
+  'art.ingenuity': 'Pixel-art illustration of the Ingenuity helicopter standing on Mars.',
+  'art.sojourner': 'Pixel-art illustration of the Sojourner rover near its lander on Mars.',
+  'art.pioneer10': 'Pixel-art illustration of Pioneer 10 in space, with Jupiter behind it.',
+  'art.surveyor3': 'Pixel-art illustration of a Surveyor lander on the Moon.',
+  'art.viking1': 'Pixel-art illustration of a Viking lander on Mars.',
+  'art.near': 'Pixel-art illustration of NEAR Shoemaker next to an asteroid.',
+  'art.insight': 'Pixel-art illustration of the InSight lander on Mars.',
+  'art.spirit': 'Pixel-art illustration of the Spirit rover on Mars.',
+  'art.dawn': 'Pixel-art illustration of the Dawn spacecraft near a cratered world.',
+  'art.kepler': 'Pixel-art illustration of the Kepler Space Telescope in space.',
+
   // --- Shell ---
   'shell.aiMark': 'AI-generated art',
   'shell.rotate': 'Please rotate your device to landscape.',
@@ -430,6 +443,7 @@ export const machines = {
   opportunity: {
     id: 'opportunity', name: 'm.opportunity.name', years: 'm.opportunity.years', env: 'mars',
     cardFact: 2,                                  // the debrief fact shown on its card in the hub
+    art: 'Images/opportunity.webp',
     beats: beats('opportunity'),
     debrief: [
       fact('opportunity', 1, 'nasa-mer'), fact('opportunity', 2, 'beyond-earth'), fact('opportunity', 3, 'beyond-earth'),
@@ -440,12 +454,14 @@ export const machines = {
   ingenuity: {
     id: 'ingenuity', name: 'm.ingenuity.name', years: 'm.ingenuity.years', env: 'mars',
     cardFact: 1,                                  // the debrief fact shown on its card in the hub
+    art: 'Images/ingenuity.webp',
     beats: beats('ingenuity'),
     debrief: [1, 2, 3, 4, 5, 6].map((n) => fact('ingenuity', n, 'nasa-ingenuity')),
   },
   sojourner: {
     id: 'sojourner', name: 'm.sojourner.name', years: 'm.sojourner.years', env: 'mars',
     cardFact: 1,                                  // the debrief fact shown on its card in the hub
+    art: 'Images/sojourner.webp',
     beats: beats('sojourner'),
     debrief: [
       fact('sojourner', 1, 'nasa-pathfinder'), fact('sojourner', 2, 'nasa-pathfinder'), fact('sojourner', 3, 'beyond-earth'),
@@ -455,6 +471,7 @@ export const machines = {
   lrv: {
     id: 'lrv', name: 'm.lrv.name', years: 'm.lrv.years', env: 'moon',
     cardFact: 3,                                  // the debrief fact shown on its card in the hub
+    art: null,                                    // its picture shows national flags, so the sprite is used instead
     beats: beats('lrv', 3),
     debrief: [
       fact('lrv', 1, 'nssdca-a15'), fact('lrv', 2, 'nssdca-a15'), fact('lrv', 3, 'beyond-earth'),
@@ -465,6 +482,7 @@ export const machines = {
   pioneer10: {
     id: 'pioneer10', name: 'm.pioneer10.name', years: 'm.pioneer10.years', env: 'space',
     cardFact: 1,                                  // the debrief fact shown on its card in the hub
+    art: 'Images/pioneer10.webp',
     beats: beats('pioneer10'),
     debrief: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => fact('pioneer10', n, 'nasa-pioneer10')),
   },
@@ -483,7 +501,7 @@ export const science = {
 
 // Echoes: each fact names the sources it comes from.
 const echoFact = (id, n, ...sourceIds) => ({ textKey: `e.${id}.fact.${n}`, sourceIds });
-const echo = (id, facts) => ({ id, name: `e.${id}.name`, years: `e.${id}.years`, facts });
+const echo = (id, facts) => ({ id, name: `e.${id}.name`, years: `e.${id}.years`, art: `Images/${id}.webp`, facts });
 export const echoes = {
   surveyor3: echo('surveyor3', [echoFact('surveyor3', 1, 'spaceapps-resources'), echoFact('surveyor3', 2, 'beyond-earth'), echoFact('surveyor3', 3, 'nssdca-a12'), echoFact('surveyor3', 4, 'nssdca-a12')]),
   viking1: echo('viking1', [1, 2, 3, 4].map((n) => echoFact('viking1', n, n === 2 || n === 3 ? 'beyond-earth' : 'nasa-viking1'))),   // facts 2 and 3 are about Viking 2
@@ -498,6 +516,10 @@ export const echoes = {
 export const wall = ['lm', 'alsep', 'phoenix', 'kepler', 'pioneer11'].map((id) => ({
   id, name: `wall.${id}.name`, textKey: `wall.${id}.text`,
   sourceId: id === 'pioneer11' ? 'beyond-earth' : 'spaceapps-resources',     // the Pioneer 11 facts come from Beyond Earth
+  // Only Kepler has a picture. The Apollo Lunar Module picture shows a national
+  // flag and the ALSEP picture has text labels, so those two stay text-only,
+  // like Phoenix and Pioneer 11.
+  art: id === 'kepler' ? 'Images/kepler.webp' : null,
 }));
 
 // Intro timeline: every official resource, in order, with a year only when the

@@ -417,6 +417,19 @@ export const strings = {
   'wall.kepler.text': 'Telescopio buscador de exoplanetas que se quedó sin combustible y va a la deriva en una órbita que sigue a la Tierra.',
   'wall.pioneer11.name': 'Pioneer 11',
   'wall.pioneer11.text': 'Máximo acercamiento a Júpiter: 3 de diciembre de 1974, a 42,500 km de las nubes. Sobrevuelo de Saturno: 1 de septiembre de 1979, a 20,900 km. NASA Ames hizo el último contacto el 30 de septiembre de 1995, a 44.1 UA de la Tierra. Lleva una placa como la de Pioneer 10.',
+
+  // --- Texto alternativo de las imágenes ---
+  'art.opportunity': 'Ilustración en pixel art del rover Opportunity en Marte.',
+  'art.ingenuity': 'Ilustración en pixel art del helicóptero Ingenuity posado en Marte.',
+  'art.sojourner': 'Ilustración en pixel art del rover Sojourner cerca de su módulo de aterrizaje en Marte.',
+  'art.pioneer10': 'Ilustración en pixel art de Pioneer 10 en el espacio, con Júpiter detrás.',
+  'art.surveyor3': 'Ilustración en pixel art de una sonda Surveyor en la Luna.',
+  'art.viking1': 'Ilustración en pixel art de un módulo de aterrizaje Viking en Marte.',
+  'art.near': 'Ilustración en pixel art de NEAR Shoemaker junto a un asteroide.',
+  'art.insight': 'Ilustración en pixel art del módulo de aterrizaje InSight en Marte.',
+  'art.spirit': 'Ilustración en pixel art del rover Spirit en Marte.',
+  'art.dawn': 'Ilustración en pixel art de la nave Dawn cerca de un mundo con cráteres.',
+  'art.kepler': 'Ilustración en pixel art del telescopio espacial Kepler en el espacio.',
 };
 
 export default { strings };
