@@ -76,6 +76,7 @@ export const strings = {
   'hub.allDone': 'All five stories are archived.',
   'hub.echoes': '{n} of {total} echoes read',
   'hub.echoRead': 'Read',
+  'hub.cardYears': 'Years: {y}',
   'hub.echo': 'Echo',
   'hub.wall': 'Wall of Names',
   'hub.complete': 'Archive complete',
@@ -422,6 +423,7 @@ const fact = (id, n, sourceId) => ({ textKey: `m.${id}.fact.${n}`, sourceId });
 export const machines = {
   opportunity: {
     id: 'opportunity', name: 'm.opportunity.name', years: 'm.opportunity.years', env: 'mars',
+    cardFact: 2,                                  // the debrief fact shown on its card in the hub
     beats: beats('opportunity'),
     debrief: [
       fact('opportunity', 1, 'nasa-mer'), fact('opportunity', 2, 'beyond-earth'), fact('opportunity', 3, 'beyond-earth'),
@@ -431,11 +433,13 @@ export const machines = {
   },
   ingenuity: {
     id: 'ingenuity', name: 'm.ingenuity.name', years: 'm.ingenuity.years', env: 'mars',
+    cardFact: 1,                                  // the debrief fact shown on its card in the hub
     beats: beats('ingenuity'),
     debrief: [1, 2, 3, 4, 5, 6].map((n) => fact('ingenuity', n, 'nasa-ingenuity')),
   },
   sojourner: {
     id: 'sojourner', name: 'm.sojourner.name', years: 'm.sojourner.years', env: 'mars',
+    cardFact: 1,                                  // the debrief fact shown on its card in the hub
     beats: beats('sojourner'),
     debrief: [
       fact('sojourner', 1, 'nasa-pathfinder'), fact('sojourner', 2, 'nasa-pathfinder'), fact('sojourner', 3, 'beyond-earth'),
@@ -444,6 +448,7 @@ export const machines = {
   },
   lrv: {
     id: 'lrv', name: 'm.lrv.name', years: 'm.lrv.years', env: 'moon',
+    cardFact: 3,                                  // the debrief fact shown on its card in the hub
     beats: beats('lrv', 3),
     debrief: [
       fact('lrv', 1, 'nssdca-a15'), fact('lrv', 2, 'nssdca-a15'), fact('lrv', 3, 'beyond-earth'),
@@ -453,6 +458,7 @@ export const machines = {
   },
   pioneer10: {
     id: 'pioneer10', name: 'm.pioneer10.name', years: 'm.pioneer10.years', env: 'space',
+    cardFact: 1,                                  // the debrief fact shown on its card in the hub
     beats: beats('pioneer10'),
     debrief: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => fact('pioneer10', n, 'nasa-pioneer10')),
   },

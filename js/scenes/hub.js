@@ -10,6 +10,7 @@
 import { C } from '../data/palette.js';
 import { SPRITES, ECHO_SPRITES } from '../data/sprites.js';
 import { machines, echoes } from '../data/content.en.js';
+import { SOURCES, visibleFacts } from '../data/sources.js';
 import { t } from '../engine/i18n.js';
 import { ctx, clear, px, drawSprite, bakeSprite, bakeScaled, WIDTH, HEIGHT } from '../engine/render.js';
 import { Starfield, Particles, shake, ease, lerp, clamp } from '../engine/fx.js';
@@ -420,6 +421,29 @@ function ghostButton(id, className, parts) {
   return b;
 }
 
+// The info card of a machine: name, years and one verified fact with its source.
+// It sits above the machine, or below its label when there is no room above,
+// and fades in while the machine is aimed at (pointer, astronaut or keyboard focus).
+function infoCard(id, b) {
+  const m = machines[id], spot = spotOf(id);
+  const facts = visibleFacts(m.debrief);
+  const fact = facts.includes(m.debrief[m.cardFact]) ? m.debrief[m.cardFact] : facts[0];
+  if (!fact) return;
+  const card = el('span', 'ghost-card');
+  card.id = `card-${id}`;
+  card.append(
+    el('span', 'card-title', t(m.name)),
+    el('span', 'card-years', t('hub.cardYears', { y: t(m.years) })),
+    el('span', 'card-fact', t(fact.textKey)),
+    el('span', 'fact-source', `${t('debrief.source')}: ${SOURCES[fact.sourceId].short}`),
+  );
+  if (spot.y < HEIGHT / 2) b.classList.add('card-below');
+  if (spot.x < 80) card.classList.add('edge-left');
+  if (spot.x > WIDTH - 80) card.classList.add('edge-right');
+  b.append(card);
+  b.setAttribute('aria-describedby', card.id);
+}
+
 function buildUI(ui, celebrate) {
   const top = el('div', 'hub-top');
   const n = completedCount();
@@ -441,9 +465,11 @@ function buildUI(ui, celebrate) {
   dom.buttons = {};
   for (const id of MACHINE_IDS) {
     const m = machines[id];
-    field.append(ghostButton(id, 'ghost machine', [
+    const b = ghostButton(id, 'ghost machine', [
       ['ghost-name', t(m.name)], ['ghost-years', t(m.years)], ['ghost-done', gameState.completed[id] ? t('hub.completed') : ''],
-    ]));
+    ]);
+    infoCard(id, b);
+    field.append(b);
   }
   for (const id of ECHO_IDS) {
     const e = echoes[id];

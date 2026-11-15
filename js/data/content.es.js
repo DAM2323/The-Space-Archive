@@ -353,6 +353,7 @@ export const strings = {
   'hub.controls': 'Mover: puntero, flechas o WASD \u00B7 Elegir: clic o Enter',
   'hub.echoes': '{n} de {total} ecos leídos',
   'hub.echoRead': 'Leído',
+  'hub.cardYears': 'Años: {y}',
   'hub.echo': 'Eco',
   'hub.wall': 'Muro de Nombres',
   'hub.complete': 'Archivo completo',
