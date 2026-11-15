@@ -37,4 +37,6 @@ export function applySettings() {
   root.lang = gameState.language;
   const rotate = document.getElementById('rotate-text');
   if (rotate) rotate.textContent = t('shell.rotate');
+  const mark = document.getElementById('ai-mark');
+  if (mark) mark.textContent = t('shell.aiMark');
 }

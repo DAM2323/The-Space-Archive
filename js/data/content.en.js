@@ -132,10 +132,11 @@ export const strings = {
   'credits.sources': 'Sources',
   'credits.sourcesNote': 'Every fact in the game comes from these sources. Each fact card names its source.',
   'credits.art': 'Art and sound',
-  'credits.artText': 'All pixel art and sound are original and made in code. No NASA logos, insignia or mission patches are used.',
+  'credits.artText': 'All pixel art and sound are original to this project and made in code. No NASA logos, insignia, flags or mission patches are used.',
   'credits.gameValues': 'Energy, moves, timers, scores and stars are game values, not mission data.',
   'credits.tools': 'How it was made',
-  'credits.toolsText': 'Built by a solo developer with the help of AI coding assistants for code, pixel art in code and text drafts. The facts come from the sources above.',
+  'credits.toolsText': 'The code, the pixel art and the sound were generated with AI coding assistants and reviewed by the developer. Text was drafted and translated with AI help.',
+  'credits.toolsMark': 'Every screen carries the mark "AI-generated art". No photos, fonts, audio files or libraries from other people are used.',
   'credits.license': 'License',
   'credits.licenseText': 'Code and content: Apache-2.0. Not affiliated with or endorsed by NASA.',
   'credits.about': 'About the story',
@@ -195,6 +196,7 @@ export const strings = {
   'wall.pioneer11.text': 'Early deep-space probe (with Pioneer 10), now drifting silently out of the solar system.',
 
   // --- Shell ---
+  'shell.aiMark': 'AI-generated art',
   'shell.rotate': 'Please rotate your device to landscape.',
 
   // --- Machines: names and years (years come from the facts below) ---

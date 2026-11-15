@@ -55,7 +55,7 @@ export default {
       el('p', 'credits-text', t('credits.challenge')),
       section('credits.sources', el('p', 'credits-text', t('credits.sourcesNote')), list),
       section('credits.art', el('p', 'credits-text', t('credits.artText')), el('p', 'credits-text', t('credits.gameValues'))),
-      section('credits.tools', el('p', 'credits-text', t('credits.toolsText'))),
+      section('credits.tools', el('p', 'credits-text', t('credits.toolsText')), el('p', 'credits-text', t('credits.toolsMark'))),
       section('credits.license', el('p', 'credits-text', t('credits.licenseText'))),
       section('credits.about', el('p', 'credits-text', t('credits.aboutText'))),
     );

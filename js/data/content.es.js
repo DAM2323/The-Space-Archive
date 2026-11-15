@@ -115,16 +115,18 @@ export const strings = {
   'credits.sources': 'Fuentes',
   'credits.sourcesNote': 'Todos los datos del juego vienen de estas fuentes. Cada ficha de datos nombra su fuente.',
   'credits.art': 'Arte y sonido',
-  'credits.artText': 'Todo el arte pixelado y el sonido son originales y están hechos con código. No se usan logos, insignias ni parches de la NASA.',
+  'credits.artText': 'Todo el arte pixelado y el sonido son originales de este proyecto y están hechos con código. No se usan logos, insignias, banderas ni parches de la NASA.',
   'credits.gameValues': 'La energía, los movimientos, los tiempos, los puntajes y las estrellas son valores del juego, no datos de la misión.',
   'credits.tools': 'Cómo se hizo',
-  'credits.toolsText': 'Creado por un solo desarrollador con ayuda de asistentes de código con IA para el código, el arte pixelado en código y borradores de texto. Los datos vienen de las fuentes de arriba.',
+  'credits.toolsText': 'El código, el arte pixelado y el sonido se generaron con asistentes de código con IA y los revisó el desarrollador. El texto se redactó y tradujo con ayuda de IA.',
+  'credits.toolsMark': 'Cada pantalla lleva la marca "Arte generado con IA". No se usan fotos, fuentes, archivos de audio ni bibliotecas de otras personas.',
   'credits.license': 'Licencia',
   'credits.licenseText': 'Código y contenido: Apache-2.0. Sin afiliación ni respaldo de la NASA.',
   'credits.about': 'Sobre la historia',
   'credits.back': 'Atrás',
 
   // --- Shell ---
+  'shell.aiMark': 'Arte generado con IA',
   'shell.rotate': 'Por favor, gira tu dispositivo en horizontal.',
 
   // --- Machines: names and years (years come from the facts below) ---
