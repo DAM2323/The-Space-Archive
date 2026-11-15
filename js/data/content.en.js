@@ -15,7 +15,7 @@ export const strings = {
   'title.credits': 'Credits',
   'title.notReady': 'This part of the Archive is still being built.',
   'credits.aboutText':
-    'Narrative fiction. The physics is real: near a black hole, time runs slower, so you can only travel toward the future.',
+    'The black hole frame is narrative fiction based on general relativity: near a black hole time runs slower, so you can only travel toward the future. It is not a NASA claim.',
 
   // --- Options panel ---
   'options.heading': 'Options',

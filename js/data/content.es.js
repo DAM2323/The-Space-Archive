@@ -10,7 +10,7 @@ export const strings = {
   'title.credits': 'Créditos',
   'title.notReady': 'Esta parte del Archivo todavía se está construyendo.',
   'credits.aboutText':
-    'Ficción narrativa. La física es real: cerca de un agujero negro el tiempo pasa más lento, así que solo puedes viajar hacia el futuro.',
+    'El marco del agujero negro es ficción narrativa basada en la relatividad general: cerca de un agujero negro el tiempo pasa más lento, así que solo puedes viajar hacia el futuro. No es una afirmación de la NASA.',
 
   // --- Options panel ---
   'options.heading': 'Opciones',

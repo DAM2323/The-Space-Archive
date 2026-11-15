@@ -8,7 +8,7 @@ Play online: https://dam2323.github.io/The-Space-Archive/ (available once GitHub
 
 The Space Archive is a short educational pixel-art browser game made for the 2026 NASA Space Apps Challenge (Lima), challenge "Abandoned but Not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars". The player is an astronaut who orbits a black hole, arrives at The Archive and lives the real stories of five machines: the Apollo Lunar Roving Vehicle, Pioneer 10, Sojourner, Opportunity and Ingenuity. Around them drift six echoes with short fact cards, and a Wall of Names lists the other official resources.
 
-Narrative fiction. The physics is real: near a black hole, time runs slower, so you can only travel toward the future.
+The black hole frame is narrative fiction based on general relativity (near a black hole time runs slower, so you can only travel toward the future). It is not a NASA claim.
 
 ## Screenshots
 

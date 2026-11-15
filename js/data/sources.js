@@ -65,10 +65,6 @@ export const SOURCES = {
     title: 'Dawn', publisher: 'NASA Science', short: 'NASA Science: Dawn',
   },
   // --- citations still to be added: facts that use these stay hidden ---
-  'nasa-blackhole': {
-    id: 'nasa-blackhole', tag: 'E', url: null, needsSource: true,
-    title: 'Black holes', publisher: 'NASA Science', short: 'NASA Science: Black Holes',
-  },
   'apollo17-fender': {
     id: 'apollo17-fender', tag: 'E', url: null, needsSource: true,
     title: 'Apollo 17 fender repair', publisher: 'NASA', short: 'NASA: Apollo 17',

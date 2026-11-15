@@ -39,7 +39,7 @@ Playable game: https://dam2323.github.io/The-Space-Archive/ [confirm it opens in
 
 Six "echoes" (Surveyor landers, Viking 1 and 2, NEAR Shoemaker, InSight, Spirit and Dawn) open as fact cards, and a Wall of Names lists the Apollo Lunar Modules, ALSEP, Phoenix, Kepler and Pioneer 11 with their official one-line descriptions. A Science Room links how each machine was built to what it gave us.
 
-**How it works.** The real ending of each machine cannot be changed by the player. Every fact on screen has a visible source. Numbers that belong to gameplay (energy, moves, scores, stars) are labeled as game values, so they are never confused with mission data. The frame story is fiction, and it says so: the astronaut only orbits the black hole, and the intro shows two clocks to explain why she can only travel toward the future.
+**How it works.** The real ending of each machine cannot be changed by the player. Every fact on screen has a visible source. Numbers that belong to gameplay (energy, moves, scores, stars) are labeled as game values, so they are never confused with mission data. The frame story is fiction based on general relativity, not a NASA claim, and the credits say so: the astronaut only orbits the black hole, and the intro shows two clocks to explain why she can only travel toward the future.
 
 **Benefits.** It is free, runs in a browser with no install, and is short (10 to 15 minutes). It is available in English and Spanish, and it works with keyboard, mouse and touch. It has options for text size, sound and reduced motion.
 

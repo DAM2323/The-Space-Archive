@@ -23,7 +23,9 @@ Every fact shown in the game comes from one of these sources. The id is the one 
 | `nssdca-a12` | NASA NSSDCA, "Apollo 12 Lunar Module / ALSEP" | https://nssdc.gsfc.nasa.gov/nmc/spacecraft/display.action?id=1969-099C | Surveyor echo (Apollo 12 landing near Surveyor 3) |
 | `spaceapps-resources` | NASA Space Apps Challenge 2026, resource list of the challenge "Abandoned but Not Forgotten" | https://www.spaceappschallenge.org/2026/ | The list of machines to cover, the one-line descriptions on the Wall of Names, and one line each for the LRVs, the Surveyor landers, Viking 1 and 2 and Dawn |
 
-Not cited yet, so not shown as facts in the game: the Apollo 17 fender repair (the fact and its puzzle stay hidden until a source is added). The note about black hole physics in the credits has no NASA page cited yet.
+Not cited yet, so not shown as a fact in the game: the Apollo 17 fender repair (the fact and its puzzle stay hidden until a source is added).
+
+The black hole frame of the story is narrative fiction based on general relativity. It is not a NASA claim and no NASA source is cited for it.
 
 ## Other references and external resources
 
