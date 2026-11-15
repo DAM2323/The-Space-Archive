@@ -1,71 +1,42 @@
 // Title screen: logo, tagline, menu and options panel.
-// The canvas shows a quiet scene: parallax stars, a distant black hole and
-// the astronaut drifting with a small thruster glow.
+// The canvas is a small living scene: a parallax starfield that shifts with
+// the pointer, a black hole that reacts to the START button and to clicks,
+// and the astronaut, who floats over to the menu button that has the focus.
 
 import { C } from '../data/palette.js';
 import { SPRITES } from '../data/sprites.js';
 import { t } from '../engine/i18n.js';
-import { clear, drawSprite, ctx, WIDTH, HEIGHT } from '../engine/render.js';
-import { Starfield, Particles, shake, lerp } from '../engine/fx.js';
+import { clear, px, ctx, bakeSprite, WIDTH, HEIGHT } from '../engine/render.js';
+import { Starfield, Particles, shake, ease, lerp, clamp } from '../engine/fx.js';
 import { el, button, arrowNav } from '../engine/ui.js';
 import * as scenes from '../engine/scenes.js';
 import * as input from '../engine/input.js';
 import { sfx, drone } from '../engine/audio.js';
 import { gameState } from '../state.js';
 import { createOptions } from './options.js';
+import { renderBlackHole } from './intro.js';
 
-const ASTRO = { x: 58, y: 82 };       // astronaut resting position (game pixels)
-const HOLE = { x: 226, y: 34 };       // top-left corner of the black hole picture
+const HOME = { x: 58, y: 86 };        // where the astronaut rests (game pixels)
+const HOLE = { x: 262, y: 58, rs: 7 };          // black hole center and shadow radius
+const HOLE_CLICK = 30;                // GAME VALUE: a click this close to the hole makes a ripple
+const FOLLOW = 11;                    // GAME VALUE: pull toward her target
+const FOLLOW_DRAG = 5;                // GAME VALUE: damping (gives the inertia)
+const RIPPLE_TIME = 1.1;              // seconds a lensing ripple lasts
 
 let stars, dust, glow;                // canvas effects
 let time = 0;
+let diskClock = 0;                    // drives the spin of the accretion disk
+let boost = 0;                        // 0..1: START is hovered or focused
 let parallax = { x: 0, y: 0, tx: 0, ty: 0 };   // current and target star offset
-let holeImage = null;
+const astro = { x: HOME.x, y: HOME.y, vx: 0, vy: 0, facing: false };
+let ripples = [];                     // [{ t }] lensing ripples in progress
 let dom = {};                         // references to DOM nodes we update
 let options = null;                   // the options panel
 let offInput = null;
 
-// Draw the distant black hole once into a small canvas.
-// Stylized: a dark disc, a thin bright ring of bent light around it, and a
-// tilted accretion disk that is brighter on the side moving toward us.
-function bakeBlackHole() {
-  const w = 72, h = 44, cx = 36, cy = 22;
-  const img = document.createElement('canvas');
-  img.width = w;
-  img.height = h;
-  const g = img.getContext('2d');
-  const shades = [C.rust, C.ember, C.amber, C.star];
-  const dot = (x, y, color, alpha = 1) => {
-    g.globalAlpha = alpha;
-    g.fillStyle = color;
-    g.fillRect(x, y, 1, 1);
-  };
-  for (let y = 0; y < h; y++) {
-    for (let x = 0; x < w; x++) {
-      const dx = x - cx + 0.5, dy = y - cy + 0.5;
-      const r = Math.hypot(dx, dy);
-      const side = 0.5 - (0.5 * dx) / 32;                    // 1 on the left, 0 on the right
-      const disk = Math.hypot(dx / 32, dy / 5.5);            // 1 at the disk's outer edge
-      const onDisk = disk < 1 && disk > 0.36;
-      const shade = (b) => shades[Math.max(0, Math.min(3, Math.floor(b * 4)))];
-
-      if (onDisk && (dy >= 0 || r > 9.5)) {
-        // Accretion disk. The half in front of the hole covers it.
-        const dither = (x + y) % 2 ? 0.08 : 0;
-        dot(x, y, shade((1 - disk) * 0.55 + side * 0.6 + dither));
-      } else if (r < 8.5) {
-        dot(x, y, C.void);                                   // the dark shadow
-      } else if (r < 10) {
-        dot(x, y, shade(0.45 + side * 0.5));                 // ring of bent light
-      } else if (r < 12.5 && dy < 0) {
-        dot(x, y, shade(side * 0.5), 0.75);                  // far side of the disk, bent over the top
-      } else if (r < 17) {
-        dot(x, y, C.indigo, 0.22 * (1 - (r - 10) / 7));      // soft halo
-      }
-    }
-  }
-  return img;
-}
+const still = () => gameState.settings.reducedMotion;
+// A gentle bob, kept even with reduced motion.
+const bob = () => Math.sin(time * 0.9) * (still() ? 1.5 : 3);
 
 // ---------- DOM ----------
 
@@ -103,7 +74,7 @@ function buildUI(ui) {
   });
 
   ui.append(root, options.panel);
-  dom = { root, menu, optionsButton, notice };
+  dom = { root, menu, start, optionsButton, notice };
   start.focus({ preventScroll: true });
 }
 
@@ -123,7 +94,7 @@ function openScene(name, withBurst) {
       const a = Math.PI * (0.25 + 0.5 * Math.random());      // downward cone
       const v = 14 + Math.random() * 26;
       glow.spawn({
-        x: ASTRO.x + 6, y: bobY() + 15, vx: Math.cos(a) * v, vy: Math.sin(a) * v,
+        x: astro.x, y: astro.y + bob() + 7, vx: Math.cos(a) * v, vy: Math.sin(a) * v,
         life: 0.5 + Math.random() * 0.5, color: Math.random() < 0.5 ? C.amber : C.ember, drag: 2,
       });
     }
@@ -138,26 +109,66 @@ function openScene(name, withBurst) {
 
 // ---------- canvas ----------
 
-const bobY = () => ASTRO.y + Math.sin(time * 0.9) * 3;
+// Where the astronaut wants to be: next to the menu button that has the focus
+// (or is hovered, since hovering focuses it), or her resting spot.
+function targetSpot() {
+  const active = document.activeElement;
+  if (!options.isOpen() && active instanceof HTMLElement && dom.menu.contains(active)) {
+    const stage = document.getElementById('stage').getBoundingClientRect();
+    const r = active.getBoundingClientRect();
+    return {
+      x: ((r.left - stage.left) / stage.width) * WIDTH - 12,
+      y: ((r.top + r.height / 2 - stage.top) / stage.height) * HEIGHT,
+      start: active === dom.start,
+    };
+  }
+  return { x: HOME.x, y: HOME.y, start: false };
+}
+
+// A lensing ripple: rings of bent starlight that spread out from the hole.
+function drawRipples() {
+  for (const ripple of ripples) {
+    const k = ripple.t / RIPPLE_TIME;
+    for (let ring = 0; ring < 2; ring++) {
+      const radius = HOLE.rs * (1.6 + (k * 6 + ring * 1.3));
+      const steps = Math.round(radius * 2.2);
+      for (let i = 0; i < steps; i++) {
+        // Broken arcs, like stretched images of stars, not a solid circle.
+        if ((i + ring * 3) % 5 > 2) continue;
+        const a = (i / steps) * Math.PI * 2 + k * (ring ? -1.4 : 1.4);
+        px(HOLE.x + Math.cos(a) * radius, HOLE.y + Math.sin(a) * radius * 0.8, ring ? C.ice : C.star, (1 - k) * (ring ? 0.6 : 0.9));
+      }
+    }
+  }
+}
 
 export default {
   enter(_params, ui) {
     time = 0;
-    stars = new Starfield(120, 11);
+    boost = 0;
+    ripples = [];
+    Object.assign(astro, { x: HOME.x, y: HOME.y, vx: 0, vy: 0, facing: false });
+    stars = new Starfield(140, 11);
     dust = new Particles(40);
-    glow = new Particles(80);
-    holeImage ??= bakeBlackHole();
+    glow = new Particles(90);
     buildUI(ui);
-
     drone(true);
 
     offInput = input.on((a) => {
       if (a.type === 'back') options.close();
+      // Arrows or W/S move between the buttons (the focus change plays the blip).
       else if (a.type === 'direction') arrowNav(options.isOpen() ? options.panel : dom.menu, a.dy > 0 || a.dx > 0 ? 'ArrowDown' : 'ArrowUp');
       else if (a.type === 'pointer') {
         // The stars shift slightly with the pointer for a feeling of depth.
-        parallax.tx = (a.x / WIDTH - 0.5) * -10;
-        parallax.ty = (a.y / HEIGHT - 0.5) * -6;
+        parallax.tx = (a.x / WIDTH - 0.5) * -12;
+        parallax.ty = (a.y / HEIGHT - 0.5) * -7;
+      } else if (a.type === 'confirm' && a.fromPointer && !options.isOpen() && Math.hypot(a.x - HOLE.x, a.y - HOLE.y) < HOLE_CLICK) {
+        // A click on the black hole: a soft sound and, unless motion is reduced, a ripple.
+        sfx('ripple');
+        if (!still()) {
+          ripples.push({ t: 0 });
+          shake.add(0.8);
+        }
       }
     });
   },
@@ -167,13 +178,36 @@ export default {
   },
 
   update(dt) {
-    const still = gameState.settings.reducedMotion;
-    if (!still) time += dt;
+    time += dt;
+    const reduced = still();
     stars.update(dt, 1.5);
-    parallax.x = still ? 0 : lerp(parallax.x, parallax.tx, 1 - Math.exp(-5 * dt));
-    parallax.y = still ? 0 : lerp(parallax.y, parallax.ty, 1 - Math.exp(-5 * dt));
+    parallax.x = reduced ? 0 : lerp(parallax.x, parallax.tx, 1 - Math.exp(-5 * dt));
+    parallax.y = reduced ? 0 : lerp(parallax.y, parallax.ty, 1 - Math.exp(-5 * dt));
 
-    if (!still) {
+    // The astronaut drifts to her target with a soft spring (inertia), and puffs
+    // her thrusters while she speeds up. With reduced motion she stays home.
+    const target = reduced ? { x: HOME.x, y: HOME.y, start: targetSpot().start } : targetSpot();
+    const ax = (target.x - astro.x) * FOLLOW, ay = (target.y - astro.y) * FOLLOW;
+    astro.vx += (ax - astro.vx * FOLLOW_DRAG) * dt;
+    astro.vy += (ay - astro.vy * FOLLOW_DRAG) * dt;
+    astro.x += astro.vx * dt;
+    astro.y += astro.vy * dt;
+    if (Math.abs(astro.vx) > 4) astro.facing = astro.vx < 0;
+    else if (Math.hypot(astro.vx, astro.vy) < 3) astro.facing = false;      // at rest she looks toward the menu
+    const push = Math.hypot(ax, ay);
+    if (!reduced && push > 70 && Math.random() < 0.6) {
+      glow.spawn({
+        x: astro.x - (ax / push) * 5, y: astro.y + bob() - (ay / push) * 6, vx: -(ax / push) * (16 + Math.random() * 20), vy: -(ay / push) * (16 + Math.random() * 20),
+        drag: 2.5, life: 0.3 + Math.random() * 0.35, color: Math.random() < 0.55 ? C.amber : C.ember, alpha: 0.9,
+      });
+    }
+
+    // START hovered or focused: the hole glows and its disk spins faster.
+    boost = lerp(boost, target.start ? 1 : 0, 1 - Math.exp(-4 * dt));
+    diskClock += dt * (reduced ? 0.4 : 1 + boost * 2.6);
+    ripples = ripples.filter((r) => (r.t += dt) < RIPPLE_TIME);
+
+    if (!reduced) {
       // Slow dust motes drifting across the screen.
       if (Math.random() < 0.05) {
         dust.spawn({
@@ -181,10 +215,10 @@ export default {
           life: 12, color: Math.random() < 0.5 ? C.violet : C.mist, alpha: 0.35,
         });
       }
-      // Small thruster glow under the astronaut's backpack.
-      if (Math.random() < 0.35) {
+      // A small idle thruster glow under her backpack.
+      if (Math.random() < 0.25) {
         glow.spawn({
-          x: ASTRO.x + 5 + Math.random() * 2, y: bobY() + 16, vx: (Math.random() - 0.5) * 5, vy: 9 + Math.random() * 8,
+          x: astro.x - 1 + Math.random() * 2, y: astro.y + bob() + 8, vx: (Math.random() - 0.5) * 5, vy: 9 + Math.random() * 8,
           life: 0.5 + Math.random() * 0.4, color: Math.random() < 0.6 ? C.amber : C.ember, alpha: 0.9,
         });
       }
@@ -197,12 +231,29 @@ export default {
     clear();
     stars.render(parallax.x, parallax.y);
     // The black hole is far away, so it moves less than the nearest stars.
-    const pulse = 0.92 + 0.08 * Math.sin(time * 0.7);
-    ctx.globalAlpha = pulse;
-    ctx.drawImage(holeImage, Math.round(HOLE.x + parallax.x * 0.2), Math.round(HOLE.y + parallax.y * 0.2));
-    ctx.globalAlpha = 1;
+    const hx = HOLE.x + parallax.x * 0.2, hy = HOLE.y + parallax.y * 0.2;
+    // Its glow: a soft halo that grows with `boost` and during a ripple.
+    const flare = clamp(boost + (ripples.length ? 0.6 : 0));
+    if (flare > 0.02) {
+      for (let ring = 0; ring < 3; ring++) {
+        const radius = HOLE.rs * (2.2 + ring * 0.9), steps = Math.round(radius * 3);
+        for (let i = 0; i < steps; i++) {
+          const a = (i / steps) * Math.PI * 2;
+          if ((i + ring) % 2) px(hx + Math.cos(a) * radius, hy + Math.sin(a) * radius * 0.55, ring ? C.ember : C.amber, flare * (0.5 - ring * 0.14));
+        }
+      }
+    }
+    ctx.drawImage(renderBlackHole(hx, hy, HOLE.rs * (1 + 0.06 * ease.inOutSine(flare)), diskClock), 0, 0);
+    drawRipples();
     dust.render();
     glow.render();
-    drawSprite(SPRITES.astronaut, ASTRO.x + Math.sin(time * 0.5) * 2, bobY());
+
+    // The astronaut, turned toward the way she is flying.
+    const img = bakeSprite(SPRITES.astronaut);
+    ctx.save();
+    ctx.translate(Math.round(astro.x), Math.round(astro.y + bob()));
+    ctx.scale(astro.facing ? -1 : 1, 1);
+    ctx.drawImage(img, -6, -8);
+    ctx.restore();
   },
 };

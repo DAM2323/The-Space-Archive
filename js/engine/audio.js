@@ -122,6 +122,11 @@ const SOUNDS = {
     noise({ dur: 0.15, from: 300, to: 120, vol: 0.2 });
     tone({ freq: 392, at: 0.05, dur: 0.12, type: 'triangle', vol: 0.1 });
   },
+  ripple: () => {
+    tone({ freq: 196, f1: 98, dur: 0.9, type: 'sine', vol: 0.14 });
+    tone({ freq: 294, f1: 147, at: 0.08, dur: 0.8, type: 'sine', vol: 0.07 });
+    noise({ dur: 0.7, from: 900, to: 200, vol: 0.05 });
+  },
   lastSignal: () => {
     tone({ freq: 880, dur: 0.5, type: 'sine', vol: 0.12 });
     tone({ freq: 660, at: 0.7, dur: 0.7, type: 'sine', vol: 0.08 });

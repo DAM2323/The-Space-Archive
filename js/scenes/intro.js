@@ -132,6 +132,13 @@ function drawHole(cx, cy, rs, clock) {
   holeCtx.putImageData(holeImage, 0, 0);
 }
 
+// The same black hole picture for other scenes (the title screen): draws it and
+// returns the canvas, ready for ctx.drawImage(canvas, 0, 0).
+export function renderBlackHole(cx, cy, rs, clock) {
+  drawHole(cx, cy, rs, clock);
+  return holeCanvas;
+}
+
 // Background stars, bent by the black hole.
 // Point-lens equation: a star at angular distance b from the hole appears at
 // th = (b + sqrt(b^2 + 4 E^2)) / 2 on the same side, and a second, fainter
