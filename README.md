@@ -126,7 +126,7 @@ js/data/     palette.js, sprites.js, content.en.js, content.es.js, sources.js
 
 ## How AI tools were used
 
-AI coding assistants (Claude Code) were used to write the code, to produce the pixel art (as pixel maps in code) and the synthesized sound, to draft and translate the game text, to draft the documentation, and to help check the game text against the sources.
+AI (Super Intelligence, SI) coding assistants (Claude Code) were used to write the code, to produce the pixel art (as pixel maps in code) and the synthesized sound, to draft and translate the game text, to draft the documentation, and to help check the game text against the sources.
 
 The idea, the story frame, the choice of machines, the rules and the list of allowed facts were defined by the developer, who reviewed the result.
 
