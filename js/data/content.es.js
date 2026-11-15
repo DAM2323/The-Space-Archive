@@ -433,6 +433,8 @@ export const strings = {
   'art.lm': 'Ilustración en pixel art de un módulo lunar Apolo posado en la Luna.',
   'art.alsep': 'Ilustración en pixel art de instrumentos científicos instalados en la Luna.',
   'art.kepler': 'Ilustración en pixel art del telescopio espacial Kepler en el espacio.',
+  'art.phoenix': 'Ilustración en pixel art del módulo de aterrizaje Phoenix en Marte, con su brazo robótico excavando el suelo.',
+  'art.pioneer11': 'Ilustración en pixel art de Pioneer 11 en el espacio, con Saturno y sus anillos detrás.',
 };
 
 export default { strings };

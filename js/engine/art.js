@@ -13,6 +13,7 @@ function load(holder, src, alt, onFail) {
   img.className = 'art-img';
   img.alt = alt;
   img.decoding = 'async';
+  img.loading = 'lazy';          // the browser fetches it only when it is about to be seen
   // The picture fades in when it arrives (no fade with reduced motion: see style.css).
   img.addEventListener('load', () => holder.classList.add('loaded'));
   img.addEventListener('error', () => {

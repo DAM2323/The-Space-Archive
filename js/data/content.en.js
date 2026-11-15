@@ -211,6 +211,8 @@ export const strings = {
   'art.lm': 'Pixel-art illustration of an Apollo lunar module standing on the Moon.',
   'art.alsep': 'Pixel-art illustration of science instruments set up on the Moon.',
   'art.kepler': 'Pixel-art illustration of the Kepler Space Telescope in space.',
+  'art.phoenix': 'Pixel-art illustration of the Phoenix lander on Mars, with its robotic arm digging in the soil.',
+  'art.pioneer11': 'Pixel-art illustration of Pioneer 11 in space, with Saturn and its rings behind it.',
 
   // --- Shell ---
   'shell.aiMark': 'AI art',
@@ -519,8 +521,8 @@ export const echoes = {
 export const wall = ['lm', 'alsep', 'phoenix', 'kepler', 'pioneer11'].map((id) => ({
   id, name: `wall.${id}.name`, textKey: `wall.${id}.text`,
   sourceId: id === 'pioneer11' ? 'beyond-earth' : 'spaceapps-resources',     // the Pioneer 11 facts come from Beyond Earth
-  // Three entries have a picture. Phoenix and Pioneer 11 stay text-only.
-  art: { lm: 'Images/apollo-lm.webp', alsep: 'Images/alsep.webp', kepler: 'Images/kepler.webp' }[id] ?? null,
+  // Every entry has a picture.
+  art: { lm: 'Images/apollo-lm.webp', alsep: 'Images/alsep.webp', phoenix: 'Images/phoenix.webp', kepler: 'Images/kepler.webp', pioneer11: 'Images/pioneer11.webp' }[id] ?? null,
 }));
 
 // Intro timeline: every official resource, in order, with a year only when the
