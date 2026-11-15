@@ -51,6 +51,8 @@ The project logo, `Images/logo.webp`, was also made with an AI image tool and re
 
 The favicon and the home screen icon (`favicon.ico` and the files in `icons/`) are derived from the AI-generated logo. The link preview image, `Images/social.png` (1200x630), is the same AI-generated logo placed on a dark background. Both are AI art, not photos and not NASA images.
 
+The demo files in `docs/demo/` (the 30-second trailer, the gameplay capture and the 7-slide deck) were put together with AI assistance from recordings and screenshots of the game. The videos and the title slide carry a visible "AI art" label.
+
 Screens that show only pixel sprites carry no badge.
 
 ## License

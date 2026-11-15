@@ -19,7 +19,9 @@ The Space Archive is a short pixel-art browser game about the machines NASA left
 
 ### Link to Project Demo
 
-https://dam2323.github.io/The-Space-Archive/docs/demo/The-Space-Archive-demo.pdf (7-slide deck)
+https://dam2323.github.io/The-Space-Archive/docs/demo/The-Space-Archive-trailer.mp4 (30-second trailer, 29.4 s)
+
+Same demo as a 7-slide deck (PDF): https://dam2323.github.io/The-Space-Archive/docs/demo/The-Space-Archive-demo.pdf
 
 ### Link to Final Project
 
@@ -49,7 +51,7 @@ Six "echoes" (Surveyor landers, Viking 1 and 2, NEAR Shoemaker, InSight, Spirit 
 
 ### Use of Super Intelligence (SI)
 
-Yes. AI (Super Intelligence, SI) coding assistants (Claude Code) were used to write the code, to produce the pixel art (as pixel maps in code) and the synthesized sound, to draft and translate the game text, to draft the documentation, and to help check the game text against the sources. Sixteen illustrations of the machines were made with an AI image tool, reviewed by the developer, cleaned of logos, flags and text, and optimized for the web; each is shown with a visible "AI art" badge. The project logo, and the favicon and link preview image derived from it, were also made with an AI image tool (the logo is marked "AI art" where it is shown). The idea, the story frame, the choice of machines, the rules and the list of allowed facts were defined by the developer, who reviewed the result. The README and CREDITS.md describe the AI use, and the page metadata states it. No NASA logos, flags, insignia or mission identifiers appear in the game.
+Yes. AI (Super Intelligence, SI) coding assistants (Claude Code) were used to write the code, to produce the pixel art (as pixel maps in code) and the synthesized sound, to draft and translate the game text, to draft the documentation, and to help check the game text against the sources. Sixteen illustrations of the machines were made with an AI image tool, reviewed by the developer, cleaned of logos, flags and text, and optimized for the web; each is shown with a visible "AI art" badge. The project logo, and the favicon and link preview image derived from it, were also made with an AI image tool (the logo is marked "AI art" where it is shown). The 30-second trailer and the demo video were edited with AI assistance from recordings of the game, and every frame carries a visible "AI art" label. The idea, the story frame, the choice of machines, the rules and the list of allowed facts were defined by the developer, who reviewed the result. The README and CREDITS.md describe the AI use, and the page metadata states it. No NASA logos, flags, insignia or mission identifiers appear in the game.
 
 ### NASA Data
 
@@ -79,29 +81,30 @@ All facts in the game come from these NASA resources (full table with what each 
 - Tools: Claude Code (AI coding assistant), Git and GitHub, a web browser, and GitHub Pages for hosting.
 - License of this project: Apache-2.0.
 
-## Demo option A: 30-second video script
+## Demo files
 
-The limit is 30 seconds. Going over makes the project ineligible for Global Judging. Add English subtitles if you speak in Spanish.
+All demo files are in `docs/demo/` and are public through GitHub Pages. English only. Every video frame and the title slide carry a visible "AI art" label. No NASA logos, flags, patches or people appear.
 
-| Time | On screen | Voice-over (about 70 words) |
-| --- | --- | --- |
-| 0:00 - 0:02 | Title screen | "I am Juan, The Space Archive, from Lima." |
-| 0:02 - 0:05 | Text: Abandoned but not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars | "Our challenge: Abandoned but not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars. What happens to the machines we leave behind?" |
-| 0:05 - 0:10 | Logo and slogan | "This is The Space Archive. Abandoned, but not forgotten." |
-| 0:10 - 0:20 | Black hole intro, The Archive, the Opportunity game, a fact card with its source | "You orbit a black hole, reach The Archive, and live five real stories as mini-games. Every fact comes from NASA sources and shows its source. The real endings cannot be changed." |
-| 0:20 - 0:30 | Echoes, Wall of Names, "The Archive is complete" | "Every machine on the official list is here. Next: more stories, more languages, and classrooms. So they are never forgotten." |
+### Main demo: 30-second trailer
 
-## Demo option B: 7 slides
+- File: `docs/demo/The-Space-Archive-trailer.mp4` (1920x1080, 29.4 s, English captions, music, no voice-over).
+- Link for the form: https://dam2323.github.io/The-Space-Archive/docs/demo/The-Space-Archive-trailer.mp4
+- The limit is 30 seconds. Going over makes the project ineligible for Global Judging, so do not re-edit it to be longer.
 
-The limit is 7 slides, including the title. Keep the font large and the words few.
+| Time | On screen |
+| --- | --- |
+| Opening | A lost machine and the line "They were left behind." |
+| Next | Black hole intro, then The Archive: "Abandoned, but not forgotten." |
+| Next | Verified facts: Pioneer 10 was designed for 21 months and lasted over 30 years; Ingenuity was planned for 5 flights and flew 72 |
+| Middle | Real mini-games playing at once: "Play real engineering problems." |
+| Next | A "What really happened" card with its source: "Every fact shows its source." |
+| Next | Wall of Names, Science Room, English and Spanish: "Free in the browser. English and Spanish." |
+| End | Logo, team name, member name and "Room for more machines. Never forgotten." |
 
-1. **Title.** The Space Archive. "Abandoned, but not forgotten." Screenshot of the title screen.
-2. **Team and challenge.** The Space Archive, Lima. Member: Juan David Porras Aliano. Challenge: Abandoned but not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars.
-3. **The idea.** An astronaut orbits a black hole and arrives at The Archive, where forgotten machines float as ghosts. Screenshot of The Archive.
-4. **How it works.** Five stories, five mini-games, each built on one real engineering problem. The real ending cannot be changed. Screenshot of the Opportunity game.
-5. **NASA data used.** Beyond Earth (NASA SP-2018-4041), NASA Science mission pages, NSSDCA, the challenge resource list. Every fact shows its source. Screenshot of a "What really happened" card.
-6. **User experience.** Browser game, no install, 10 to 15 minutes. English and Spanish. Keyboard, mouse and touch. Text size, sound and reduced motion options. Screenshot of an echo card or the Wall of Names.
-7. **Future impact.** More machines and languages, use in classrooms and museums, and a printable fact sheet for teachers. "So they are never forgotten."
+### Other demo files
+
+- 29-second gameplay capture with captions: `docs/demo/The-Space-Archive-demo.mp4`
+- 7-slide deck (PDF): `docs/demo/The-Space-Archive-demo.pdf`, with the editable `docs/demo/The-Space-Archive-demo.pptx`. Slides: 1 title, team and challenge; 2 the idea; 3 how it works; 4 NASA data and resources; 5 user experience; 6 science and accuracy; 7 future impact.
 
 ## Judging criteria and where the project answers them
 
@@ -109,7 +112,7 @@ The limit is 7 slides, including the title. Keep the font large and the words fe
 - **Creativity:** real stories lived as mini-games inside a time-travel frame, with endings that cannot be changed.
 - **Validity:** every fact has a source id, unverified facts stay hidden, and game numbers are labeled as game values.
 - **Relevance:** all 13 entries of the official resource list appear (5 playable, 6 echoes, 5 on the Wall of Names), and NASA resources are the only source of facts.
-- **Presentation:** a finished game from title to credits, with screenshots, a README and this draft. A 7-slide demo deck is published as a PDF.
+- **Presentation:** a finished game from title to credits, with screenshots, a README and this draft. A 30-second trailer and a 7-slide deck (PDF) are published.
 
 ## Checklist before submitting (from the participant guide)
 
