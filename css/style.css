@@ -841,3 +841,87 @@ a.source-title { color: var(--amber); }
   pointer-events: none;
   z-index: 20;
 }
+
+/* ---------- illustrated pictures ---------- */
+/* A fixed 16:9 box with a pixel border in the UI palette. The picture covers
+   it (object-fit) and fades in when loaded. A bar on the frame carries the
+   caption and the visible "AI-generated art" mark. */
+.art-frame {
+  position: relative;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--deep);
+  border: var(--u) solid var(--violet);
+  box-shadow: calc(var(--u) * 2) calc(var(--u) * 2) 0 rgba(7, 6, 15, 0.8);
+  flex: none;
+}
+.art-img { display: block; width: 100%; height: 100%; object-fit: cover; image-rendering: auto; opacity: 0; transition: opacity 0.35s ease-out; }
+.art-frame.loaded .art-img { opacity: 1; }
+.art-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1em;
+  padding: 0.15em 0.6em 0.2em;
+  background: rgba(7, 6, 15, 0.78);
+}
+.art-caption { font-size: 0.9em; letter-spacing: 0.1em; text-transform: uppercase; color: var(--amber); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.art-tag { margin-left: auto; font-size: max(7px, 0.6em); letter-spacing: 0.06em; color: var(--mist); white-space: nowrap; }
+
+/* Story: the frame fills the space above the dialogue box. */
+.story-column {
+  position: absolute;
+  left: calc(var(--u) * 6);
+  right: calc(var(--u) * 6);
+  top: calc(var(--u) * 4);
+  bottom: calc(var(--u) * 5);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: calc(var(--u) * 3);
+  pointer-events: none;
+}
+.story-column > * { pointer-events: auto; }
+.story-column .dialogue { position: static; flex: none; min-height: calc(var(--u) * 46); }
+.art-slot { flex: 1; min-height: 0; display: flex; justify-content: center; }
+.art-slot .art-frame { height: 100%; flex: none; }
+/* The frame already shows the name and years, so the dialogue box does not repeat them. */
+.story-column.has-art .dialogue-name { display: none; }
+
+/* Debrief: a small frame beside the title. */
+.card-head { flex: none; }
+.card-head.has-art { display: flex; align-items: center; gap: 1em; }
+.card-head.has-art .art-frame { width: calc(var(--u) * 62); box-shadow: none; }
+.card-head.has-art .card-titles { flex: 1; min-width: 0; }
+.card-head.has-art .panel-title, .card-head.has-art .card-name, .card-head.has-art .card-score { text-align: left; }
+.card-head .art-tag { font-size: max(7px, 0.52em); }
+
+/* Echo card with a picture: full height, picture beside the facts. */
+.echo-card.with-art { top: calc(var(--u) * 4); max-height: none; }
+.echo-row { flex: 1; min-height: 0; display: flex; align-items: flex-start; gap: 1em; }
+.echo-row .art-frame { width: 46%; }
+.echo-row .sci-body { flex: 1; min-width: 0; height: 100%; }
+.echo-card.with-art .facts { overflow: visible; gap: 0.5em; }
+.echo-card.with-art .fact { font-size: 0.9em; line-height: 1.3; }
+@media (max-width: 720px) {
+  /* Narrow screens: the picture goes on top, the facts under it. */
+  .echo-row { flex-direction: column; align-items: center; }
+  .echo-row .art-frame { width: auto; height: 38%; }
+  .echo-row .sci-body { width: 100%; height: auto; flex: 1; }
+}
+
+/* Wall of Names: a thumbnail beside an entry. */
+.wall-item.has-art { flex-direction: row; align-items: flex-start; gap: 0.8em; }
+.wall-item.has-art .art-frame { width: calc(var(--u) * 40); box-shadow: none; margin-top: 0.2em; }
+.wall-item.has-art .art-caption { display: none; }
+.wall-words { display: flex; flex-direction: column; min-width: 0; flex: 1; }
+.wall-item .art-tag { font-size: max(6px, 0.5em); }
+.echo-card.with-art .fact { font-size: 0.85em; line-height: 1.27; }
+.echo-card.with-art .facts { gap: 0.4em; }
+/* The last entry of the Wall (the longest text) uses the full width. */
+.wall-list .wall-item:last-child:nth-child(odd) { grid-column: 1 / -1; }

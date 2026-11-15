@@ -8,6 +8,7 @@ import { t } from '../engine/i18n.js';
 import { clear, px, WIDTH, HEIGHT } from '../engine/render.js';
 import { Starfield } from '../engine/fx.js';
 import { el, button } from '../engine/ui.js';
+import { artFrame } from '../engine/art.js';
 import * as scenes from '../engine/scenes.js';
 import * as input from '../engine/input.js';
 import { sfx, drone } from '../engine/audio.js';
@@ -27,11 +28,18 @@ export default {
     wall.forEach((entry, i) => {
       const item = el('li', 'wall-item');
       item.style.animationDelay = `${0.15 + i * 0.12}s`;
-      item.append(
+      const words = el('div', 'wall-words');
+      words.append(
         el('span', 'wall-name', t(entry.name)),
         el('span', 'fact-text', t(entry.textKey)),
         el('span', 'fact-source', `${t('debrief.source')}: ${SOURCES[entry.sourceId].short}`),
       );
+      // A small picture beside the entries that have one.
+      if (entry.art) {
+        item.classList.add('has-art');
+        item.append(artFrame({ src: entry.art, alt: t(`art.${entry.id}`), onFail: () => item.classList.remove('has-art') }));
+      }
+      item.append(words);
       list.append(item);
     });
     scroller.append(

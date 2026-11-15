@@ -8,6 +8,7 @@ import { SOURCES, visibleFacts } from '../data/sources.js';
 import { t } from '../engine/i18n.js';
 import { ctx, WIDTH, HEIGHT } from '../engine/render.js';
 import { el, button } from '../engine/ui.js';
+import { artFrame } from '../engine/art.js';
 import * as scenes from '../engine/scenes.js';
 import { sfx } from '../engine/audio.js';
 import { save } from '../engine/storage.js';
@@ -32,19 +33,28 @@ export default {
 
     const card = el('section', 'panel card');
     card.setAttribute('aria-label', t('debrief.heading'));
-    card.append(
+    // Header: title, name and score, with the machine's picture beside them
+    // when it has one (a small 16:9 frame; it removes itself if it cannot load).
+    const head = el('div', 'card-head');
+    const titles = el('div', 'card-titles');
+    titles.append(
       el('h2', 'panel-title', t('debrief.heading')),
-      el('p', 'card-name', [t(machine.name), t(machine.years)].filter(Boolean).join('  ·  ')),
+      el('p', 'card-name', [t(machine.name), t(machine.years)].filter(Boolean).join('  \u00B7  ')),
     );
-
     // Result of the mini-game, clearly marked as a game score.
     if (params.stars) {
       const score = el('p', 'card-score');
       score.append(el('span', 'stars', '\u2605'.repeat(params.stars)), el('span', 'stars off', '\u2605'.repeat(3 - params.stars)));
       score.append(el('span', 'score-label', t('debrief.score')));
       score.setAttribute('aria-label', `${t('debrief.score')}: ${params.stars} / 3`);
-      card.append(score);
+      titles.append(score);
     }
+    if (machine.art) {
+      head.classList.add('has-art');
+      head.append(artFrame({ src: machine.art, alt: t(`art.${machine.id}`), onFail: () => head.classList.remove('has-art') }));
+    }
+    head.append(titles);
+    card.append(head);
 
     // The fact list. Only facts whose source has a citation are shown.
     const body = el('div', 'card-body');

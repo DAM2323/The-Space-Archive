@@ -10,6 +10,7 @@ import { t } from '../engine/i18n.js';
 import { clear, drawSprite, bakeSprite, px, WIDTH } from '../engine/render.js';
 import { Starfield, Particles, ease, clamp } from '../engine/fx.js';
 import { el, button } from '../engine/ui.js';
+import { artFrame } from '../engine/art.js';
 import * as scenes from '../engine/scenes.js';
 import * as input from '../engine/input.js';
 import { sfx, drone } from '../engine/audio.js';
@@ -17,6 +18,7 @@ import { save } from '../engine/storage.js';
 import { gameState, ECHO_IDS } from '../state.js';
 
 let echo, time, leaving, offInput;
+let artShown = false;              // the echo's picture is on the card (then no sprite is drawn)
 const stars = new Starfield(100, 61);
 const motes = new Particles(60);
 
@@ -57,7 +59,29 @@ export default {
     });
     body.append(list);
     const done = button(t('echo.back'), back, 'primary wide', 'back');
-    card.append(head, body, done);
+    // With a picture: the card fills the screen, picture on one side and the
+    // facts next to it (on narrow screens the picture goes on top). Without
+    // one, or if it fails to load, the small card and the sprite are used.
+    artShown = false;
+    if (echo.art) {
+      artShown = true;
+      card.classList.add('with-art');
+      list.className = 'facts';
+      const row = el('div', 'echo-row');
+      row.append(artFrame({
+        src: echo.art,
+        alt: t(`art.${echo.id}`),
+        onFail: () => {
+          artShown = false;
+          card.classList.remove('with-art');
+          list.className = facts.length > 3 ? 'facts two' : 'facts';
+          row.replaceWith(body);
+        },
+      }), body);
+      card.append(head, row, done);
+    } else {
+      card.append(head, body, done);
+    }
     ui.append(card);
     done.focus({ preventScroll: true });
     drone(true);
@@ -84,6 +108,7 @@ export default {
     clear();
     stars.render();
     motes.render();
+    if (artShown) return;
     // The echo, large, floating above the card. It fades in like a memory.
     const img = bakeSprite(ECHO_SPRITES[echo.id]);
     const scale = 5;
