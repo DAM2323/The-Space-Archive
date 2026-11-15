@@ -10,7 +10,7 @@ Every fact shown in the game comes from one of these sources. The id is the one 
 
 | Id | Source | Link | Used for |
 | --- | --- | --- | --- |
-| `beyond-earth` | Siddiqi, A. A., "Beyond Earth: A Chronicle of Deep Space Exploration, 1958-2016", NASA SP-2018-4041 | https://www.nasa.gov/history/history-publications-and-resources/nasa-history-series/beyond-earth/ | Opportunity (landing details, 90-sol objective, Heat Shield Rock, 2007 dust storms, Endeavour crater, 2013 distance record), Sojourner (planned lifetimes, 83 days, final contact), the Apollo 17 LRV record, Surveyor 3, Spirit, Viking 2 |
+| `beyond-earth` | Siddiqi, A. A., "Beyond Earth: A Chronicle of Deep Space Exploration, 1958-2016", NASA SP-2018-4041 | https://www.nasa.gov/history/history-publications-and-resources/nasa-history-series/beyond-earth/ | Opportunity (landing details, 90-sol objective, Heat Shield Rock, 2007 dust storms, Endeavour crater, 2013 distance record), Sojourner (planned lifetimes, 83 days, final contact), the Apollo 17 LRV record, Surveyor 3, Spirit, Viking 2, Pioneer 11 |
 | `nasa-mer` | NASA Science, "Mars Exploration Rovers: Spirit and Opportunity" | https://science.nasa.gov/mission/mars-exploration-rovers-spirit-and-opportunity/ | Opportunity (landing date, last contact, total distance), Spirit (end of mission) |
 | `nasa-pathfinder` | NASA Science, "Mars Pathfinder" | https://science.nasa.gov/mission/mars-pathfinder/ | Sojourner and Pathfinder (dates, mass, first wheeled vehicle, images, lander name) |
 | `nasa-ingenuity` | NASA Science, "Ingenuity Mars Helicopter" | https://science.nasa.gov/mission/mars-2020-perseverance/ingenuity-mars-helicopter/ | Ingenuity (dates, planned test flights, flight totals, mass, rotor span) |

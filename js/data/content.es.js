@@ -346,7 +346,7 @@ export const strings = {
   'g.pio.end.1': '23 de enero de 2003. La última señal, desde 12.23 mil millones de km. Tarda 11 horas 20 minutos en llegar a la Tierra.',
   'g.pio.end.2': 'Un último intento de contactar a Pioneer 10, el 4 de marzo de 2006, falla.',
   'g.pio.end.3': 'Va hacia la estrella Aldebarán. Se espera que llegue en unos dos millones de años.',
-  'g.pio.end.4': 'Pioneer 11, otra sonda temprana del espacio profundo, también se aleja en silencio del sistema solar.',
+  'g.pio.end.4': 'Pioneer 11 sobrevoló Júpiter el 3 de diciembre de 1974 y Saturno el 1 de septiembre de 1979. Su último contacto fue el 30 de septiembre de 1995.',
   'g.pio.end.5': 'Este final es real. Nada de lo que hicieras podía cambiarlo.',
 
   'science.pioneer10.1': 'La primera nave con energía eléctrica toda nuclear: dos RTG, unos 140 W en Júpiter. Diseñada para 21 meses, duró más de 30 años.',
@@ -416,7 +416,7 @@ export const strings = {
   'wall.kepler.name': 'Telescopio espacial Kepler',
   'wall.kepler.text': 'Telescopio buscador de exoplanetas que se quedó sin combustible y va a la deriva en una órbita que sigue a la Tierra.',
   'wall.pioneer11.name': 'Pioneer 11',
-  'wall.pioneer11.text': 'Sonda temprana del espacio profundo (con Pioneer 10), que ahora se aleja en silencio del sistema solar.',
+  'wall.pioneer11.text': 'Máximo acercamiento a Júpiter: 3 de diciembre de 1974, a 42,500 km de las nubes. Sobrevuelo de Saturno: 1 de septiembre de 1979, a 20,900 km. NASA Ames hizo el último contacto el 30 de septiembre de 1995, a 44.1 UA de la Tierra. Lleva una placa como la de Pioneer 10.',
 };
 
 export default { strings };

@@ -1,5 +1,5 @@
 // Wall of Names: the remaining official resources of the challenge, each with
-// its official one-line description and its source.
+// a short description and its own source.
 
 import { C } from '../data/palette.js';
 import { wall } from '../data/content.en.js';
@@ -27,13 +27,16 @@ export default {
     wall.forEach((entry, i) => {
       const item = el('li', 'wall-item');
       item.style.animationDelay = `${0.15 + i * 0.12}s`;
-      item.append(el('span', 'wall-name', t(entry.name)), el('span', 'fact-text', t(entry.textKey)));
+      item.append(
+        el('span', 'wall-name', t(entry.name)),
+        el('span', 'fact-text', t(entry.textKey)),
+        el('span', 'fact-source', `${t('debrief.source')}: ${SOURCES[entry.sourceId].short}`),
+      );
       list.append(item);
     });
     scroller.append(
       el('p', 'credits-text wall-intro', t('wall.intro')),
       list,
-      el('p', 'fact-source', `${t('debrief.source')}: ${SOURCES[wall[0].sourceId].short}`),
     );
     const back = button(t('wall.back'), () => scenes.go('hub'), 'primary wide', 'back');
     card.append(el('h2', 'panel-title', t('wall.title')), scroller, back);

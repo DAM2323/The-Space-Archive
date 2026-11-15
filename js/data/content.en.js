@@ -194,7 +194,7 @@ export const strings = {
   'wall.kepler.name': 'Kepler Space Telescope',
   'wall.kepler.text': 'Exoplanet-hunting telescope that ran out of fuel and drifts in an Earth-trailing orbit.',
   'wall.pioneer11.name': 'Pioneer 11',
-  'wall.pioneer11.text': 'Early deep-space probe (with Pioneer 10), now drifting silently out of the solar system.',
+  'wall.pioneer11.text': 'Closest approach to Jupiter: 3 December 1974, 42,500 km from the cloud tops. Saturn flyby: 1 September 1979, at 20,900 km. NASA Ames made last contact on 30 September 1995, at 44.1 AU from Earth. It carries a plaque like Pioneer 10.',
 
   // --- Shell ---
   'shell.aiMark': 'AI-generated art',
@@ -417,7 +417,7 @@ export const strings = {
   'g.pio.end.1': '23 January 2003. The last signal, from 12.23 billion km. It takes 11 hours 20 minutes to reach Earth.',
   'g.pio.end.2': 'A final attempt to contact Pioneer 10 on 4 March 2006 fails.',
   'g.pio.end.3': 'It heads toward the star Aldebaran, expected in about two million years.',
-  'g.pio.end.4': 'Pioneer 11, another early deep-space probe, is also drifting silently out of the solar system.',
+  'g.pio.end.4': 'Pioneer 11 flew past Jupiter on 3 December 1974 and Saturn on 1 September 1979. Its last contact was on 30 September 1995.',
   'g.pio.end.5': 'This ending is real. Nothing you did could change it.',
 };
 
@@ -493,9 +493,11 @@ export const echoes = {
   dawn: echo('dawn', [echoFact('dawn', 1, 'nasa-dawn'), echoFact('dawn', 2, 'nasa-dawn'), echoFact('dawn', 3, 'spaceapps-resources')]),
 };
 
-// Wall of Names: the one-liners come from the official challenge resource list.
+// Wall of Names: the one-liners come from the official challenge resource list,
+// except Pioneer 11, whose facts come from Beyond Earth.
 export const wall = ['lm', 'alsep', 'phoenix', 'kepler', 'pioneer11'].map((id) => ({
-  name: `wall.${id}.name`, textKey: `wall.${id}.text`, sourceId: 'spaceapps-resources',
+  id, name: `wall.${id}.name`, textKey: `wall.${id}.text`,
+  sourceId: id === 'pioneer11' ? 'beyond-earth' : 'spaceapps-resources',     // the Pioneer 11 facts come from Beyond Earth
 }));
 
 // Intro timeline: every official resource, in order, with a year only when the
