@@ -29,19 +29,25 @@ export const strings = {
   'options.close': 'Atrás',
 
   // --- Intro (frame story; only the two physics claims of section 8.0) ---
-  'intro.shipClock': 'Reloj de la nave',
-  'intro.outsideClock': 'Reloj de afuera',
+  'intro.shipClock': 'Tu reloj',
+  'intro.outsideClock': 'Reloj de la Tierra',
   'intro.storyYears': 'años de la historia',
+  'intro.slower': 'El tiempo pasa más lento para ti.',
+  'intro.stop.1972': '1972: se lanza Pioneer 10.',
+  'intro.stop.1997': '1997: Sojourner aterriza en Marte.',
+  'intro.stop.2004': '2004: Opportunity aterriza en Marte.',
+  'intro.stop.2021': '2021: Ingenuity hace su primer vuelo.',
+  'intro.stop.2026': '2026: el Archivo.',
   'intro.line.1': 'Un agujero negro. No entras en él. Lo orbitas a una distancia segura.',
   'intro.line.2': 'Su gravedad curva la luz de las estrellas que hay detrás.',
-  'intro.line.3': 'La gravedad fuerte hace más lento el tiempo. Tu reloj va más lento que los de afuera.',
+  'intro.line.3': 'La gravedad fuerte hace más lento el tiempo. Tu reloj va más lento que el de la Tierra.',
   'intro.line.4': 'Por eso solo puedes viajar en un sentido: hacia el futuro.',
   'intro.skip': 'Saltar',
   'intro.continue': 'Continuar',
 
   // --- The Archive (hub) ---
   'hub.arrive': 'El Archivo. Un lugar tranquilo fuera del tiempo.',
-  'hub.hint': 'Apunta a una máquina para vivir su historia, o a un eco para leerlo.',
+  'hub.hint': 'Vuela hacia una máquina para vivir su historia, o hacia un eco para leerlo.',
   'hub.progress': '{n} de {total} archivadas',
   'hub.completed': 'Archivada',
   'hub.allDone': 'Las cinco historias están archivadas.',
@@ -326,6 +332,7 @@ export const strings = {
   'science.pioneer10.2': 'Unas 500 fotos de la atmósfera de Júpiter, con la Gran Mancha Roja bien visible, y fotos de Calisto, Ganimedes y Europa.',
 
   // --- Hub: ecos y muro ---
+  'hub.controls': 'Mover: puntero, flechas o WASD \u00B7 Elegir: clic o Enter',
   'hub.echoes': '{n} de {total} ecos leídos',
   'hub.echoRead': 'Leído',
   'hub.echo': 'Eco',

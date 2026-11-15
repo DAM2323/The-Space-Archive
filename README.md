@@ -28,8 +28,9 @@ More screenshots are in the screenshots folder.
 
 ## How to play
 
-- Mouse or touch: point at a machine in The Archive and click or tap it. Click or tap to advance the story.
-- Keyboard: arrow keys to aim, Enter to select, Space or Enter to advance text, Esc to go back.
+- Mouse or touch: in The Archive the astronaut flies toward your pointer (or the place you tap). Point at a machine or an echo, or fly near it, then click or tap to select it. Click or tap to advance the story.
+- Keyboard: in The Archive, fly with the arrow keys or WASD and press Enter to select what you are near (Tab also moves between machines and echoes). Space or Enter advances text, Esc goes back.
+- The intro shows two clocks: your clock and Earth's clock. Earth's clock rolls forward through the eras of the machines and stops on the present.
 - Options (title screen): sound, volume, text size, reduced motion, language (English or Spanish), reset progress.
 - Opportunity mini-game: each turn choose Drive, Science or Rest. Driving and science cost energy, the Sun charges you, dust reduces sunlight. Energy, costs and stars are game values, not mission data. Esc or the Pause button pauses.
 - Ingenuity mini-game: hold the button (or Space) to spin the rotors and climb, release to descend. Keep the whole helicopter inside the marked zone until the bar fills, then land softly.
@@ -111,7 +112,7 @@ js/data/     palette.js, sprites.js, content.en.js, content.es.js, sources.js
 
 - Keyboard only, mouse and touch all work.
 - Text size option.
-- Reduced motion option: no screen shake or flashes, and the intro becomes a still frame.
+- Reduced motion option: no screen shake or flashes, the intro becomes a still frame, and the astronaut does not dash or flip.
 - Sound toggle and volume.
 - English and Spanish.
 - Text is real DOM text, not drawn on the canvas.

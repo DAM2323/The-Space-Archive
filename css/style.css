@@ -712,3 +712,43 @@ a.source-title { color: var(--amber); }
 .wall-list { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4em 1.2em; }
 .wall-intro { margin-bottom: 0.2em; }
 .echo-card .facts.two { overflow: visible; }
+
+/* ---------- intro: caption under Earth's clock ---------- */
+.clock { min-width: 12em; }
+.clock.right { min-width: 17em; }
+.clock-event { min-height: 1.4em; font-size: 0.9em; color: var(--amber); transition: opacity 0.25s; }
+.clock-event.rolling { opacity: 0; }
+
+/* ---------- hub rework: bigger machines with their name and year always visible ---------- */
+.ghost.machine { width: calc(var(--u) * 60); height: calc(var(--u) * 38); }
+.ghost.machine .ghost-label {
+  top: 100%;
+  bottom: auto;
+  opacity: 1;
+  padding: 0.05em 0.6em 0.1em;
+  font-size: 0.82em;
+  line-height: 1.25;
+  transform: translate(-50%, 0);
+  background: rgba(7, 6, 15, 0.55);
+  border-color: transparent;
+  transition: border-color 0.15s, background-color 0.15s, transform 0.2s cubic-bezier(.2, .9, .3, 1.4);
+}
+.ghost.machine .ghost-name { color: var(--mist); transition: color 0.15s; }
+.ghost.machine .ghost-years { color: var(--mist); }
+.ghost.machine:hover .ghost-label, .ghost.machine:focus .ghost-label, .ghost.machine.aimed .ghost-label {
+  transform: translate(-50%, 0.15em);
+  background: rgba(18, 17, 42, 0.92);
+  border-color: var(--amber);
+}
+.ghost.machine:hover .ghost-name, .ghost.machine:focus .ghost-name, .ghost.machine.aimed .ghost-name { color: var(--amber); }
+.ghost.machine.aimed .ghost-years { color: var(--star); }
+/* Echo labels appear when the astronaut or the pointer is near (class "aimed"). */
+.ghost.echo.aimed .ghost-label { opacity: 1; transform: translate(-50%, 0.2em); }
+.ghost.echo.above.aimed .ghost-label { transform: translate(-50%, -0.2em); }
+.ghost.echo.aimed .ghost-label.edge-left, .ghost.echo.aimed .ghost-label.edge-right { transform: translate(0, 0.2em); }
+.ghost.echo.above.aimed .ghost-label.edge-left, .ghost.echo.above.aimed .ghost-label.edge-right { transform: translate(0, -0.2em); }
+.hub-bottom { bottom: calc(var(--u) * 2); gap: 0; pointer-events: none; }
+.hub-hint { font-size: 0.92em; }
+.hub-controls { margin: 0; font-size: 0.78em; color: var(--violet); }
+.hub-field { z-index: 1; }
+.archive-stamp { top: 58%; z-index: 2; }

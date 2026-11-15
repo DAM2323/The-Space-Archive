@@ -22,17 +22,20 @@ import { gameState } from '../state.js';
 
 // ---------- timeline (seconds) ----------
 const T_APPROACH = 5;         // the black hole grows
-const T_ORBITS = 10.5;        // three orbits
+const T_ORBITS = 12.5;        // three orbits
 const T_FLASH = 1.3;          // arrival flash
 const ORBITS = 3;
 
-// GAME VALUE: story clock values. The outside years match the machines' eras.
-const OUTSIDE_YEARS = [1969, 1990, 2004, 2026];
+// GAME VALUE: story clock values. Earth's clock follows the eras of the machines.
+// Earth's clock only rolls forward. It runs fast between these stops, slows
+// down on each one and ends on the present. Each stop has a short caption.
+const STOPS = [1972, 1997, 2004, 2021, 2026];
+const ROLL_PART = 0.68;       // part of each step spent rolling; the rest is a pause on the stop
 const SHIP_MINUTES = 12;      // GAME VALUE: minutes that pass on the ship clock
 
 const HOLE_END = { x: 160, y: 80, rs: 16 };   // final position and shadow radius
 const HOLE_START = { x: 206, y: 66, rs: 2.5 };
-const CAPTION_TIMES = [0.4, 4.6, 8.4, 12.2];  // when each caption line appears
+const CAPTION_TIMES = [0.4, 4.6, 9.4, 14];  // when each caption line appears
 
 // ---------- state ----------
 let time, done, still;
@@ -40,7 +43,7 @@ let hole;                     // { x, y, rs } right now
 let ship;                     // { x, y, behind, flip }
 let stars, trail;
 let drift;                    // how far the background stars have moved
-let lastYear, lastCaption, lastMinutes, lastClockBlip;
+let lastYear, lastStop, lastCaption, lastMinutes, lastClockBlip;
 let dom, offInput;
 
 // Off-screen canvas for the per-pixel black hole picture.
@@ -192,10 +195,17 @@ function orbitPoint(phi) {
   };
 }
 
-function outsideYear(p) {
-  const o = Math.min(ORBITS - 0.0001, p * ORBITS);
-  const i = Math.floor(o);
-  return Math.round(lerp(OUTSIDE_YEARS[i], OUTSIDE_YEARS[i + 1], ease.inOutCubic(o - i)));
+// Earth's clock at orbit time u (0..1): the year shown, and the stop it is
+// resting on (-1 while it is rolling between two stops).
+function earthClock(u) {
+  const steps = STOPS.length - 1;
+  const s = Math.min(steps - 0.0001, u * steps);
+  const i = Math.floor(s);
+  const roll = clamp((s - i) / ROLL_PART);
+  if (u >= 1 || roll >= 1) return { year: STOPS[i + 1], stop: i + 1 };
+  // Easing makes the counter leave a stop slowly, race, and slow down into the next one.
+  const year = Math.round(lerp(STOPS[i], STOPS[i + 1], ease.inOutCubic(roll)));
+  return { year, stop: year === STOPS[i] ? i : -1 };
 }
 
 const shipClockText = (minutes) => `00:${String(minutes).padStart(2, '0')}`;
@@ -212,21 +222,24 @@ function buildUI(ui) {
   const clocks = el('div', 'clocks');
   const shipBox = el('div', 'clock');
   const shipValue = el('span', 'clock-value', shipClockText(0));
-  shipBox.append(el('span', 'clock-label', t('intro.shipClock')), shipValue);
+  shipBox.append(el('span', 'clock-label', t('intro.shipClock')), shipValue, el('span', 'clock-note', t('intro.slower')));
   const outBox = el('div', 'clock right');
-  const outValue = el('span', 'clock-value', String(OUTSIDE_YEARS[0]));
-  outBox.append(el('span', 'clock-label', t('intro.outsideClock')), outValue, el('span', 'clock-note', t('intro.storyYears')));
+  const outValue = el('span', 'clock-value', String(STOPS[0]));
+  const outEvent = el('span', 'clock-event', t(`intro.stop.${STOPS[0]}`));
+  outEvent.setAttribute('aria-live', 'polite');
+  outBox.append(el('span', 'clock-label', t('intro.outsideClock')), outValue, outEvent, el('span', 'clock-note', t('intro.storyYears')));
   clocks.append(shipBox, outBox);
 
   const caption = el('p', 'caption');
   caption.setAttribute('aria-live', 'polite');
   ui.append(clocks, caption);
-  dom = { shipValue, outValue, outBox, caption };
+  dom = { shipValue, outValue, outEvent, outBox, caption };
 
   if (still) {
     // Reduced motion: one still frame, final clock values, and a button.
     shipValue.textContent = shipClockText(SHIP_MINUTES);
-    outValue.textContent = `${OUTSIDE_YEARS[0]} → ${OUTSIDE_YEARS[OUTSIDE_YEARS.length - 1]}`;
+    outValue.textContent = `${STOPS[0]} \u2192 ${STOPS[STOPS.length - 1]}`;
+    outEvent.textContent = t(`intro.stop.${STOPS[STOPS.length - 1]}`);
     caption.textContent = `${t('intro.line.3')} ${t('intro.line.4')}`;
     caption.classList.add('show');
     const go = button(t('intro.continue'), finish, 'primary corner');
@@ -252,7 +265,8 @@ export default {
     time = 0;
     done = false;
     drift = 0;
-    lastYear = OUTSIDE_YEARS[0];
+    lastYear = STOPS[0];
+    lastStop = 0;
     lastCaption = -1;
     lastMinutes = 0;
     lastClockBlip = 0;
@@ -314,13 +328,18 @@ export default {
     trail.update(dt);
 
     // Clocks.
-    const year = outsideYear(p);
-    if (year !== lastYear) {
-      lastYear = year;
-      dom.outValue.textContent = String(year);
+    const earth = earthClock(clamp((time - T_APPROACH) / T_ORBITS));
+    if (earth.year !== lastYear) {
+      lastYear = earth.year;
+      dom.outValue.textContent = String(earth.year);
       if (time - lastClockBlip > 0.07) { sfx('clock'); lastClockBlip = time; }
-      // A small "bump" each time a whole orbit ends on its story year.
-      if (OUTSIDE_YEARS.includes(year)) {
+    }
+    if (earth.stop !== lastStop) {
+      lastStop = earth.stop;
+      // Rolling: the caption fades out. On a stop: show its caption with a small "bump".
+      dom.outEvent.classList.toggle('rolling', earth.stop < 0);
+      if (earth.stop >= 0) {
+        dom.outEvent.textContent = t(`intro.stop.${STOPS[earth.stop]}`);
         dom.outBox.classList.remove('bump');
         void dom.outBox.offsetWidth;
         dom.outBox.classList.add('bump');

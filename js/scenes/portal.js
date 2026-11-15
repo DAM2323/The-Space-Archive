@@ -9,11 +9,11 @@ import { Particles, shake, ease, lerp, clamp } from '../engine/fx.js';
 import * as scenes from '../engine/scenes.js';
 import { sfx } from '../engine/audio.js';
 import { gameState } from '../state.js';
-import { updateWorld, renderWorld, ghostPosition, setAim } from './hub.js';
+import { updateWorld, renderWorld, ghostPosition, setAim, MACHINE_SCALE } from './hub.js';
 
 const T_OPEN = 0.65;      // the ring opens on the machine
 const T_GROW = 0.85;      // the ring grows until it covers the screen
-const R_SMALL = 24;       // ring radius around the machine (game pixels)
+const R_SMALL = 36;       // ring radius around the machine (game pixels)
 const R_FULL = 380;       // large enough to cover the screen from any machine
 
 let p;                    // params: { machine, reverse, justCompleted }
@@ -71,7 +71,7 @@ function done() {
   if (finished) return;
   finished = true;
   if (p.reverse) {
-    setAim(null);
+    setAim(null, true);
     scenes.go('hub', { justCompleted: p.justCompleted, focus: p.machine }, { instant: true });
   } else {
     scenes.go('story', { machine: p.machine }, { duration: 0.3 });
@@ -84,7 +84,8 @@ export default {
     time = 0;
     finished = false;
     sparks = new Particles(140);
-    setAim(p.reverse ? null : p.machine);
+    center = ghostPosition(p.machine);
+    setAim(p.reverse ? null : p.machine, true);
     sfx(p.reverse ? 'portalClose' : 'portal');
     if (!p.reverse) shake.add(0.8);
   },
@@ -132,6 +133,6 @@ export default {
     // The machine itself stays visible in the middle of the ring until it is swallowed.
     const img = bakeSprite(SPRITES[p.machine]);
     const fade = 1 - clamp((u - T_OPEN) / (T_GROW * 0.6));
-    drawSprite(SPRITES[p.machine], center.x - img.width / 2, center.y - img.height / 2, { alpha: fade });
+    drawSprite(SPRITES[p.machine], center.x - (img.width * MACHINE_SCALE) / 2, center.y - (img.height * MACHINE_SCALE) / 2, { alpha: fade, scale: MACHINE_SCALE });
   },
 };

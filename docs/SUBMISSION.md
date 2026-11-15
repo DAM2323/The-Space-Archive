@@ -21,7 +21,7 @@ It is built with plain HTML, CSS and JavaScript. The pixel art and the sound are
 | Time | On screen | Voice-over |
 | --- | --- | --- |
 | 0:00 - 0:10 | Title screen, then the black hole intro | "You are an astronaut orbiting a black hole. Near it, time runs slower, so you can only travel toward the future." |
-| 0:10 - 0:20 | The Archive hub, aiming at a machine | "You arrive at The Archive, a quiet place outside of time. Five machines wait here. Pick one and live its story." |
+| 0:10 - 0:20 | The Archive hub: the astronaut flies to a machine and it lights up | "You arrive at The Archive, a quiet place outside of time. Five machines wait here. Pick one and live its story." |
 | 0:20 - 0:35 | Opportunity mini-game, then the last lines of the ending: "10 June 2018. Opportunity communicates with Earth for the last time." | "In Beyond Sol 90 you manage energy: drive, do science or rest. At the end, the game shows the real last contact line: 10 June 2018. Opportunity communicates with Earth for the last time." |
 | 0:35 - 0:43 | The "What really happened" card with the source line visible | "Then a card says What really happened. Every fact shows its source. This ending is real. Nothing you did could change it." |
 | 0:43 - 0:50 | A few seconds of the Sojourner mini-game | "Each machine has its own game. Here, you guide Sojourner around rocks to reach targets." |
