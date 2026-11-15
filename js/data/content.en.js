@@ -170,12 +170,13 @@ export const strings = {
   'e.insight.fact.3': 'It was built on the design of the Phoenix lander.',
   'e.insight.fact.4': 'End of mission: 15 December 2022.',
   'e.spirit.name': 'Spirit',
-  'e.spirit.years': '2011',
-  'e.spirit.fact.1': 'Spirit drove 7.73 km and operated for 6 years, 2 months and 19 days.',
-  'e.spirit.fact.2': 'NASA Science says its mission concluded in 2010, with its last contact.',
-  'e.spirit.fact.3': 'Recovery efforts ended on 25 May 2011. The probable cause was the cold.',
+  'e.spirit.years': '2004 \u2013 2010',
+  'e.spirit.fact.1': 'Spirit landed on Mars on 3 January 2004.',
+  'e.spirit.fact.2': 'Spirit drove 7.73 km and operated for 6 years, 2 months and 19 days.',
+  'e.spirit.fact.3': 'NASA Science says its mission concluded in 2010, with its last contact.',
+  'e.spirit.fact.4': 'Recovery efforts ended on 25 May 2011. The probable cause was the cold.',
   'e.dawn.name': 'Dawn',
-  'e.dawn.years': '2007',
+  'e.dawn.years': 'launched 2007',
   'e.dawn.fact.1': 'Dawn launched on 27 September 2007.',
   'e.dawn.fact.2': 'It was NASA’s first truly interplanetary spaceship, with extended stays at the giant asteroid Vesta and the dwarf planet Ceres.',
   'e.dawn.fact.3': 'It ran out of fuel and remains in a perpetual unpowered orbit around Ceres.',
@@ -488,7 +489,7 @@ export const echoes = {
   viking1: echo('viking1', [1, 2, 3, 4].map((n) => echoFact('viking1', n, n === 2 ? 'spaceapps-resources' : 'nasa-viking1'))),
   near: echo('near', [1, 2, 3, 4].map((n) => echoFact('near', n, 'nasa-near'))),
   insight: echo('insight', [1, 2, 3, 4].map((n) => echoFact('insight', n, 'nasa-insight'))),
-  spirit: echo('spirit', [echoFact('spirit', 1, 'beyond-earth'), echoFact('spirit', 2, 'nasa-mer'), echoFact('spirit', 3, 'beyond-earth')]),
+  spirit: echo('spirit', [echoFact('spirit', 1, 'nasa-mer'), echoFact('spirit', 2, 'beyond-earth'), echoFact('spirit', 3, 'nasa-mer'), echoFact('spirit', 4, 'beyond-earth')]),
   dawn: echo('dawn', [echoFact('dawn', 1, 'nasa-dawn'), echoFact('dawn', 2, 'nasa-dawn'), echoFact('dawn', 3, 'spaceapps-resources')]),
 };
 
@@ -512,7 +513,7 @@ export const timeline = [
   when('sojourner', 1997, 'nasa-pathfinder'),      // rolled out on 5 July 1997
   when('near', 2001, 'nasa-near'),                 // touched down on Eros on 12 February 2001
   when('opportunity', 2004, 'nasa-mer'),           // landed on 24 January 2004
-  when('spirit', null),
+  when('spirit', 2004, 'nasa-mer'),                // landed on 3 January 2004
   when('dawn', 2007, 'nasa-dawn'),                 // launched 27 September 2007
   when('phoenix', null),
   when('kepler', null),
