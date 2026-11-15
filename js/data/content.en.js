@@ -46,12 +46,18 @@ export const strings = {
 
   // --- The Archive (hub) ---
   'hub.arrive': 'The Archive. A quiet place outside of time.',
-  'hub.hint': 'Aim at a machine and select it to live its story.',
+  'hub.hint': 'Aim at a machine to live its story, or at an echo to read it.',
   'hub.progress': '{n} of {total} archived',
   'hub.completed': 'Archived',
   'hub.allDone': 'All five stories are archived.',
+  'hub.echoes': '{n} of {total} echoes read',
+  'hub.echoRead': 'Read',
+  'hub.echo': 'Echo',
+  'hub.wall': 'Wall of Names',
+  'hub.complete': 'Archive complete',
+  'hub.completeHint': 'Every story is archived and every echo is read.',
   'hub.science': 'Enter the Science Room',
-  'hub.leave': 'Leave: Science Room',
+  'hub.leave': 'Science Room',
   'hub.title': 'Title',
 
   // --- Story and debrief ---
@@ -61,8 +67,6 @@ export const strings = {
   'debrief.back': 'Back to the Archive',
   'debrief.source': 'Source',
   'debrief.score': 'Your result (game score)',
-  'debrief.bonus': 'Bonus story',
-  'debrief.facts': 'Back to the facts',
 
   // --- Mini-game shell ---
   'game.pause': 'Pause',
@@ -108,6 +112,58 @@ export const strings = {
   'credits.license': 'License',
   'credits.licenseText': 'Code and content: Apache-2.0. Not affiliated with or endorsed by NASA.',
   'credits.back': 'Back',
+
+  // --- Echoes: six more machines, each a short fact card opened from the hub ---
+  'echo.kicker': 'Echo',
+  'echo.back': 'Back to the Archive',
+  'e.surveyor3.name': 'Surveyor 3',
+  'e.surveyor3.years': '1967',
+  'e.surveyor3.fact.1': 'Surveyor 3 launched on 17 April 1967 and landed on 20 April 1967 in Oceanus Procellarum.',
+  'e.surveyor3.fact.2': 'On 19 November 1969, the Apollo 12 lunar module Intrepid landed about 180 m away.',
+  'e.surveyor3.fact.3': 'Conrad and Bean took parts of it.',
+  'e.viking1.name': 'Viking 1',
+  'e.viking1.years': '1975 – 1982',
+  'e.viking1.fact.1': 'Viking 1 launched on 20 August 1975. Its lander touched down on Mars on 20 July 1976.',
+  'e.viking1.fact.2': 'It was the first truly successful landing on Mars. The Soviet Mars 3 lander, in 1971, lost contact seconds after touchdown.',
+  'e.viking1.fact.3': 'Both Viking orbiters returned 52,663 images and mapped about 97 percent of the surface. The landers returned 4,500 photos.',
+  'e.viking1.fact.4': 'The orbiter shut down on 7 August 1980, out of attitude-control propellant. The lander stopped on 11 November 1982 after a faulty command.',
+  'e.near.name': 'NEAR Shoemaker',
+  'e.near.years': '1996 – 2001',
+  'e.near.fact.1': 'NEAR Shoemaker launched on 17 February 1996.',
+  'e.near.fact.2': 'On 14 February 2000 it entered orbit around the asteroid Eros: the first spacecraft to orbit an asteroid.',
+  'e.near.fact.3': 'On 12 February 2001 it touched down on Eros, the first to land on an asteroid, though it was not designed as a lander.',
+  'e.near.fact.4': 'It returned data for about two weeks. Last contact: 28 February 2001. It succumbed to the extreme cold.',
+  'e.insight.name': 'InSight',
+  'e.insight.years': '2018 – 2022',
+  'e.insight.fact.1': 'InSight launched on 5 May 2018 and landed in Elysium Planitia on 26 November 2018.',
+  'e.insight.fact.2': 'It studied the deep interior of Mars. Its seismometer listened for marsquakes.',
+  'e.insight.fact.3': 'It was built on the design of the Phoenix lander.',
+  'e.insight.fact.4': 'End of mission: 15 December 2022.',
+  'e.spirit.name': 'Spirit',
+  'e.spirit.years': '2011',
+  'e.spirit.fact.1': 'Spirit drove 7.73 km and operated for 6 years, 2 months and 19 days.',
+  'e.spirit.fact.2': 'NASA Science says its mission concluded in 2010, with its last contact.',
+  'e.spirit.fact.3': 'Recovery efforts ended on 25 May 2011. The probable cause was the cold.',
+  'e.dawn.name': 'Dawn',
+  'e.dawn.years': '2007',
+  'e.dawn.fact.1': 'Dawn launched on 27 September 2007.',
+  'e.dawn.fact.2': 'It was NASA’s first truly interplanetary spaceship, with extended stays at the giant asteroid Vesta and the dwarf planet Ceres.',
+  'e.dawn.fact.3': 'It ran out of fuel and remains in a perpetual unpowered orbit around Ceres.',
+
+  // --- Wall of Names: the other official resources, with their official one-line description ---
+  'wall.title': 'Wall of Names',
+  'wall.intro': 'More machines left behind, as described in the official challenge resources.',
+  'wall.back': 'Back to the Archive',
+  'wall.lm.name': 'Apollo Lunar Modules',
+  'wall.lm.text': 'The descent stages were left behind as launch pads.',
+  'wall.alsep.name': 'ALSEP Scientific Packages',
+  'wall.alsep.text': 'Seismometers, retroreflectors and other instruments left to do science after the astronauts departed.',
+  'wall.phoenix.name': 'Phoenix lander',
+  'wall.phoenix.text': 'Dug for water ice. Both Phoenix and InSight eventually lost power.',
+  'wall.kepler.name': 'Kepler Space Telescope',
+  'wall.kepler.text': 'Exoplanet-hunting telescope that ran out of fuel and drifts in an Earth-trailing orbit.',
+  'wall.pioneer11.name': 'Pioneer 11',
+  'wall.pioneer11.text': 'Early deep-space probe (with Pioneer 10), now drifting silently out of the solar system.',
 
   // --- Shell ---
   'shell.rotate': 'Please rotate your device to landscape.',
@@ -285,12 +341,6 @@ export const strings = {
   'g.lrv.map': 'Map {n}',
   'g.lrv.end': 'The driving is over. The LRVs were left on the Moon, parked permanently.',
 
-  // Bonus story card inside the LRV entry (section 8.6).
-  'bonus.surveyor.title': 'Bonus story: Surveyor 3 and Apollo 12',
-  'bonus.surveyor.1': 'Surveyor 3 launched on 17 April 1967 and landed on 20 April 1967 in Oceanus Procellarum.',
-  'bonus.surveyor.2': 'On 19 November 1969, the Apollo 12 lunar module Intrepid landed about 180 m from it.',
-  'bonus.surveyor.3': 'Conrad and Bean took parts of Surveyor 3.',
-
   // ---- Pioneer 10 (facts: NASA Science, "Pioneer 10") ----
   'm.pioneer10.name': 'Pioneer 10',
   'm.pioneer10.years': '1972',
@@ -374,15 +424,6 @@ export const machines = {
       fact('lrv', 4, 'spaceapps-resources'),
       fact('lrv', 5, 'apollo17-fender'),             // [E]: hidden until that source has a citation (see sources.js)
     ],
-    // Extra story card, opened from the LRV debrief card.
-    bonus: {
-      title: 'bonus.surveyor.title',
-      facts: [
-        { textKey: 'bonus.surveyor.1', sourceId: 'beyond-earth' },
-        { textKey: 'bonus.surveyor.2', sourceId: 'nssdca-a12' },
-        { textKey: 'bonus.surveyor.3', sourceId: 'nssdca-a12' },
-      ],
-    },
   },
   pioneer10: {
     id: 'pioneer10', name: 'm.pioneer10.name', years: 'm.pioneer10.years', env: 'space',
@@ -402,4 +443,21 @@ export const science = {
   pioneer10: [line('pioneer10', 1, 'nasa-pioneer10'), line('pioneer10', 2, 'nasa-pioneer10')],
 };
 
-export default { strings, machines, science };
+// Echoes: each fact names the sources it comes from.
+const echoFact = (id, n, ...sourceIds) => ({ textKey: `e.${id}.fact.${n}`, sourceIds });
+const echo = (id, facts) => ({ id, name: `e.${id}.name`, years: `e.${id}.years`, facts });
+export const echoes = {
+  surveyor3: echo('surveyor3', [echoFact('surveyor3', 1, 'beyond-earth'), echoFact('surveyor3', 2, 'nssdca-a12'), echoFact('surveyor3', 3, 'nssdca-a12')]),
+  viking1: echo('viking1', [1, 2, 3, 4].map((n) => echoFact('viking1', n, 'nasa-viking1'))),
+  near: echo('near', [1, 2, 3, 4].map((n) => echoFact('near', n, 'nasa-near'))),
+  insight: echo('insight', [1, 2, 3, 4].map((n) => echoFact('insight', n, 'nasa-insight'))),
+  spirit: echo('spirit', [echoFact('spirit', 1, 'beyond-earth'), echoFact('spirit', 2, 'nasa-mer'), echoFact('spirit', 3, 'beyond-earth')]),
+  dawn: echo('dawn', [echoFact('dawn', 1, 'nasa-dawn'), echoFact('dawn', 2, 'nasa-dawn'), echoFact('dawn', 3, 'spaceapps-resources')]),
+};
+
+// Wall of Names: the one-liners come from the official challenge resource list.
+export const wall = ['lm', 'alsep', 'phoenix', 'kepler', 'pioneer11'].map((id) => ({
+  name: `wall.${id}.name`, textKey: `wall.${id}.text`, sourceId: 'spaceapps-resources',
+}));
+
+export default { strings, machines, science, echoes, wall };

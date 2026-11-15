@@ -41,12 +41,12 @@ export const strings = {
 
   // --- The Archive (hub) ---
   'hub.arrive': 'El Archivo. Un lugar tranquilo fuera del tiempo.',
-  'hub.hint': 'Apunta a una máquina y elígela para vivir su historia.',
+  'hub.hint': 'Apunta a una máquina para vivir su historia, o a un eco para leerlo.',
   'hub.progress': '{n} de {total} archivadas',
   'hub.completed': 'Archivada',
   'hub.allDone': 'Las cinco historias están archivadas.',
   'hub.science': 'Entrar a la Sala de Ciencia',
-  'hub.leave': 'Salir: Sala de Ciencia',
+  'hub.leave': 'Sala de Ciencia',
   'hub.title': 'Título',
 
   // --- Story and debrief ---
@@ -56,8 +56,6 @@ export const strings = {
   'debrief.back': 'Volver al Archivo',
   'debrief.source': 'Fuente',
   'debrief.score': 'Tu resultado (puntaje del juego)',
-  'debrief.bonus': 'Historia extra',
-  'debrief.facts': 'Volver a los datos',
 
   // --- Mini-game shell ---
   'game.pause': 'Pausa',
@@ -279,10 +277,6 @@ export const strings = {
   'g.lrv.end': 'El recorrido terminó. Los LRV se dejaron en la Luna, estacionados para siempre.',
 
   // Bonus story card inside the LRV entry (section 8.6).
-  'bonus.surveyor.title': 'Historia extra: Surveyor 3 y Apollo 12',
-  'bonus.surveyor.1': 'Surveyor 3 fue lanzado el 17 de abril de 1967 y aterrizó el 20 de abril de 1967 en Oceanus Procellarum.',
-  'bonus.surveyor.2': 'El 19 de noviembre de 1969, el módulo lunar Intrepid de Apollo 12 aterrizó a unos 180 m de él.',
-  'bonus.surveyor.3': 'Conrad y Bean se llevaron partes de Surveyor 3.',
 
   // ---- Pioneer 10 (datos: NASA Science, "Pioneer 10") ----
   'm.pioneer10.name': 'Pioneer 10',
@@ -331,6 +325,66 @@ export const strings = {
 
   'science.pioneer10.1': 'La primera nave con energía eléctrica toda nuclear: dos RTG, unos 140 W en Júpiter. Diseñada para 21 meses, duró más de 30 años.',
   'science.pioneer10.2': 'Unas 500 fotos de la atmósfera de Júpiter, con la Gran Mancha Roja bien visible, y fotos de Calisto, Ganimedes y Europa.',
+
+  // --- Hub: ecos y muro ---
+  'hub.echoes': '{n} de {total} ecos leídos',
+  'hub.echoRead': 'Leído',
+  'hub.echo': 'Eco',
+  'hub.wall': 'Muro de Nombres',
+  'hub.complete': 'Archivo completo',
+  'hub.completeHint': 'Todas las historias están archivadas y todos los ecos leídos.',
+
+  // --- Ecos ---
+  'echo.kicker': 'Eco',
+  'echo.back': 'Volver al Archivo',
+  'e.surveyor3.name': 'Surveyor 3',
+  'e.surveyor3.years': '1967',
+  'e.surveyor3.fact.1': 'Surveyor 3 fue lanzado el 17 de abril de 1967 y aterrizó el 20 de abril de 1967 en Oceanus Procellarum.',
+  'e.surveyor3.fact.2': 'El 19 de noviembre de 1969, el módulo lunar Intrepid de Apollo 12 aterrizó a unos 180 m.',
+  'e.surveyor3.fact.3': 'Conrad y Bean se llevaron partes de él.',
+  'e.viking1.name': 'Viking 1',
+  'e.viking1.years': '1975 – 1982',
+  'e.viking1.fact.1': 'Viking 1 fue lanzada el 20 de agosto de 1975. Su módulo de aterrizaje tocó Marte el 20 de julio de 1976.',
+  'e.viking1.fact.2': 'Fue el primer aterrizaje realmente exitoso en Marte. El módulo soviético Mars 3, en 1971, perdió contacto segundos después de posarse.',
+  'e.viking1.fact.3': 'Los dos orbitadores Viking enviaron 52,663 imágenes y mapearon cerca del 97 por ciento de la superficie. Los módulos enviaron 4,500 fotos.',
+  'e.viking1.fact.4': 'El orbitador se apagó el 7 de agosto de 1980, sin propelente de control de actitud. El módulo falló el 11 de noviembre de 1982 por un mal comando.',
+  'e.near.name': 'NEAR Shoemaker',
+  'e.near.years': '1996 – 2001',
+  'e.near.fact.1': 'NEAR Shoemaker fue lanzada el 17 de febrero de 1996.',
+  'e.near.fact.2': 'El 14 de febrero de 2000 entró en órbita alrededor del asteroide Eros: la primera nave en orbitar un asteroide.',
+  'e.near.fact.3': 'El 12 de febrero de 2001 se posó en Eros, la primera en aterrizar en un asteroide, aunque no fue diseñada para aterrizar.',
+  'e.near.fact.4': 'Envió datos durante unas dos semanas. Último contacto: 28 de febrero de 2001. Sucumbió al frío extremo.',
+  'e.insight.name': 'InSight',
+  'e.insight.years': '2018 – 2022',
+  'e.insight.fact.1': 'InSight fue lanzado el 5 de mayo de 2018 y aterrizó en Elysium Planitia el 26 de noviembre de 2018.',
+  'e.insight.fact.2': 'Estudió el interior profundo de Marte. Su sismómetro escuchaba los terremotos marcianos.',
+  'e.insight.fact.3': 'Se construyó sobre el diseño del módulo de aterrizaje Phoenix.',
+  'e.insight.fact.4': 'Fin de la misión: 15 de diciembre de 2022.',
+  'e.spirit.name': 'Spirit',
+  'e.spirit.years': '2011',
+  'e.spirit.fact.1': 'Spirit recorrió 7.73 km y operó durante 6 años, 2 meses y 19 días.',
+  'e.spirit.fact.2': 'NASA Science dice que su misión concluyó en 2010, con su último contacto.',
+  'e.spirit.fact.3': 'Los intentos de recuperarlo terminaron el 25 de mayo de 2011. La causa probable fue el frío.',
+  'e.dawn.name': 'Dawn',
+  'e.dawn.years': '2007',
+  'e.dawn.fact.1': 'Dawn fue lanzada el 27 de septiembre de 2007.',
+  'e.dawn.fact.2': 'Fue la primera nave realmente interplanetaria de la NASA, con largas estadías en el asteroide gigante Vesta y el planeta enano Ceres.',
+  'e.dawn.fact.3': 'Se quedó sin combustible y permanece en una órbita perpetua y sin energía alrededor de Ceres.',
+
+  // --- Muro de Nombres ---
+  'wall.title': 'Muro de Nombres',
+  'wall.intro': 'Más máquinas que quedaron atrás, tal como las describen los recursos oficiales del reto.',
+  'wall.back': 'Volver al Archivo',
+  'wall.lm.name': 'Módulos Lunares Apollo',
+  'wall.lm.text': 'Las etapas de descenso se dejaron atrás como plataformas de lanzamiento.',
+  'wall.alsep.name': 'Paquetes científicos ALSEP',
+  'wall.alsep.text': 'Sismómetros, retrorreflectores y otros instrumentos que quedaron para hacer ciencia después de que partieron los astronautas.',
+  'wall.phoenix.name': 'Módulo de aterrizaje Phoenix',
+  'wall.phoenix.text': 'Excavó en busca de hielo de agua. Tanto Phoenix como InSight terminaron perdiendo energía.',
+  'wall.kepler.name': 'Telescopio espacial Kepler',
+  'wall.kepler.text': 'Telescopio buscador de exoplanetas que se quedó sin combustible y va a la deriva en una órbita que sigue a la Tierra.',
+  'wall.pioneer11.name': 'Pioneer 11',
+  'wall.pioneer11.text': 'Sonda temprana del espacio profundo (con Pioneer 10), que ahora se aleja en silencio del sistema solar.',
 };
 
 export default { strings };

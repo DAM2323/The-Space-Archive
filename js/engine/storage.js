@@ -1,7 +1,7 @@
 // Saves settings and progress in localStorage. Every call is wrapped in
 // try/catch: if storage is blocked or full, the game simply runs without saving.
 
-import { gameState, MACHINE_IDS } from '../state.js';
+import { gameState, MACHINE_IDS, ECHO_IDS } from '../state.js';
 
 const KEY = 'spaceArchive.v1';
 
@@ -21,6 +21,7 @@ export function load() {
       gameState.completed[id] = saved.completed?.[id] === true;
       gameState.stars[id] = Number(saved.stars?.[id]) || 0;
     }
+    for (const id of ECHO_IDS) gameState.echoes[id] = saved.echoes?.[id] === true;
   } catch {
     // Storage not available: keep the defaults.
   }
@@ -34,11 +35,12 @@ export function save() {
   }
 }
 
-// "Reset progress": forget completed machines and stars, keep the settings.
+// "Reset progress": forget completed machines, stars and read echoes, keep the settings.
 export function resetProgress() {
   for (const id of MACHINE_IDS) {
     gameState.completed[id] = false;
     gameState.stars[id] = 0;
   }
+  for (const id of ECHO_IDS) gameState.echoes[id] = false;
   save();
 }

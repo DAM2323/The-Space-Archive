@@ -21,6 +21,8 @@ import debrief from './scenes/debrief.js';
 import game from './scenes/game.js';
 import science from './scenes/science.js';
 import credits from './scenes/credits.js';
+import echo from './scenes/echo.js';
+import wall from './scenes/wall.js';
 import { MINIGAMES } from './minigames/index.js';
 
 // Saved settings and progress, then text
@@ -46,18 +48,20 @@ scenes.register('debrief', debrief);
 scenes.register('game', game);
 scenes.register('science', science);
 scenes.register('credits', credits);
+scenes.register('echo', echo);
+scenes.register('wall', wall);
 
 // Each scene can be opened directly through the URL hash, for example
 // index.html#hub. A machine id (#opportunity) opens that machine's mini-game,
 // or its story if it has none. #story:opportunity and #debrief:sojourner pass
-// the machine to a scene. Unknown names fall back to the title screen.
+// the machine to a scene, and #echo:viking1 opens one echo card. Unknown names fall back to the title screen.
 function openFromHash() {
   const [name, arg] = location.hash.slice(1).split(':');
   if (MACHINE_IDS.includes(name)) {
     return scenes.go(MINIGAMES[name] ? 'game' : 'story', { machine: name });
   }
   if (name === 'portal' || name === 'game' || !scenes.has(name)) return scenes.go('title');
-  return scenes.go(name, { machine: MACHINE_IDS.includes(arg) ? arg : 'opportunity' });
+  return scenes.go(name, { machine: MACHINE_IDS.includes(arg) ? arg : 'opportunity', id: arg });
 }
 openFromHash();
 window.addEventListener('hashchange', openFromHash);

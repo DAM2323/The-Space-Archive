@@ -10,11 +10,14 @@ Made by Juan for the 2026 NASA Space Apps Challenge, Lima.
 - NASA Science, "Mars Pathfinder" (URL to be added)
 - NASA Science, "Mars Exploration Rovers: Spirit and Opportunity" (URL to be added)
 - NASA Science, "Ingenuity Mars Helicopter" (URL to be added)
-- NASA NSSDCA spacecraft details pages for the Apollo 11, 12 and 15 Lunar Modules (URL to be added)
 - NASA Science, "Pioneer 10", https://science.nasa.gov/mission/pioneer-10/
-- NASA Science, "NEAR Shoemaker" (URL to be added)
-- NASA Science black hole page (URL to be added)
+- NASA Science, "Viking 1", https://science.nasa.gov/mission/viking-1/
+- NASA Science, "NEAR Shoemaker", https://science.nasa.gov/mission/near-shoemaker/
+- NASA Science, "InSight", https://science.nasa.gov/mission/insight/
+- NASA Science, "Dawn", https://science.nasa.gov/mission/dawn/
+- NASA NSSDCA spacecraft details pages for the Apollo 11, 12 and 15 Lunar Modules (URL to be added)
 - NASA Space Apps Challenge 2026, challenge resource list for "Abandoned but Not Forgotten" (URL to be added)
+- NASA Science black hole page (URL to be added)
 
 ## Art and audio
 

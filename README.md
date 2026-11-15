@@ -6,7 +6,7 @@ Play online: https://dam2323.github.io/The-Space-Archive/ (available once GitHub
 
 ## Concept
 
-The Space Archive is a short educational pixel-art browser game made for the 2026 NASA Space Apps Challenge (Lima), challenge "Abandoned but Not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars". The player is an astronaut who orbits a black hole, arrives at The Archive and lives the real stories of five machines: the Apollo Lunar Roving Vehicle, Pioneer 10, Sojourner, Opportunity and Ingenuity.
+The Space Archive is a short educational pixel-art browser game made for the 2026 NASA Space Apps Challenge (Lima), challenge "Abandoned but Not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars". The player is an astronaut who orbits a black hole, arrives at The Archive and lives the real stories of five machines: the Apollo Lunar Roving Vehicle, Pioneer 10, Sojourner, Opportunity and Ingenuity. Around them drift six echoes with short fact cards, and a Wall of Names lists the other official resources.
 
 Narrative fiction. The physics is real: near a black hole, time runs slower, so you can only travel toward the future.
 
@@ -37,6 +37,9 @@ More screenshots are in the screenshots folder.
 - Lunar Roving Vehicle mini-game: hold the button (or Space) to drive, release to slow down. Stop next to each flag and slow down for craters.
 - Pioneer 10 mini-game: switch the transmitter and the instruments on or off to stay inside the power budget, then let time pass. Data only reaches Earth while the transmitter is on. Budgets, costs and instrument names are game values.
 - Science Room: open it from The Archive (the button at the top, or "Enter the Science Room" when all five machines are archived). Credits and sources are on the title screen and inside the Science Room. Options are also available from the Pause menu in every mini-game.
+- Echoes: six smaller, dimmer machines drift around The Archive (Surveyor 3, Viking 1, NEAR Shoemaker, InSight, Spirit and Dawn). Aim at one and select it to read its fact card. Read echoes are saved.
+- Wall of Names: a button in The Archive opens a list of the other official challenge resources, each with its official one-line description.
+- When all five machines are archived and all six echoes are read, an "Archive complete" stamp appears.
 
 ## The five machines
 
@@ -64,7 +67,7 @@ python3 -m http.server 8000
 
 Then open http://localhost:8000 . Any static server works.
 
-To open a scene directly, add a URL hash: `#title`, `#intro`, `#hub`, `#science`, `#credits`, a machine id (`#opportunity`, `#ingenuity`, `#sojourner`, `#lrv`, `#pioneer10`) or `#debrief:opportunity`.
+To open a scene directly, add a URL hash: `#title`, `#intro`, `#hub`, `#science`, `#credits`, a machine id (`#opportunity`, `#ingenuity`, `#sojourner`, `#lrv`, `#pioneer10`), `#debrief:opportunity`, `#echo:viking1` and `#wall`.
 
 ## How to deploy
 
@@ -99,7 +102,7 @@ css/style.css
 js/main.js
 js/state.js
 js/engine/   loop.js, scenes.js, render.js, input.js, audio.js, storage.js, i18n.js, fx.js, ui.js
-js/scenes/   title.js, options.js, intro.js, hub.js, portal.js, story.js, game.js, debrief.js, science.js, credits.js
+js/scenes/   title.js, options.js, intro.js, hub.js, portal.js, story.js, game.js, debrief.js, echo.js, wall.js, science.js, credits.js
 js/minigames/ index.js, common.js, opportunity.js, ingenuity.js, sojourner.js, lrv.js, pioneer10.js
 js/data/     palette.js, sprites.js, content.en.js, content.es.js, sources.js
 ```

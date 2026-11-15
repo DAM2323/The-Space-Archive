@@ -131,3 +131,56 @@ export const SPRITES = {
     '.ff..ff..ff...',
   ],
 };
+
+// The six echoes: small original pixel drawings for the hub.
+export const ECHO_SPRITES = {
+  surveyor3: [
+    '....5....',
+    '...555...',
+    '..66666..',
+    '...6a6...',
+    '..f.f.f..',
+    '.f..f..f.',
+    'f...f...f',
+  ],
+  viking1: [
+    '.55......',
+    '.55..6...',
+    '..5..6...',
+    '.aaaaaaa.',
+    '.a6a6a6a.',
+    '.aaaaaaa.',
+    '.f..f..f.',
+    'ff.....ff',
+  ],
+  near: [
+    'bbb...bbb',
+    'bbb666bbb',
+    '...6a6...',
+    'bbb666bbb',
+    'bbb...bbb',
+  ],
+  insight: [
+    '.bb...bb.',
+    'bbbb.bbbb',
+    'bbbaaabbb',
+    '.bbaaabb.',
+    '...f.f...',
+    '..f...f..',
+  ],
+  spirit: [
+    '..6......',
+    '..f......',
+    '333333333',
+    '3b4b4b4b3',
+    '.aaaaaaa.',
+    'ff.ff.ff.',
+    'ff.ff.ff.',
+  ],
+  dawn: [
+    '....666....',
+    'bbbb6a6bbbb',
+    'bbbb666bbbb',
+    '.....7.....',
+  ],
+};

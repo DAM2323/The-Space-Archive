@@ -54,8 +54,20 @@ export const SOURCES = {
     title: 'Pioneer 10', publisher: 'NASA Science', short: 'NASA Science: Pioneer 10',
   },
   'nasa-near': {
-    id: 'nasa-near', tag: 'V', url: null,
+    id: 'nasa-near', tag: 'V', url: 'https://science.nasa.gov/mission/near-shoemaker/',
     title: 'NEAR Shoemaker', publisher: 'NASA Science', short: 'NASA Science: NEAR Shoemaker',
+  },
+  'nasa-viking1': {
+    id: 'nasa-viking1', tag: 'V', url: 'https://science.nasa.gov/mission/viking-1/',
+    title: 'Viking 1', publisher: 'NASA Science', short: 'NASA Science: Viking 1',
+  },
+  'nasa-insight': {
+    id: 'nasa-insight', tag: 'V', url: 'https://science.nasa.gov/mission/insight/',
+    title: 'InSight', publisher: 'NASA Science', short: 'NASA Science: InSight',
+  },
+  'nasa-dawn': {
+    id: 'nasa-dawn', tag: 'V', url: 'https://science.nasa.gov/mission/dawn/',
+    title: 'Dawn', publisher: 'NASA Science', short: 'NASA Science: Dawn',
   },
   // --- citations still to be added: facts that use these stay hidden ---
   'nasa-blackhole': {
