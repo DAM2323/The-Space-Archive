@@ -19,7 +19,9 @@ The Space Archive is a short pixel-art browser game about the machines NASA left
 
 ### Link to Project Demo
 
-https://dam2323.github.io/The-Space-Archive/docs/demo/The-Space-Archive-trailer.mp4 (30-second trailer, 29.4 s)
+https://youtu.be/_iwYeT_wjsQ (30-second trailer on YouTube, 29.4 s)
+
+Same trailer as a file in the repository: https://dam2323.github.io/The-Space-Archive/docs/demo/The-Space-Archive-trailer.mp4
 
 Same demo as a 7-slide deck (PDF): https://dam2323.github.io/The-Space-Archive/docs/demo/The-Space-Archive-demo.pdf
 
@@ -88,7 +90,7 @@ All demo files are in `docs/demo/` and are public through GitHub Pages. English 
 ### Main demo: 30-second trailer
 
 - File: `docs/demo/The-Space-Archive-trailer.mp4` (1920x1080, 29.4 s, English captions, music, no voice-over).
-- Link for the form: https://dam2323.github.io/The-Space-Archive/docs/demo/The-Space-Archive-trailer.mp4
+- Link for the form: https://youtu.be/_iwYeT_wjsQ (YouTube, public). Copy in the repository: https://dam2323.github.io/The-Space-Archive/docs/demo/The-Space-Archive-trailer.mp4
 - The limit is 30 seconds. Going over makes the project ineligible for Global Judging, so do not re-edit it to be longer.
 
 | Time | On screen |

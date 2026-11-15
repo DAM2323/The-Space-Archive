@@ -6,7 +6,9 @@
 
 Play online: https://dam2323.github.io/The-Space-Archive/
 
-Demo trailer (30 s): https://dam2323.github.io/The-Space-Archive/docs/demo/The-Space-Archive-trailer.mp4
+Demo trailer (30 s, YouTube): https://youtu.be/_iwYeT_wjsQ
+
+Demo trailer (file in this repository): https://dam2323.github.io/The-Space-Archive/docs/demo/The-Space-Archive-trailer.mp4
 
 Demo slides (PDF): https://dam2323.github.io/The-Space-Archive/docs/demo/The-Space-Archive-demo.pdf
 
