@@ -6,7 +6,7 @@ Play online: https://dam2323.github.io/The-Space-Archive/ (available once GitHub
 
 ## Concept
 
-The Space Archive is a short educational pixel-art browser game made for the 2026 NASA Space Apps Challenge (Lima), challenge "Abandoned but Not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars". The player is an astronaut who orbits a black hole, arrives at The Archive and lives the real stories of five machines: the Apollo Lunar Roving Vehicle, Voyager, Sojourner, Opportunity and Ingenuity.
+The Space Archive is a short educational pixel-art browser game made for the 2026 NASA Space Apps Challenge (Lima), challenge "Abandoned but Not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars". The player is an astronaut who orbits a black hole, arrives at The Archive and lives the real stories of five machines: the Apollo Lunar Roving Vehicle, Pioneer 10, Sojourner, Opportunity and Ingenuity.
 
 Narrative fiction. The physics is real: near a black hole, time runs slower, so you can only travel toward the future.
 
@@ -35,7 +35,7 @@ More screenshots are in the screenshots folder.
 - Ingenuity mini-game: hold the button (or Space) to spin the rotors and climb, release to descend. Keep the whole helicopter inside the marked zone until the bar fills, then land softly.
 - Sojourner mini-game: move one square at a time with the arrow keys, the on-screen arrows, or by tapping next to the rover. Go around the rocks and reach the three targets. You have a few moves each sol.
 - Lunar Roving Vehicle mini-game: hold the button (or Space) to drive, release to slow down. Stop next to each flag and slow down for craters.
-- Voyager mini-game: switch instruments on or off to stay inside the power budget, then let time pass. Every number and name in this level is a game value.
+- Pioneer 10 mini-game: switch the transmitter and the instruments on or off to stay inside the power budget, then let time pass. Data only reaches Earth while the transmitter is on. Budgets, costs and instrument names are game values.
 - Science Room: open it from The Archive (the button at the top, or "Enter the Science Room" when all five machines are archived). Credits and sources are on the title screen and inside the Science Room. Options are also available from the Pause menu in every mini-game.
 
 ## The five machines
@@ -46,15 +46,13 @@ More screenshots are in the screenshots folder.
 | Ingenuity | Wright Brothers Field | Take off, hover and land |
 | Sojourner | Slow and Steady | Move around the rocks to reach targets |
 | Lunar Roving Vehicle | Moon Drive | Drive, stop at flags, slow down for craters |
-| Voyager | Power Budget | Switch instruments on and off to stay inside a power budget |
+| Pioneer 10 | Power Budget | Switch the transmitter and instruments on and off as the power decays |
 
 ## Facts and sources
 
 Every fact shown to the player comes from the project's content pack and carries a source id (see js/data/sources.js and CREDITS.md). A fact whose source is marked `needsSource: true` is hidden from the player until a citation is added: add the url and delete `needsSource: true` from that source. Numbers that belong to gameplay are marked `// GAME VALUE` in the code and labeled as game values on screen.
 
 The real ending of each machine cannot be changed by the player.
-
-Voyager currently shows no mission facts, because its source is not cited yet.
 
 ## How to run
 
@@ -66,7 +64,7 @@ python3 -m http.server 8000
 
 Then open http://localhost:8000 . Any static server works.
 
-To open a scene directly, add a URL hash: `#title`, `#intro`, `#hub`, `#science`, `#credits`, a machine id (`#opportunity`, `#ingenuity`, `#sojourner`, `#lrv`, `#voyager`) or `#debrief:opportunity`.
+To open a scene directly, add a URL hash: `#title`, `#intro`, `#hub`, `#science`, `#credits`, a machine id (`#opportunity`, `#ingenuity`, `#sojourner`, `#lrv`, `#pioneer10`) or `#debrief:opportunity`.
 
 ## How to deploy
 
@@ -102,7 +100,7 @@ js/main.js
 js/state.js
 js/engine/   loop.js, scenes.js, render.js, input.js, audio.js, storage.js, i18n.js, fx.js, ui.js
 js/scenes/   title.js, options.js, intro.js, hub.js, portal.js, story.js, game.js, debrief.js, science.js, credits.js
-js/minigames/ index.js, common.js, opportunity.js, ingenuity.js, sojourner.js, lrv.js, voyager.js
+js/minigames/ index.js, common.js, opportunity.js, ingenuity.js, sojourner.js, lrv.js, pioneer10.js
 js/data/     palette.js, sprites.js, content.en.js, content.es.js, sources.js
 ```
 

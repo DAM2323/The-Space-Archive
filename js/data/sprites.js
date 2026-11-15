@@ -102,7 +102,8 @@ export const SPRITES = {
     '...fff..............fff...',
   ],
 
-  voyager: [
+  // Pioneer 10: a large dish, a body and long booms.
+  pioneer10: [
     '...........666666.........',
     '.........6655555566.......',
     '........655555555556......',

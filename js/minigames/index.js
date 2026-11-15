@@ -9,12 +9,12 @@ import * as opportunity from './opportunity.js';
 import * as ingenuity from './ingenuity.js';
 import * as sojourner from './sojourner.js';
 import * as lrv from './lrv.js';
-import * as voyager from './voyager.js';
+import * as pioneer10 from './pioneer10.js';
 
 export const MINIGAMES = {
   opportunity,
   ingenuity,
   sojourner,
   lrv,
-  voyager,
+  pioneer10,
 };

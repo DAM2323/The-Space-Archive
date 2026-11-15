@@ -91,7 +91,8 @@ export const strings = {
   'science.sojourner.2': 'Planned for a week, it worked 83 days. The mission returned 550 rover images and more than 16,500 lander images.',
   'science.lrv.1': 'A vehicle for astronauts on the Moon, first used on Apollo 15. It was used within 5 km of the lunar module.',
   'science.lrv.2': 'On Apollo 15 it drove 27.9 km in three EVAs. In December 1972 the Apollo 17 LRV set a distance record of 35.744 km.',
-  'science.voyager.1': 'Voyager 1 will be one light-day from Earth on 18 November 2026 at about 10:16 UTC.',   // [E] hidden until cited
+  'science.pioneer10.1': 'The first spacecraft with all-nuclear electrical power: two RTGs, about 140 W at Jupiter. Designed for 21 months, it lasted over 30 years.',
+  'science.pioneer10.2': 'About 500 pictures of Jupiter\u2019s atmosphere, clearly showing the Great Red Spot, and photos of Callisto, Ganymede and Europa.',
 
   // --- Credits ---
   'credits.title': 'Credits and sources',
@@ -120,8 +121,6 @@ export const strings = {
   'm.sojourner.years': '1997',
   'm.lrv.name': 'Lunar Roving Vehicle',
   'm.lrv.years': '1972',
-  'm.voyager.name': 'Voyager',
-  'm.voyager.years': '',          // no verified year in the content pack yet
 
   // ---- Opportunity (section 8.1) ----
   // Story beats before the mini-game. The rest of the story is told inside it.
@@ -292,31 +291,51 @@ export const strings = {
   'bonus.surveyor.2': 'On 19 November 1969, the Apollo 12 lunar module Intrepid landed about 180 m from it.',
   'bonus.surveyor.3': 'Conrad and Bean took parts of Surveyor 3.',
 
-  // ---- Voyager (section 8.5): no verified facts yet, so the beats are atmosphere only ----
-  'm.voyager.beat.1': 'You float beside a small machine. Around you there is only dark and silence.',
-  'm.voyager.beat.2': 'You feel the cold. Nothing moves here, except you and the machine.',
-  'm.voyager.beat.3': 'It keeps going. You hold still and watch it, and you do not want to look away.',
-  'm.voyager.beat.4': 'There is only a little power here. You decide what stays on.',
-  'm.voyager.fact.1': 'Voyager 1 will be one light-day from Earth on 18 November 2026 at about 10:16 UTC.',   // [E] hidden until cited
+  // ---- Pioneer 10 (facts: NASA Science, "Pioneer 10") ----
+  'm.pioneer10.name': 'Pioneer 10',
+  'm.pioneer10.years': '1972',
+  'm.pioneer10.beat.1': 'It is 2 March 1972. Pioneer 10 launches from Cape Canaveral on an Atlas Centaur. Its mass is 258 kg.',
+  'm.pioneer10.beat.2': 'It is designed for a 21-month mission: to fly by Jupiter. No spacecraft has flown through the asteroid belt before.',
+  'm.pioneer10.beat.3': 'It carries an aluminum plaque with diagrams of the solar system.',
+  'm.pioneer10.beat.4': 'Its electrical power is all nuclear: two RTGs. That power slowly decays. You decide what stays on.',
+  'm.pioneer10.fact.1': 'Pioneer 10 launched on 2 March 1972 from Cape Canaveral on an Atlas Centaur. Its mass was 258 kg.',
+  'm.pioneer10.fact.2': 'It was designed for a 21-month mission to fly by Jupiter. It lasted more than 30 years.',
+  'm.pioneer10.fact.3': 'It was the first spacecraft to fly through the asteroid belt, to fly past Jupiter, and to use all-nuclear electrical power (two RTGs).',
+  'm.pioneer10.fact.4': 'Closest approach to Jupiter: 4 December 1973, at 81,000 miles (130,354 km). It took about 500 pictures of Jupiter’s atmosphere.',
+  'm.pioneer10.fact.5': 'On 13 June 1983 it crossed Neptune’s orbit: the first human-made object beyond the then-outermost planet.',
+  'm.pioneer10.fact.6': 'Routine contact ended on 31 March 1997 for budgetary reasons. A final attempt to contact it on 4 March 2006 failed.',
+  'm.pioneer10.fact.7': 'Last signal: 23 January 2003, from 12.23 billion km. It took 11 hours 20 minutes to reach Earth. Its power source had decayed.',
+  'm.pioneer10.fact.8': 'It carries an aluminum plaque with diagrams of the solar system. It heads toward the star Aldebaran, expected in about two million years.',
 
-  // Mini-game "Power Budget". Everything here is a game value: budgets, costs, data, rounds, stars.
-  'g.voy.title': 'Power Budget',
-  'g.voy.card.title': 'Power Budget',
-  'g.voy.card.text': 'There is only a little power, and each round there is less. Choose which instruments stay on.',
-  'g.voy.card.how': 'Instruments that are on collect data. Stay inside the power budget, then let time pass.',
-  'g.voy.round': 'Round {n} of {total}',
-  'g.voy.power': 'Power: {used} / {budget}',
-  'g.voy.data': 'Data: {n}',
-  'g.voy.instrument': 'Instrument {n}',
-  'g.voy.on': 'On',
-  'g.voy.off': 'Off',
-  'g.voy.cost': 'power {c}',
-  'g.voy.gain': 'data +{d}',
-  'g.voy.pass': 'Let time pass',
-  'g.voy.ready': 'Switch instruments on or off. Stay inside the budget.',
-  'g.voy.over': 'Too much power in use. Switch something off.',
-  'g.voy.less': 'Time passes. There is less power now.',
-  'g.voy.end': 'Almost no power is left. The machine keeps going.',
+  // Mini-game "Power Budget". Budgets, costs, data, "Instrument 1..4" and stars are game values.
+  // The dates, places and distances in the round messages are real.
+  'g.pio.title': 'Power Budget',
+  'g.pio.card.title': 'Pioneer 10 · 1972',
+  'g.pio.card.text': 'Pioneer 10 is the first spacecraft to use all-nuclear electrical power: two RTGs, about 140 W at Jupiter.',
+  'g.pio.card.how': 'The power decays. Each round, choose what stays on. Data only reaches Earth while the transmitter is on.',
+  'g.pio.power': 'Power: {used} / {budget}',
+  'g.pio.data': 'Data sent to Earth: {n}',
+  'g.pio.transmitter': 'Transmitter',
+  'g.pio.instrument': 'Instrument {n}',
+  'g.pio.on': 'On',
+  'g.pio.off': 'Off',
+  'g.pio.cost': 'power {c}',
+  'g.pio.gain': 'data +{d}',
+  'g.pio.sends': 'sends data home',
+  'g.pio.noPower': 'not enough power',
+  'g.pio.pass': 'Let time pass',
+  'g.pio.ok': 'Inside the power budget.',
+  'g.pio.over': 'Too much power in use. Switch something off.',
+  'g.pio.silent': 'The transmitter is off: no data reaches Earth.',
+  'g.pio.r1': '15 July 1972. You enter the asteroid belt. Pioneer 10 is the first spacecraft to fly through it.',
+  'g.pio.r2': '4 December 1973. Closest approach to Jupiter: 130,354 km. About 500 pictures show its atmosphere and the Great Red Spot.',
+  'g.pio.r3': '13 June 1983. You cross Neptune’s orbit: the first human-made object beyond the then-outermost planet.',
+  'g.pio.r4': '31 March 1997. Routine contact ends for budgetary reasons. Pioneer 10 keeps going.',
+  'g.pio.r5': 'January 2003. The power source has decayed. It can no longer power the transmitter.',
+  'g.pio.end.1': '23 January 2003. The last signal, from 12.23 billion km. It takes 11 hours 20 minutes to reach Earth.',
+  'g.pio.end.2': 'A final attempt to contact Pioneer 10 on 4 March 2006 fails.',
+  'g.pio.end.3': 'It heads toward the star Aldebaran, expected in about two million years.',
+  'g.pio.end.4': 'This ending is real. Nothing you did could change it.',
 };
 
 // Structure of each machine entry. Text is referenced by key, so a translation
@@ -365,12 +384,10 @@ export const machines = {
       ],
     },
   },
-  voyager: {
-    id: 'voyager', name: 'm.voyager.name', years: 'm.voyager.years', env: 'space',
-    beats: beats('voyager'),
-    debrief: [
-      fact('voyager', 1, 'nasa-voyager'),            // [E]: hidden until that source has a citation (see sources.js)
-    ],
+  pioneer10: {
+    id: 'pioneer10', name: 'm.pioneer10.name', years: 'm.pioneer10.years', env: 'space',
+    beats: beats('pioneer10'),
+    debrief: [1, 2, 3, 4, 5, 6, 7, 8].map((n) => fact('pioneer10', n, 'nasa-pioneer10')),
   },
 };
 
@@ -382,7 +399,7 @@ export const science = {
   ingenuity: [line('ingenuity', 1, 'nasa-ingenuity'), line('ingenuity', 2, 'nasa-ingenuity')],
   sojourner: [line('sojourner', 1, 'nasa-pathfinder'), line('sojourner', 2, 'beyond-earth', 'nasa-pathfinder')],
   lrv: [line('lrv', 1, 'nssdca-a15'), line('lrv', 2, 'nssdca-a15', 'beyond-earth')],
-  voyager: [line('voyager', 1, 'nasa-voyager')],
+  pioneer10: [line('pioneer10', 1, 'nasa-pioneer10'), line('pioneer10', 2, 'nasa-pioneer10')],
 };
 
 export default { strings, machines, science };

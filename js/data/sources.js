@@ -50,7 +50,7 @@ export const SOURCES = {
     short: 'Space Apps challenge resources',
   },
   'nasa-pioneer10': {
-    id: 'nasa-pioneer10', tag: 'V', url: null,
+    id: 'nasa-pioneer10', tag: 'V', url: 'https://science.nasa.gov/mission/pioneer-10/',
     title: 'Pioneer 10', publisher: 'NASA Science', short: 'NASA Science: Pioneer 10',
   },
   'nasa-near': {
@@ -61,10 +61,6 @@ export const SOURCES = {
   'nasa-blackhole': {
     id: 'nasa-blackhole', tag: 'E', url: null, needsSource: true,
     title: 'Black holes', publisher: 'NASA Science', short: 'NASA Science: Black Holes',
-  },
-  'nasa-voyager': {
-    id: 'nasa-voyager', tag: 'E', url: null, needsSource: true,
-    title: 'Voyager 1', publisher: 'NASA', short: 'NASA: Voyager 1',
   },
   'apollo17-fender': {
     id: 'apollo17-fender', tag: 'E', url: null, needsSource: true,

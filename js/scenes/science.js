@@ -15,7 +15,7 @@ import * as input from '../engine/input.js';
 import { sfx, drone } from '../engine/audio.js';
 import { gameState } from '../state.js';
 
-const ORDER = ['lrv', 'voyager', 'sojourner', 'opportunity', 'ingenuity'];   // by era, oldest first
+const ORDER = ['lrv', 'pioneer10', 'sojourner', 'opportunity', 'ingenuity'];   // by era, oldest first
 const LABELS = ['science.machine', 'science.result'];
 
 let page, time, slide, dom, offInput;

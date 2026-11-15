@@ -11,7 +11,8 @@ Made by Juan for the 2026 NASA Space Apps Challenge, Lima.
 - NASA Science, "Mars Exploration Rovers: Spirit and Opportunity" (URL to be added)
 - NASA Science, "Ingenuity Mars Helicopter" (URL to be added)
 - NASA NSSDCA spacecraft details pages for the Apollo 11, 12 and 15 Lunar Modules (URL to be added)
-- NASA Science pages for Pioneer 10 and NEAR Shoemaker (URL to be added)
+- NASA Science, "Pioneer 10", https://science.nasa.gov/mission/pioneer-10/
+- NASA Science, "NEAR Shoemaker" (URL to be added)
 - NASA Science black hole page (URL to be added)
 - NASA Space Apps Challenge 2026, challenge resource list for "Abandoned but Not Forgotten" (URL to be added)
 

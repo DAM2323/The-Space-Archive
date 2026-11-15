@@ -86,7 +86,6 @@ export const strings = {
   'science.sojourner.2': 'Planeado para una semana, trabajó 83 días. La misión envió 550 imágenes del rover y más de 16,500 del módulo de aterrizaje.',
   'science.lrv.1': 'Un vehículo para astronautas en la Luna, usado por primera vez en Apollo 15. Se usó a menos de 5 km del módulo lunar.',
   'science.lrv.2': 'En Apollo 15 recorrió 27.9 km en tres EVA. En diciembre de 1972 el LRV de Apollo 17 logró un récord de distancia: 35.744 km.',
-  'science.voyager.1': 'Voyager 1 estará a un día-luz de la Tierra el 18 de noviembre de 2026 a las 10:16 UTC aproximadamente.',   // [E] hidden until cited
 
   // --- Credits ---
   'credits.title': 'Créditos y fuentes',
@@ -115,8 +114,6 @@ export const strings = {
   'm.sojourner.years': '1997',
   'm.lrv.name': 'Vehículo Lunar (LRV)',
   'm.lrv.years': '1972',
-  'm.voyager.name': 'Voyager',
-  'm.voyager.years': '',          // no verified year in the content pack yet
 
   // ---- Opportunity (section 8.1) ----
   // Story beats before the mini-game. The rest of the story is told inside it.
@@ -287,31 +284,53 @@ export const strings = {
   'bonus.surveyor.2': 'El 19 de noviembre de 1969, el módulo lunar Intrepid de Apollo 12 aterrizó a unos 180 m de él.',
   'bonus.surveyor.3': 'Conrad y Bean se llevaron partes de Surveyor 3.',
 
-  // ---- Voyager (section 8.5): no verified facts yet, so the beats are atmosphere only ----
-  'm.voyager.beat.1': 'Flotas junto a una máquina pequeña. A tu alrededor solo hay oscuridad y silencio.',
-  'm.voyager.beat.2': 'Sientes el frío. Aquí nada se mueve, salvo tú y la máquina.',
-  'm.voyager.beat.3': 'Sigue avanzando. Te quedas inmóvil mirándola y no quieres apartar la vista.',
-  'm.voyager.beat.4': 'Aquí hay muy poca energía. Tú decides qué se queda encendido.',
-  'm.voyager.fact.1': 'Voyager 1 estará a un día-luz de la Tierra el 18 de noviembre de 2026 a las 10:16 UTC aproximadamente.',   // [E] hidden until cited
+  // ---- Pioneer 10 (datos: NASA Science, "Pioneer 10") ----
+  'm.pioneer10.name': 'Pioneer 10',
+  'm.pioneer10.years': '1972',
+  'm.pioneer10.beat.1': 'Es 2 de marzo de 1972. Pioneer 10 despega de Cabo Cañaveral en un Atlas Centaur. Su masa es 258 kg.',
+  'm.pioneer10.beat.2': 'Está diseñada para una misión de 21 meses: sobrevolar Júpiter. Ninguna nave ha cruzado antes el cinturón de asteroides.',
+  'm.pioneer10.beat.3': 'Lleva una placa de aluminio con diagramas del sistema solar.',
+  'm.pioneer10.beat.4': 'Su energía eléctrica es toda nuclear: dos RTG. Esa energía decae poco a poco. Tú decides qué se queda encendido.',
+  'm.pioneer10.fact.1': 'Pioneer 10 fue lanzada el 2 de marzo de 1972 desde Cabo Cañaveral en un Atlas Centaur. Su masa era 258 kg.',
+  'm.pioneer10.fact.2': 'Fue diseñada para una misión de 21 meses para sobrevolar Júpiter. Duró más de 30 años.',
+  'm.pioneer10.fact.3': 'Fue la primera nave en cruzar el cinturón de asteroides, en sobrevolar Júpiter y en usar energía eléctrica toda nuclear (dos RTG).',
+  'm.pioneer10.fact.4': 'Máximo acercamiento a Júpiter: 4 de diciembre de 1973, a 81,000 millas (130,354 km). Tomó unas 500 fotos de la atmósfera de Júpiter.',
+  'm.pioneer10.fact.5': 'El 13 de junio de 1983 cruzó la órbita de Neptuno: el primer objeto humano más allá del planeta entonces más lejano.',
+  'm.pioneer10.fact.6': 'El contacto de rutina terminó el 31 de marzo de 1997 por razones de presupuesto. Un último intento, el 4 de marzo de 2006, falló.',
+  'm.pioneer10.fact.7': 'Última señal: 23 de enero de 2003, desde 12.23 mil millones de km. Tardó 11 horas 20 minutos en llegar. Su fuente de energía había decaído.',
+  'm.pioneer10.fact.8': 'Lleva una placa de aluminio con diagramas del sistema solar. Va hacia la estrella Aldebarán; llegaría en unos dos millones de años.',
 
-  // Mini-game "Power Budget". Everything here is a game value: budgets, costs, data, rounds, stars.
-  'g.voy.title': 'Presupuesto de energía',
-  'g.voy.card.title': 'Presupuesto de energía',
-  'g.voy.card.text': 'Hay muy poca energía y en cada ronda hay menos. Elige qué instrumentos siguen encendidos.',
-  'g.voy.card.how': 'Los instrumentos encendidos recogen datos. Quédate dentro del presupuesto y deja pasar el tiempo.',
-  'g.voy.round': 'Ronda {n} de {total}',
-  'g.voy.power': 'Energía: {used} / {budget}',
-  'g.voy.data': 'Datos: {n}',
-  'g.voy.instrument': 'Instrumento {n}',
-  'g.voy.on': 'Sí',
-  'g.voy.off': 'No',
-  'g.voy.cost': 'energía {c}',
-  'g.voy.gain': 'datos +{d}',
-  'g.voy.pass': 'Dejar pasar el tiempo',
-  'g.voy.ready': 'Enciende o apaga instrumentos. Quédate dentro del presupuesto.',
-  'g.voy.over': 'Estás usando demasiada energía. Apaga algo.',
-  'g.voy.less': 'El tiempo pasa. Ahora hay menos energía.',
-  'g.voy.end': 'Casi no queda energía. La máquina sigue avanzando.',
+  // Minijuego "Presupuesto de energía". Presupuestos, costos, datos, "Instrumento 1..4" y estrellas son valores del juego.
+  'g.pio.title': 'Presupuesto de energía',
+  'g.pio.card.title': 'Pioneer 10 · 1972',
+  'g.pio.card.text': 'Pioneer 10 es la primera nave que usa energía eléctrica toda nuclear: dos RTG, unos 140 W en Júpiter.',
+  'g.pio.card.how': 'La energía decae. En cada ronda elige qué se queda encendido. Los datos solo llegan a la Tierra con el transmisor encendido.',
+  'g.pio.power': 'Energía: {used} / {budget}',
+  'g.pio.data': 'Datos enviados a la Tierra: {n}',
+  'g.pio.transmitter': 'Transmisor',
+  'g.pio.instrument': 'Instrumento {n}',
+  'g.pio.on': 'Sí',
+  'g.pio.off': 'No',
+  'g.pio.cost': 'energía {c}',
+  'g.pio.gain': 'datos +{d}',
+  'g.pio.sends': 'envía los datos',
+  'g.pio.noPower': 'no hay energía',
+  'g.pio.pass': 'Dejar pasar el tiempo',
+  'g.pio.ok': 'Dentro del presupuesto de energía.',
+  'g.pio.over': 'Demasiada energía en uso. Apaga algo.',
+  'g.pio.silent': 'El transmisor está apagado: ningún dato llega a la Tierra.',
+  'g.pio.r1': '15 de julio de 1972. Entras en el cinturón de asteroides. Pioneer 10 es la primera nave que lo cruza.',
+  'g.pio.r2': '4 de diciembre de 1973. Máximo acercamiento a Júpiter: 130,354 km. Unas 500 fotos muestran su atmósfera y la Gran Mancha Roja.',
+  'g.pio.r3': '13 de junio de 1983. Cruzas la órbita de Neptuno: el primer objeto humano más allá del planeta entonces más lejano.',
+  'g.pio.r4': '31 de marzo de 1997. El contacto de rutina termina por razones de presupuesto. Pioneer 10 sigue su viaje.',
+  'g.pio.r5': 'Enero de 2003. La fuente de energía ha decaído. Ya no puede alimentar el transmisor.',
+  'g.pio.end.1': '23 de enero de 2003. La última señal, desde 12.23 mil millones de km. Tarda 11 horas 20 minutos en llegar a la Tierra.',
+  'g.pio.end.2': 'Un último intento de contactar a Pioneer 10, el 4 de marzo de 2006, falla.',
+  'g.pio.end.3': 'Va hacia la estrella Aldebarán. Se espera que llegue en unos dos millones de años.',
+  'g.pio.end.4': 'Este final es real. Nada de lo que hicieras podía cambiarlo.',
+
+  'science.pioneer10.1': 'La primera nave con energía eléctrica toda nuclear: dos RTG, unos 140 W en Júpiter. Diseñada para 21 meses, duró más de 30 años.',
+  'science.pioneer10.2': 'Unas 500 fotos de la atmósfera de Júpiter, con la Gran Mancha Roja bien visible, y fotos de Calisto, Ganimedes y Europa.',
 };
 
 export default { strings };

@@ -19,7 +19,7 @@ import { gameState, MACHINE_IDS, completedCount } from '../state.js';
 // Where each ghost floats (center, in game pixels).
 export const SPOTS = {
   lrv: { x: 56, y: 52 },
-  voyager: { x: 160, y: 34 },
+  pioneer10: { x: 160, y: 34 },
   sojourner: { x: 264, y: 52 },
   opportunity: { x: 88, y: 122 },
   ingenuity: { x: 232, y: 122 },

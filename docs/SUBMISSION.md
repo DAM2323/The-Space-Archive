@@ -8,7 +8,7 @@ The Space Archive is a short pixel-art browser game. You are an astronaut who or
 
 The Space Archive is a short pixel-art browser game made for the 2026 NASA Space Apps Challenge, "Abandoned but Not Forgotten: Storytelling about NASA's Discarded Equipment on the Moon and Mars".
 
-You are an astronaut who orbits a black hole. Near it, time runs slower, so you can only travel toward the future. You arrive at The Archive, a quiet place outside of time, and live the real stories of five machines: Opportunity, Ingenuity, Sojourner, the Lunar Roving Vehicle and Voyager.
+You are an astronaut who orbits a black hole. Near it, time runs slower, so you can only travel toward the future. You arrive at The Archive, a quiet place outside of time, and live the real stories of five machines: Opportunity, Ingenuity, Sojourner, the Lunar Roving Vehicle and Pioneer 10.
 
 Each machine has one mini-game built around one real engineering problem, such as managing energy, flying a helicopter or driving with care. The real ending of each machine cannot be changed by the player. After each game, a "What really happened" card shows the facts. Every fact has a visible source, and numbers that belong to gameplay are labeled as game values.
 

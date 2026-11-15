@@ -3,7 +3,7 @@
 
 import { t } from './engine/i18n.js';
 
-export const MACHINE_IDS = ['lrv', 'voyager', 'sojourner', 'opportunity', 'ingenuity'];
+export const MACHINE_IDS = ['lrv', 'pioneer10', 'sojourner', 'opportunity', 'ingenuity'];
 
 const prefersReducedMotion =
   typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -16,8 +16,8 @@ export const gameState = {
     sound: true,
     volume: 0.4,                      // 0..1, low by default
   },
-  completed: { lrv: false, voyager: false, sojourner: false, opportunity: false, ingenuity: false },
-  stars: { lrv: 0, voyager: 0, sojourner: 0, opportunity: 0, ingenuity: 0 },
+  completed: { lrv: false, pioneer10: false, sojourner: false, opportunity: false, ingenuity: false },
+  stars: { lrv: 0, pioneer10: 0, sojourner: 0, opportunity: 0, ingenuity: 0 },
 };
 
 export const completedCount = () => MACHINE_IDS.filter((id) => gameState.completed[id]).length;

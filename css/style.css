@@ -587,7 +587,7 @@ body {
 .btn.arrow { justify-content: center; padding: 0.45em 0.5em; font-size: 1.2em; }
 .btn.arrow::before { display: none; }
 
-/* ---------- LRV and Voyager mini-games ---------- */
+/* ---------- LRV and Pioneer 10 mini-games ---------- */
 
 .card-body { display: flex; flex-direction: column; min-height: 0; overflow-y: auto; }
 .g-actions.wrap { flex-wrap: wrap; gap: calc(var(--u) * 3); }
@@ -654,3 +654,4 @@ a.source-title { color: var(--amber); }
 .card-body:focus-visible, .sci-body:focus-visible { outline: var(--u) solid var(--amber); outline-offset: var(--u); }
 
 .option-grid .span { grid-column: 1 / -1; }
+.g-income.warn { color: #ff9aa9; }
